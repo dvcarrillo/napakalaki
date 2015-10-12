@@ -27,6 +27,9 @@ public class BadConsequence {
     private boolean death;          // To represent a "Bad Consequence" of
                                     // type "death"
     
+    private ArrayList<TreasureKind> specificVisibleTreasures = new ArrayList();
+    private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
+    
     /**************************************************************************/
     // CONSTRUCTORS
     
@@ -42,6 +45,15 @@ public class BadConsequence {
     {
         text=txt;
         death=dth;
+    }
+    
+    public BadConsequence (String txt, int lvls,
+            ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden)
+    {
+        text=txt;
+        levels=lvls;
+        specificVisibleTreasures=tVisible;
+        specificHiddenTreasures=tHidden;
     }
     
     /**************************************************************************/
@@ -67,6 +79,9 @@ public class BadConsequence {
         return nHiddenTreasures;
     }
     
-    public int 
+    public boolean getDeath ()
+    {
+        return death;
+    }
     
 }
