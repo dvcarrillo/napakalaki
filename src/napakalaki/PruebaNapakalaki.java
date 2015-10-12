@@ -7,8 +7,11 @@ package napakalaki;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas Carrillo, Alicia Vílchez Ceballos
+ * ETSIIT, University of Granada
+ * 
  */
+
 public class PruebaNapakalaki {
 
     /**
