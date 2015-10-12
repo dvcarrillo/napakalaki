@@ -86,4 +86,14 @@ public class BadConsequence {
         return death;
     }
     
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures()
+    {
+        return specificVisibleTreasures;
+    }
+    
+    public ArrayList<TreasureKind> getSpecificHiddentreasures()
+    {
+        return specificHiddenTreasures;
+    }
+    
 }
