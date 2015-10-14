@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author Alicia Vílchez Ceballos
  */
 
 /*
@@ -58,43 +58,6 @@ public class BadConsequence {
         specificHiddenTreasures=tHidden;
     }
     
-    /**************************************************************************/
-    // SET METHODS
-    
-    public void setText (String txt)
-    {
-        text=txt;
-    }
-    
-    public void setLevels (int lvls)
-    {
-        levels=lvls;
-    }
-    
-    public void setNHiddenTreasures (int n_hidden_tr)
-    {
-        nHiddenTreasures=n_hidden_tr;
-    }
-    
-    public void setNVisibleTreasures (int n_visible_tr)
-    {
-        nVisibleTreasures=n_visible_tr;
-    }
-    
-    public void setDeath (boolean dth)
-    {
-        death=dth;
-    }
-    
-    public void setSpecificHiddenTreasures (ArrayList<TreasureKind> spe_hid_tre)
-    {
-        specificHiddenTreasures=spe_hid_tre;
-    }
-    
-    public void setSpecificVisibleTreasures(ArrayList<TreasureKind> spe_vis_tre)
-    {
-        specificVisibleTreasures=spe_vis_tre;
-    }
     
     /**************************************************************************/
     // GET METHODS
@@ -133,5 +96,11 @@ public class BadConsequence {
     {
         return specificHiddenTreasures;
     }
+    /////////////////////////
+
+    public String toString() {
+        return "BadConsequence{" + "text=" + text + ", levels=" + levels + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures=" + nHiddenTreasures + ", death=" + death + ", specificVisibleTreasures=" + specificVisibleTreasures + ", specificHiddenTreasures=" + specificHiddenTreasures + '}';
+    }
+    
     
 }
