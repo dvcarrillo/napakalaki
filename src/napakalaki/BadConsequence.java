@@ -143,4 +143,5 @@ public class BadConsequence {
         + specificVisibleTreasures + ", specificHiddenTreasures="
         + specificHiddenTreasures + '}';
     }
+    
 }

@@ -20,8 +20,18 @@ public class PruebaNapakalaki {
     
     public static void main(String[] args) {
         
+        // TEST OF THE CRATED CLASSES
         
+        String texto = "Soy una prueba";
+        int niveles = 10;
+        int visibles = 6;
+        int ocultos = 4;
         
+        BadConsequence malrollo = new BadConsequence(texto,niveles,visibles,
+        ocultos);
+        
+        System.out.println("Prueba de las clases creadas:");
+        System.out.println(malrollo.toString());
         
     }
     
