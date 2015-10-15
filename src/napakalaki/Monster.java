@@ -56,9 +56,7 @@ public Monster(String name, int combatLevel, BadConsequence bc, Prize pz)
     }
 
     public String toString() {
-        return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel + ", bc=" + bc + ", pz=" + pz + '}';
+        return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel
+        + ", bc=" + bc + ", pz=" + pz + '}';
     }
-       
-            
-    
 }
