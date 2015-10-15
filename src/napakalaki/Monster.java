@@ -12,25 +12,26 @@ package napakalaki;
 public class Monster {
     private String name;
     private int combatLevel;
-    private  BadConsequence bc;
+    private BadConsequence bc;
     private Prize pz;
 
    
     
   
 /******************************************************/
-// constructor:
-    public Monster(String name, int combatLevel, BadConsequence bc, Prize pz) 
-    {
-        this.name = name;
-        this.combatLevel = combatLevel;
-        this.bc = bc;
-        this.pz = pz;
-    }
+// Constructor
+
+public Monster(String name, int combatLevel, BadConsequence bc, Prize pz) 
+{
+    this.name = name;
+    this.combatLevel = combatLevel;
+    this.bc = bc;
+    this.pz = pz;
+}
     
 /***********************************************************************************/
 
-// query methods: 
+// Get methods
     
     public String getName()
     {
