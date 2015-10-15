@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Alicia Vílchez Ceballos
+ * @author David Vargas, Alicia Vílchez
  */
 
 /*
@@ -135,6 +135,7 @@ public class BadConsequence {
     }
     /////////////////////////
 
+    @Override
     public String toString() {
         return "BadConsequence{" + "text=" + text + ", levels=" + levels
         + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures="

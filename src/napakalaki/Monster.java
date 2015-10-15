@@ -7,54 +7,56 @@ package napakalaki;
 
 /**
  *
- * @author ali_a_000
+ * @author David Vargas, Alicia Vílchez
  */
+
 public class Monster {
+
     private String name;
     private int combatLevel;
     private BadConsequence bc;
     private Prize pz;
 
-   
-    
-  
-/******************************************************/
+/******************************************************************************/
 // Constructor
 
-public Monster(String name, int combatLevel, BadConsequence bc, Prize pz) 
-{
-    this.name = name;
-    this.combatLevel = combatLevel;
-    this.bc = bc;
-    this.pz = pz;
-}
+    public Monster(String name, int combatLevel, BadConsequence bc, Prize pz) 
+    {
+        this.name = name;
+        this.combatLevel = combatLevel;
+        this.bc = bc;
+        this.pz = pz;
+    }
     
-/***********************************************************************************/
-
+/******************************************************************************/
 // Get methods
     
     public String getName()
     {
         return name;
     }
-    
+
     public int getCombatLevel()
     {
         return combatLevel;
     }
-    
+
     public  BadConsequence getBadConsequence()
     {
         return bc;
-    
+
     }
-    
+
     public Prize getPrize()
     {
         return pz;
-    
+
     }
 
+/******************************************************************************/
+// ToString 
+    
+    @Override
     public String toString() {
         return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel
         + ", bc=" + bc + ", pz=" + pz + '}';

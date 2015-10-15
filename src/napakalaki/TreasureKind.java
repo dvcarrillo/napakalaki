@@ -7,8 +7,9 @@ package napakalaki;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas, Alicia Vílchez
  */
+
 public enum TreasureKind {
     ARMOR, ONEHAND, BOTHHANDS, HELMET, SHOES
 }
