@@ -136,6 +136,10 @@ public class BadConsequence {
     /////////////////////////
 
     public String toString() {
-        return "BadConsequence{" + "text=" + text + ", levels=" + levels + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures=" + nHiddenTreasures + ", death=" + death + ", specificVisibleTreasures=" + specificVisibleTreasures + ", specificHiddenTreasures=" + specificHiddenTreasures + '}';
+        return "BadConsequence{" + "text=" + text + ", levels=" + levels
+        + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures="
+        + nHiddenTreasures + ", death=" + death + ", specificVisibleTreasures="
+        + specificVisibleTreasures + ", specificHiddenTreasures="
+        + specificHiddenTreasures + '}';
     }
 }
