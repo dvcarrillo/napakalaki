@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author Alicia Vílchez Ceballos
  */
 
 /*
@@ -133,5 +133,13 @@ public class BadConsequence {
     {
         return specificHiddenTreasures;
     }
-    
+    /////////////////////////
+
+    public String toString() {
+        return "BadConsequence{" + "text=" + text + ", levels=" + levels
+        + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures="
+        + nHiddenTreasures + ", death=" + death + ", specificVisibleTreasures="
+        + specificVisibleTreasures + ", specificHiddenTreasures="
+        + specificHiddenTreasures + '}';
+    }
 }
