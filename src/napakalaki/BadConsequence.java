@@ -133,7 +133,8 @@ public class BadConsequence {
     {
         return specificHiddenTreasures;
     }
-    /////////////////////////
+    
+    /**************************************************************************/
 
     @Override
     public String toString() {
