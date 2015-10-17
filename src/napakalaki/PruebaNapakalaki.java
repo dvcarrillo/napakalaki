@@ -20,6 +20,7 @@ public class PruebaNapakalaki {
     
     public static void main(String[] args) {
         
+        /**********************************************************************/
         // TEST OF THE CRATED CLASSES
         
         String texto = "Soy una prueba";
@@ -29,6 +30,11 @@ public class PruebaNapakalaki {
         
         BadConsequence malrollo = new BadConsequence(texto,niveles,visibles,
         ocultos);
+        
+        System.out.println("****************************************");
+        System.out.println("// TESTS //");
+        System.out.println("****************************************");
+        System.out.println();
         
         System.out.println("Prueba de la clase BadConsequence:");
         System.out.println(malrollo.toString());
@@ -46,6 +52,14 @@ public class PruebaNapakalaki {
         Monster monstruo = new Monster (nombre, nivelcombate, malrollo, premio);
         System.out.println("Prueba de la clase Monster:");
         System.out.println(monstruo.toString());
+        
+        System.out.println();
+        
+        /**********************************************************************/
+        // DEFINITION OF THE MONSTERS 
+        
+        
+        /**********************************************************************/
         
     }
     

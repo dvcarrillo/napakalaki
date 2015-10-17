@@ -7,8 +7,12 @@ package napakalaki;
 
 /**
  *
- * @author David Vargas, Alicia Vílchez
+ * @author Alicia Vílchez
  */
+
+/*
+* This class manages the cards of type Monster and its attributes
+*/
 
 public class Monster {
 
