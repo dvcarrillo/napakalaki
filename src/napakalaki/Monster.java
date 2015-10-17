@@ -7,54 +7,57 @@ package napakalaki;
 
 /**
  *
- * @author ali_a_000
+ * @author Alicia Vílchez
  */
+
+/*
+* This class manages the cards of type Monster and its attributes
+*/
+
 public class Monster {
-    private String name;
-    private int combatLevel;
-    private BadConsequence bc;
-    private Prize pz;
 
-   
-    
-  
-/******************************************************/
-// Constructor
+    private final String name;
+    private final int combatLevel;
+    private final BadConsequence bc;
+    private final Prize pz;
 
-public Monster(String name, int combatLevel, BadConsequence bc, Prize pz) 
-{
-    this.name = name;
-    this.combatLevel = combatLevel;
-    this.bc = bc;
-    this.pz = pz;
-}
-    
-/***********************************************************************************/
+    /**************************************************************************/
+    // CONSTRUCTOR
 
-// Get methods
+    public Monster(String nm, int cl, BadConsequence badco, Prize prz) 
+    {
+        name = nm;
+        combatLevel = cl;
+        bc = badco;
+        pz = prz;
+    }
     
-    public String getName()
+    /**************************************************************************/
+    // GET METHODS
+    
+    public String getName ()
     {
         return name;
     }
-    
-    public int getCombatLevel()
+
+    public int getCombatLevel ()
     {
         return combatLevel;
     }
-    
-    public  BadConsequence getBadConsequence()
+
+    public  BadConsequence getBadConsequence ()
     {
         return bc;
-    
-    }
-    
-    public Prize getPrize()
-    {
-        return pz;
-    
     }
 
+    public Prize getPrize ()
+    {
+        return pz;
+    }
+
+    /**************************************************************************/
+    
+    @Override
     public String toString() {
         return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel
         + ", bc=" + bc + ", pz=" + pz + '}';

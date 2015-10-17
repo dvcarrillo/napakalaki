@@ -7,7 +7,7 @@ package napakalaki;
 
 /**
  *
- * @author Alicia Víchez Ceballos
+ * @author David Vargas, Alicia Vílchez
  */
 
 /*
@@ -55,13 +55,12 @@ public class Prize {
     {
         return level;
     }
-    
-    /******************************************************************/
-    //  toString METHODS:
-    public String toString()
-    {
-        return "Treasures = " + Integer.toString(treasures) + " levels = " + Integer.toString(level);
-    }
 
+    /******************************************************************/
+    // TO STRING METHOD
     
+    @Override
+    public String toString() {
+        return "Prize{" + "treasures=" + treasures + ", level=" + level + '}';
+    }
 }
