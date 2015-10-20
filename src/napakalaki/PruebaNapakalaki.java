@@ -5,6 +5,7 @@
  */
 
 package napakalaki;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +18,7 @@ public class PruebaNapakalaki {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         ArrayList<Monster> monstruos = new ArrayList();
         ArrayList<TreasureKind> tVisible = new ArrayList();
@@ -185,7 +187,6 @@ public class PruebaNapakalaki {
         monstruos.add(new Monster("Familia feliz", 1, badConsequence, prize));
         
         /**********************************************************************/
-        
     }
     
 }
