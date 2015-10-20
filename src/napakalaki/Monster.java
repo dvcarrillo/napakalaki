@@ -7,7 +7,7 @@ package napakalaki;
 
 /**
  *
- * @author Alicia Vílchez
+ * @author Alicia Vílchez, David Vargas
  */
 
 /*
@@ -16,10 +16,10 @@ package napakalaki;
 
 public class Monster {
 
-    private final String name;
-    private final int combatLevel;
-    private final BadConsequence bc;
-    private final Prize pz;
+    private final String name;              // Name of the monstar
+    private final int combatLevel;          // Combat level of the monster
+    private final BadConsequence bc;        // Linked bad consequence
+    private final Prize pz;                 // Linked prize
 
     /**************************************************************************/
     // CONSTRUCTOR
