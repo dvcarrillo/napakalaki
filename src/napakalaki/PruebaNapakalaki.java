@@ -22,8 +22,9 @@ public class PruebaNapakalaki {
     
     public static void main(String[] args) {
         
-        /**********************************************************************/
-        // TEST OF THE CRATED CLASSES
+        ////////////////////////////////////////////////////////////////////////
+        // TESTS OF THE CREATED CLASSES
+        ////////////////////////////////////////////////////////////////////////
         
         String texto = "Soy una prueba";
         int niveles = 10;
@@ -269,6 +270,95 @@ public class PruebaNapakalaki {
         prize = new Prize(4, 1);
         
         monstruos.add(new Monster("Familia feliz", 1, badConsequence, prize));
+        
+        /**********************************************************************/
+        // Roboggoth
+        
+        tVisible.add(TreasureKind.BOTHHANDS);
+        
+        badConsequence = new BadConsequence ("La quinta directiva te obliga "
+                + "a perder 2 niveles y un tesoro 2 manos visible", 2, tVisible,
+                tHidden);
+        
+        prize = new Prize (2, 1);
+        
+        monstruos.add(new Monster("Roboggoth", 8, badConsequence, prize));
+        
+        tVisible.clear();
+        
+        /**********************************************************************/
+        // El espia
+        
+        tVisible.add(TreasureKind.HELMET);
+        
+        badConsequence = new BadConsequence ("Te asusta en la noche. Pierdes"
+                + " un casco visible", 0, tVisible, tHidden);
+        
+        prize = new Prize (1, 1);
+        
+        monstruos.add(new Monster("El espia", 5, badConsequence, prize));
+        
+        tVisible.clear();
+        
+        /**********************************************************************/
+        // El Lenguas
+        
+        badConsequence = new BadConsequence ("Menudo susto te llevas. Pierdes "
+                + "2 niveles y 5 tesoros visibles", 2, 5, 0);
+        
+        prize = new Prize (1, 1);
+        
+        monstruos.add(new Monster("El Lenguas", 20, badConsequence, prize));
+        
+        /**********************************************************************/
+        // Bicéfalo
+        
+        tVisible.add(TreasureKind.ONEHAND);
+        tVisible.add(TreasureKind.ONEHAND);
+        tVisible.add(TreasureKind.BOTHHANDS);
+        
+        badConsequence = new BadConsequence ("Te faltan manos para tanta"
+                + " cabeza. Pierdes 3 niveles y tus tesoros visibles de "
+                + "las manos", 3, tVisible, tHidden);
+        
+        prize = new Prize (1, 1);
+        
+        monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
+        
+        ////////////////////////////////////////////////////////////////////////
+        // CONSULTATIONS OVER THE MONSTERS ARRAY
+        ////////////////////////////////////////////////////////////////////////
+        
+        // With combat level >10
+        
+        System.out.println("Monsters with a level greater than 10:");
+        
+        for (Monster unMonstruo : monstruos)
+            if (unMonstruo.getCombatLevel() > 10)
+                System.out.println(unMonstruo.getName());
+        
+        // With a bad consequence that only causes losing levels
+        
+        System.out.println("Monsters with a bad consequence that only causes "
+                + "losing levels:");
+                
+        for (Monster unMonstruo : monstruos)
+        {
+            BadConsequence thisBadCon = unMonstruo.getBadConsequence();
+            
+            if (thisBadCon.getNVisibleTreasures() == 0)
+                if (thisBadCon.getNHiddenTreasures() == 0)
+                    System.out.println(unMonstruo.getName());
+        }
+        
+        // With a prize that levels up more than 1 level
+        // ...
+        
+        
+        // Whose bad consequence causes the loss of certain treasures,
+        // whether they are visible or hidden
+        // WHICH TREASURES!???? <----
+        // ...
         
     }
     

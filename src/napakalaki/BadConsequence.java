@@ -47,6 +47,8 @@ public class BadConsequence {
     {
         text=txt;
         death=dth;
+        nVisibleTreasures=0;
+        nHiddenTreasures=0;
     }
     
     public BadConsequence (String txt, int lvls,
@@ -56,6 +58,8 @@ public class BadConsequence {
         levels=lvls;
         specificVisibleTreasures=tVisible;
         specificHiddenTreasures=tHidden;
+        nVisibleTreasures=tVisible.size();
+        nHiddenTreasures=tHidden.size();
     }
     
     /**************************************************************************/
