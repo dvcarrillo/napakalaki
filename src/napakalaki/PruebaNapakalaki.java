@@ -35,7 +35,7 @@ public class PruebaNapakalaki {
         ocultos);
         
         System.out.println("****************************************");
-        System.out.println("// TESTS //");
+        System.out.println("// BEGIN OF TESTS //");
         System.out.println("****************************************");
         System.out.println();
         
@@ -331,6 +331,7 @@ public class PruebaNapakalaki {
         
         // With combat level >10
         
+        System.out.println();
         System.out.println("Monsters with a level greater than 10:");
         
         for (Monster unMonstruo : monstruos)
@@ -339,6 +340,7 @@ public class PruebaNapakalaki {
         
         // With a bad consequence that only causes losing levels
         
+        System.out.println();
         System.out.println("Monsters with a bad consequence that only causes "
                 + "losing levels:");
                 
@@ -352,14 +354,43 @@ public class PruebaNapakalaki {
         }
         
         // With a prize that levels up more than 1 level
-        // ...
         
+        System.out.println();
+        System.out.println("With a prize that levels up more than 1 level:");
+        
+        for (Monster unMonstruo : monstruos)
+        {
+            Prize thisPrize = unMonstruo.getPrize();
+            if(thisPrize.getLevel() > 1)
+                System.out.println(unMonstruo.getName());
+        
+        }
         
         // Whose bad consequence causes the loss of certain treasures,
         // whether they are visible or hidden
-        //
-        // WHICH TREASURES!???? <----
-        // ...
+        
+        System.out.println();
+        System.out.println("Whose bad consequence causes the loss of certain "
+                + "treasures, whether they are visible or hidden:");
+        
+        for (Monster unMonstruo : monstruos)
+        {
+           BadConsequence thisBadCon = unMonstruo.getBadConsequence();
+           if(thisBadCon.getNHiddenTreasures() > 0 || 
+                   thisBadCon.getNVisibleTreasures() > 0)
+               System.out.println(unMonstruo.getName());
+        }
+        
+        System.out.println();
+        System.out.println("////////// TESTS //////////");
+        
+        for (Monster unMonstruo : monstruos)
+        {
+            BadConsequence thisBadCon = unMonstruo.getBadConsequence();
+            
+            System.out.println(unMonstruo.getName());
+            System.out.println(thisBadCon.toString());
+        }
         
     }
     
