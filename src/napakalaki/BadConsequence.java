@@ -37,67 +37,29 @@ public class BadConsequence {
     
     public BadConsequence (String txt, int lvls, int nVisible, int nHidden)
     {
-        text=txt;
-        levels=lvls;
-        nVisibleTreasures=nVisible;
-        nHiddenTreasures=nHidden;
+        text = txt;
+        levels = lvls;
+        nVisibleTreasures = nVisible;
+        nHiddenTreasures = nHidden;
     }
     
     public BadConsequence (String txt, boolean dth)
     {
-        text=txt;
-        death=dth;
-        nVisibleTreasures=0;
-        nHiddenTreasures=0;
+        text = txt;
+        death = dth;
+        nVisibleTreasures = 0;
+        nHiddenTreasures = 0;
     }
     
     public BadConsequence (String txt, int lvls,
             ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden)
     {
-        text=txt;
-        levels=lvls;
-        specificVisibleTreasures=tVisible;
-        specificHiddenTreasures=tHidden;
-        nVisibleTreasures=tVisible.size();
-        nHiddenTreasures=tHidden.size();
-    }
-    
-    /**************************************************************************/
-    // SET METHODS
-    
-    public void setText (String txt)
-    {
-        text=txt;
-    }
-    
-    public void setLevels (int lvls)
-    {
-        levels=lvls;
-    }
-    
-    public void setNHiddenTreasures (int n_hidden_tr)
-    {
-        nHiddenTreasures=n_hidden_tr;
-    }
-    
-    public void setNVisibleTreasures (int n_visible_tr)
-    {
-        nVisibleTreasures=n_visible_tr;
-    }
-    
-    public void setDeath (boolean dth)
-    {
-        death=dth;
-    }
-    
-    public void setSpecificHiddenTreasures (ArrayList<TreasureKind> spe_hid_tre)
-    {
-        specificHiddenTreasures=spe_hid_tre;
-    }
-    
-    public void setSpecificVisibleTreasures(ArrayList<TreasureKind> spe_vis_tre)
-    {
-        specificVisibleTreasures=spe_vis_tre;
+        text = txt;
+        levels = lvls;
+        specificVisibleTreasures = new ArrayList(tVisible);
+        specificHiddenTreasures = new ArrayList(tHidden);
+        nVisibleTreasures = tVisible.size();
+        nHiddenTreasures = tHidden.size();
     }
     
     /**************************************************************************/
