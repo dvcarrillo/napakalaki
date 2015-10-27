@@ -74,7 +74,7 @@ public class PruebaNapakalaki {
         ArrayList<TreasureKind> tHidden = new ArrayList();
         
         /**********************************************************************/
-        // Byakhees de bonanza
+        // 3 Byakhees de bonanza
         
         tVisible.add(TreasureKind.ARMOR);
         tHidden.add(TreasureKind.ARMOR);
@@ -84,7 +84,7 @@ public class PruebaNapakalaki {
         
         Prize prize = new Prize(2, 1);
         
-        monstruos.add(new Monster("Byakhees de bonanza", 8, badConsequence, 
+        monstruos.add(new Monster("3 Byakhees de bonanza", 8, badConsequence, 
                 prize));
         
         tVisible.clear();
