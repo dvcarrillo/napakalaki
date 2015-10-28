@@ -350,7 +350,8 @@ public class PruebaNapakalaki {
             
             if (thisBadCon.getNVisibleTreasures() == 0)
                 if (thisBadCon.getNHiddenTreasures() == 0)
-                    System.out.println(unMonstruo.getName());
+                    if (thisBadCon.getLevels() > 0)
+                        System.out.println(unMonstruo.getName());
         }
         
         // With a prize that levels up more than 1 level
@@ -376,8 +377,8 @@ public class PruebaNapakalaki {
         for (Monster unMonstruo : monstruos)
         {
            BadConsequence thisBadCon = unMonstruo.getBadConsequence();
-           if(thisBadCon.getNHiddenTreasures() > 0 || 
-                   thisBadCon.getNVisibleTreasures() > 0)
+           if(thisBadCon.getSpecificVisibleTreasures().size() > 0 || 
+              thisBadCon.getSpecificHiddenTreasures().size() > 0)
                System.out.println(unMonstruo.getName());
         }
         

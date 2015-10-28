@@ -50,6 +50,8 @@ public class BadConsequence {
         death = dth;
         nVisibleTreasures = 0;
         nHiddenTreasures = 0;
+        specificVisibleTreasures = new ArrayList();
+        specificHiddenTreasures = new ArrayList();
         // levels = 99;
     }
     
@@ -97,7 +99,7 @@ public class BadConsequence {
         return specificVisibleTreasures;
     }
     
-    public ArrayList<TreasureKind> getSpecificHiddentreasures()
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures()
     {
         return specificHiddenTreasures;
     }
