@@ -74,7 +74,7 @@ public class PruebaNapakalaki {
         ArrayList<TreasureKind> tHidden = new ArrayList();
         
         /**********************************************************************/
-        // Byakhees de bonanza
+        // 3 Byakhees de bonanza
         
         tVisible.add(TreasureKind.ARMOR);
         tHidden.add(TreasureKind.ARMOR);
@@ -84,7 +84,7 @@ public class PruebaNapakalaki {
         
         Prize prize = new Prize(2, 1);
         
-        monstruos.add(new Monster("Byakhees de bonanza", 8, badConsequence, 
+        monstruos.add(new Monster("3 Byakhees de bonanza", 8, badConsequence, 
                 prize));
         
         tVisible.clear();
@@ -350,7 +350,8 @@ public class PruebaNapakalaki {
             
             if (thisBadCon.getNVisibleTreasures() == 0)
                 if (thisBadCon.getNHiddenTreasures() == 0)
-                    System.out.println(unMonstruo.getName());
+                    if (thisBadCon.getLevels() > 0)
+                        System.out.println(unMonstruo.getName());
         }
         
         // With a prize that levels up more than 1 level
@@ -376,8 +377,8 @@ public class PruebaNapakalaki {
         for (Monster unMonstruo : monstruos)
         {
            BadConsequence thisBadCon = unMonstruo.getBadConsequence();
-           if(thisBadCon.getNHiddenTreasures() > 0 || 
-                   thisBadCon.getNVisibleTreasures() > 0)
+           if(thisBadCon.getSpecificVisibleTreasures().size() > 0 || 
+              thisBadCon.getSpecificHiddenTreasures().size() > 0)
                System.out.println(unMonstruo.getName());
         }
         

@@ -43,12 +43,16 @@ public class BadConsequence {
         nHiddenTreasures = nHidden;
     }
     
+    // To use for monsters which cause death
     public BadConsequence (String txt, boolean dth)
     {
         text = txt;
         death = dth;
         nVisibleTreasures = 0;
         nHiddenTreasures = 0;
+        specificVisibleTreasures = new ArrayList();
+        specificHiddenTreasures = new ArrayList();
+        // levels = 99;
     }
     
     public BadConsequence (String txt, int lvls,
@@ -95,7 +99,7 @@ public class BadConsequence {
         return specificVisibleTreasures;
     }
     
-    public ArrayList<TreasureKind> getSpecificHiddentreasures()
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures()
     {
         return specificHiddenTreasures;
     }
