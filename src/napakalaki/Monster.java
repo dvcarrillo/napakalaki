@@ -11,12 +11,12 @@ package napakalaki;
  */
 
 /*
-* This class manages the cards of type Monster and its attributes
+* This class manages the cards of type Monster and their attributes
 */
 
 public class Monster {
 
-    private final String name;              // Name of the monstar
+    private final String name;              // Name of the monster
     private final int combatLevel;          // Combat level of the monster
     private final BadConsequence bc;        // Linked bad consequence
     private final Prize pz;                 // Linked prize
