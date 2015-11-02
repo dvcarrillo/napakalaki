@@ -94,18 +94,48 @@ public class BadConsequence {
         return death;
     }
     
-    public ArrayList<TreasureKind> getSpecificVisibleTreasures()
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures ()
     {
         return specificVisibleTreasures;
     }
     
-    public ArrayList<TreasureKind> getSpecificHiddenTreasures()
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures ()
     {
         return specificHiddenTreasures;
     }
     
+    public boolean isEmpty ()
+    {
+        return (text.isEmpty());
+    }
+    
     /**************************************************************************/
-
+    // SUBSTRACT METHODS
+    
+    public void substractVisibleTreasure (Treasure t)
+    {
+        specificVisibleTreasures.remove(t);
+    }
+    
+    public void substractHiddenTreasure (Treasure t)
+    {
+        specificHiddenTreasures.remove(t);
+    }
+    
+    /**************************************************************************/
+    
+    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> v,
+            ArrayList<Treasure> h)
+    {
+        // ???
+        
+        // return <BadConsequence> bc;
+        return null;
+    }
+    
+    /**************************************************************************/
+    // TOSTRING
+    
     @Override
     public String toString() {
         return "BadConsequence{" + "text=" + text + ", levels=" + levels
