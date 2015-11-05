@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 /*
-* INTRODUCIR EXPLICACIÓN DE LA CLASE!!!
+* Class that manages the correct development of the game
 */
 
 // This class is a singleton: it means that there can only be one instance
