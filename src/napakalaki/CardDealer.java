@@ -30,7 +30,58 @@ public class CardDealer {
     public static CardDealer getInstance() {
         return instance;
     }
-    /**************************************************************************/
     
+    /**************************************************************************/
+    // PRIVATE METHODS
+    
+    private void initTreasureCardDeck ()
+    {
+        // ...
+    }
+    
+    private void initMonsterCardDeck ()
+    {
+        // ...
+    }
+    
+    private void shuffleTreasures ()
+    {
+        // ...
+    }
+    
+    private void shuffleMonsters ()
+    {
+        // ... 
+    }
+    
+    /**************************************************************************/
+    // OTHER METHODS
+    
+    public void initCards()
+    {
+        // ...
+    }
+    
+    public Treasure nextTreasure ()
+    {
+        // return <Treasure> t;
+        return null;
+    }
+    
+    public Monster nextMonster ()
+    {
+        // return <Monster> m;
+        return null;
+    }
+    
+    public void giveTreasureBack (Treasure t)
+    {
+        // ...
+    }
+    
+    public void giveMonsterBack (Monster m)
+    {
+        // ...
+    }
     
 }
