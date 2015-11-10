@@ -16,10 +16,10 @@ package napakalaki;
 
 public class Monster {
 
-    private final String name;              // Name of the monster
-    private final int combatLevel;          // Combat level of the monster
-    private final BadConsequence bc;        // Linked bad consequence
-    private final Prize pz;                 // Linked prize
+    private String name;              // Name of the monster
+    private int combatLevel;          // Combat level of the monster
+    private BadConsequence bc;        // Linked bad consequence
+    private Prize pz;                 // Linked prize
 
     /**************************************************************************/
     // CONSTRUCTOR

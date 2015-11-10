@@ -5,6 +5,8 @@
  */
 package napakalaki;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author davidvargascarrillo
@@ -17,6 +19,14 @@ package napakalaki;
 // This class is a singleton: it means that there can only be one instance
 
 public class CardDealer {
+    
+    // Arrays for the treasures (used and unused)
+    private ArrayList <Treasure> unusedTreasures;
+    private ArrayList <Treasure> usedTreasures;
+    
+    // Arrays for the monsters (used and unused)
+    private ArrayList <Monster> usedMonsters;
+    private ArrayList <Monster> unusedMonsters;
     
     /**************************************************************************/
     // Code for making this class a singleton

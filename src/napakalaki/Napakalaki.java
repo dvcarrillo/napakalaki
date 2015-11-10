@@ -19,6 +19,18 @@ import java.util.ArrayList;
 // This class is a singleton: it means that there can only be one instance
 
 public class Napakalaki {
+    
+    // Stores the person who is currently playing
+    private Player currentPlayer;
+    
+    // Stores the total of the players playing the game
+    private ArrayList<Player> players;
+    
+    // Stores the monster which is currently fighting against the player
+    Monster currentMonster;
+    
+    CardDealer dealer;
+    
     /**************************************************************************/
     // Code for making this class a singleton
     
