@@ -44,8 +44,12 @@ public class Player {
     // GET METHODS
     
     private int getCombatLevel ()
-    {
-        return level;
+    {   
+        int bonus = 0;
+        for(Treasure tesoro : visibleTreasures)
+            bonus = bonus + tesoro.getBonus();
+        
+        return bonus + level;
     }
     
     public String getName()
