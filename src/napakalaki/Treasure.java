@@ -16,8 +16,34 @@ package napakalaki;
 
 public class Treasure {
     
+    TreasureKind type;              // Type of the treasure
+    
     private String name;            // Name of the treasure 
     private int bonus;              // Bonus that the treasure can give
     
+    /**************************************************************************/
+    // CONSTRUCTOR
+    
+    public Treasure(String n, int bonus, TreasureKind t)
+    {
+        this.name = n;
+        this.bonus = bonus;
+        this.type = t;
+    }
+
+    public TreasureKind getType()
+    {
+        return type;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public int getBonus()
+    {
+        return bonus;
+    }
     
 }
