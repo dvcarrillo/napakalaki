@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package napakalaki;
+
 import java.util.ArrayList;
+
 /**
  *
  * @author davidvargascarrillo
@@ -18,187 +20,172 @@ public class Player {
     
     static final int MAXLEVEL = 10;     // Maximum level a player can reach
     
+    // Parameters of THIS player
     private String name;                // Name of the player
     private int level;                  // Current level of the player
     private boolean dead = true;        // Indicates if the player is dead
     private boolean canISteal = true;   // Indicates if the player can steal
                                         // treasures from another one
     
-    /**************************************************************************/
-    private Player enemy;
-    private ArrayList <Treasure> hiddenTreasures;
-    private ArrayList <Treasure> visibleTreasures;
+    private Player enemy;                           // Main rival of this player
+    private ArrayList <Treasure> visibleTreasures;  // Array of vis. treasures
+    private ArrayList <Treasure> hiddenTreasures;   // Array of hid. tresures
     private BadConsequence pendingBadConsequence;
 
-   
     /**************************************************************************/
+    // CONSTRUCTOR
     
-    //CONSTRUCTOR
-     
-    public Player(String name) {
+    public Player(String name)
+    {
         this.name = name;
     }
     
-    // METHODS
+    /**************************************************************************/
+    // GET METHODS
     
-    public String getName(){
+    private int getCombatLevel ()
+    {
+        return level;
+    }
+    
+    public String getName()
+    {
         return name;
     }
     
-    private void bringToLife(){
-    
-        /*
-        ...
-        */
-    
-    }
-    
-    private int getCombatLevel(){
-        return level;
-    }
-    
-    private void incrementLevels( int l ){
-        level = level + l;
-    } 
-    
-    private void decrementLevels( int l ){
-        level = level - l;
-    } 
-    
-    private void setPendingBadConsequence( BadConsequence b ){ 
-        pendingBadConsequence = b;
-    } 
-    
-    private void applyPrize( Monster m ){
-        /*
-        ...
-        ...
-        */
-    
-    } 
-    
-    private void applyBadConsequence( Monster m ){
-        /*
-        ...
-        ...
-        */
-    
-    } 
-    
-    private boolean canMakeTreasureVisible( Treasure t ){
-        /*
-        ...
-        ...
-        */
-    } 
-    
-    private int howManyVisibleTreasures( TreasureKind tKind ){
-        
-       return visibleTreasures.size();
-    
-    } 
-    
-    private void dieIfNoTreasures(){
-        /*
-        ...
-        */
-    
-    } 
-    
-    public boolean isDead(){
+    public boolean isDead ()
+    {
         return dead;
-    } 
+    }
     
- 
-    public ArrayList<Treasure> getHiddenTreasures() {
+    public ArrayList<Treasure> getHiddenTreasures ()
+    {
         return hiddenTreasures;
     }
 
-    public ArrayList<Treasure> getVisibleTreasures() {
+    public ArrayList<Treasure> getVisibleTreasures ()
+    {
         return visibleTreasures;
     }
     
-    public CombatResult combat( Monster m ){
-        /*
-        ...
-        */
-    }
-    
-    public void makeTreasureVisible(  Treasure t ){
-        /*
-        ...
-        .
-        .
-        */
-    }  
-    public void discardVisibleTreasure( Treasure t ){
-        /*
-        ...
-        ...
-        */
-    } 
-    
-    public void discardHiddenTreasure( Treasure t ){
-        /*
-        ...
-        ...
-        */
-    } 
-    
-    public boolean validState(){
-    
-        /*
-        ...
-        */
-    } 
-
-    public int getLevel() {
+    public int getLevel () 
+    {
         return level;
     }
     
-    public Treasure stealTreasure(){
-        /*
-        ...
-        ...
-        */
-    } 
-
-    public void setEnemy(Player enemy) {
+    /**************************************************************************/
+    // SET METHODS
+    
+    private void setPendingBadConsequence (BadConsequence b)
+    { 
+        this.pendingBadConsequence = b;
+    }
+    
+    public void setEnemy (Player enemy)
+    {
         this.enemy = enemy;
     }
     
-    private Treasure giveMeATreasure(){
-        /*
-        ...
-        ...
-        */
+    /**************************************************************************/
+    // OTHER METHODS
+    
+    private boolean canYouGiveMeATreasure ()
+    {
+       return (enemy.getHiddenTreasures().size() > 0);
     }
     
-    public boolean canISteal(){
+    private void haveStolen ()
+    {
+       canISteal = false;
+    } 
+    
+    private void bringToLife ()
+    {
+        dead = false;
+    }
+    
+    private void incrementLevels (int i)
+    {
+        level = level + i;
+    } 
+    
+    private void decrementLevels (int i)
+    {
+        level = level - i;
+    } 
+    
+    private void applyPrize (Monster m)
+    {
+        // ...
+    } 
+    
+    private void applyBadConsequence (Monster m)
+    {
+        // ...
+    } 
+    
+    private boolean canMakeTreasureVisible (Treasure t)
+    {
+        // ...
+        return true;
+    } 
+    
+    private int howManyVisibleTreasures (TreasureKind tKind)
+    {    
+        // ¿??????
+    } 
+    
+    private void dieIfNoTreasures ()
+    {
+      dead = true;
+    }
+
+    private Treasure giveMeATreasure ()
+    {
+        // ...
+        return null;
+    }
+    
+    public CombatResult combat (Monster m)
+    {
+        // ...
+        return null;
+    }
+    
+    public void makeTreasureVisible (Treasure t)
+    {
+        // ...
+    }
+    
+    public void discardVisibleTreasure (Treasure t)
+    {
+        // ...
+    } 
+    
+    public void discardHiddenTreasure (Treasure t)
+    {
+        // ...
+    } 
+    
+    public boolean validState ()
+    {
+        return( hiddenTreasures.size() > 4 &&  pendingBadConsequence.isEmpty());
+            
+    }
+    
+    public Treasure stealTreasure ()
+    {
+        // ...
+        return null;
+    }
+    
+    public boolean canISteal ()
+    {
         return canISteal;
     }
     
-    private boolean canYouGiveMeATreasure(){
-        /*
-        ...
-        ...
-        */
+    public void discardAllTreasures()
+    {
+        // ...
     }
-    
-    private void haveStolen(){
-        /*
-        ...
-        ...
-        */
-    } 
-    
-    public void discardAllTreasures(){
-        /*
-        ...
-        ...
-        */
-    }
-    
-    
-    
 }
