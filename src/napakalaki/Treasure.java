@@ -30,7 +30,7 @@ public class Treasure {
         this.bonus = bonus;
         this.type = t;
     }
-
+    
     public TreasureKind getType()
     {
         return type;

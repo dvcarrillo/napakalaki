@@ -117,8 +117,7 @@ public class BadConsequence {
     {
         boolean result = false;
         
-        if (!death)
-        {
+        if (!death) {
             if ((nVisibleTreasures == 0) && (nHiddenTreasures == 0))
                 result = true;
         }
@@ -144,7 +143,7 @@ public class BadConsequence {
     public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> v,
             ArrayList<Treasure> h)
     {
-        // ???
+        // ...
         
         // return <BadConsequence> bc;
         return null;
