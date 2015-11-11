@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Alicia Vílchez Ceballos
+ * @author David Vargas, Alicia Vílchez
  */
 
 /*
@@ -20,6 +20,10 @@ import java.util.ArrayList;
 
 public class BadConsequence {
     
+    // class method
+    final int MAXTREASURES = 10;
+    
+    /**************************************************************************/
     private String text;            // What does a Bad Consequence says
     
     private int levels;             // The number of levels to lose
@@ -37,63 +41,37 @@ public class BadConsequence {
     
     public BadConsequence (String txt, int lvls, int nVisible, int nHidden)
     {
-        text=txt;
-        levels=lvls;
-        nVisibleTreasures=nVisible;
-        nHiddenTreasures=nHidden;
+        text = txt;
+        levels = lvls;
+        nVisibleTreasures = nVisible;
+        nHiddenTreasures = nHidden;
+        specificVisibleTreasures = new ArrayList();
+        specificHiddenTreasures = new ArrayList();
+        death = false;
     }
     
+    // To use for monsters which cause death
     public BadConsequence (String txt, boolean dth)
     {
-        text=txt;
-        death=dth;
+        text = txt;
+        levels = 0;
+        nVisibleTreasures = 0;
+        nHiddenTreasures = 0;
+        specificVisibleTreasures = new ArrayList();
+        specificHiddenTreasures = new ArrayList();
+        death = true;
     }
     
     public BadConsequence (String txt, int lvls,
             ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden)
     {
-        text=txt;
-        levels=lvls;
-        specificVisibleTreasures=tVisible;
-        specificHiddenTreasures=tHidden;
-    }
-    
-    /**************************************************************************/
-    // SET METHODS
-    
-    public void setText (String txt)
-    {
-        text=txt;
-    }
-    
-    public void setLevels (int lvls)
-    {
-        levels=lvls;
-    }
-    
-    public void setNHiddenTreasures (int n_hidden_tr)
-    {
-        nHiddenTreasures=n_hidden_tr;
-    }
-    
-    public void setNVisibleTreasures (int n_visible_tr)
-    {
-        nVisibleTreasures=n_visible_tr;
-    }
-    
-    public void setDeath (boolean dth)
-    {
-        death=dth;
-    }
-    
-    public void setSpecificHiddenTreasures (ArrayList<TreasureKind> spe_hid_tre)
-    {
-        specificHiddenTreasures=spe_hid_tre;
-    }
-    
-    public void setSpecificVisibleTreasures(ArrayList<TreasureKind> spe_vis_tre)
-    {
-        specificVisibleTreasures=spe_vis_tre;
+        text = txt;
+        levels = lvls;
+        specificVisibleTreasures = new ArrayList(tVisible);
+        specificHiddenTreasures = new ArrayList(tHidden);
+        nVisibleTreasures = tVisible.size();
+        nHiddenTreasures = tHidden.size();
+        death = false;
     }
     
     /**************************************************************************/
@@ -124,17 +102,61 @@ public class BadConsequence {
         return death;
     }
     
-    public ArrayList<TreasureKind> getSpecificVisibleTreasures()
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures ()
     {
         return specificVisibleTreasures;
     }
     
-    public ArrayList<TreasureKind> getSpecificHiddentreasures()
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures ()
     {
         return specificHiddenTreasures;
     }
-    /////////////////////////
-
+    
+    // ¡REVISAR!
+    // Tener en cuenta: nVisibleTreasures y nHiddenTreasures toman valores
+    // distintos de 0 en TODOS LOS CASOS EXCEPTO en el que la condición
+    // death es verdadera (lo que causa la muerte en el jugador)
+    
+    public boolean isEmpty ()
+    {
+        boolean result = false;
+        
+        if (!death) {
+            if ((nVisibleTreasures == 0) && (nHiddenTreasures == 0))
+                result = true;
+        }
+        
+        return result;
+    }
+    
+    /**************************************************************************/
+    // SUBSTRACT METHODS
+    
+    public void substractVisibleTreasure (Treasure t)
+    {
+        specificVisibleTreasures.remove(t);
+    }
+    
+    public void substractHiddenTreasure (Treasure t)
+    {
+        specificHiddenTreasures.remove(t);
+    }
+    
+    /**************************************************************************/
+    
+    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> v,
+            ArrayList<Treasure> h)
+    {
+        // ...
+        
+        // return <BadConsequence> bc;
+        return null;
+    }
+    
+    /**************************************************************************/
+    // TOSTRING
+    
+    @Override
     public String toString() {
         return "BadConsequence{" + "text=" + text + ", levels=" + levels
         + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures="
@@ -142,4 +164,5 @@ public class BadConsequence {
         + specificVisibleTreasures + ", specificHiddenTreasures="
         + specificHiddenTreasures + '}';
     }
+    
 }
