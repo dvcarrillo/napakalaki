@@ -7,54 +7,67 @@ package napakalaki;
 
 /**
  *
- * @author ali_a_000
+ * @author Alicia Vílchez, David Vargas
  */
+
+/*
+* This class manages the cards of type Monster and their attributes
+*/
+
 public class Monster {
-    private String name;
-    private int combatLevel;
-    private BadConsequence bc;
-    private Prize pz;
 
-   
-    
-  
-/******************************************************/
-// Constructor
+    private String name;              // Name of the monster
+    private int combatLevel;          // Combat level of the monster
+    private BadConsequence bc;        // Linked bad consequence
+    private Prize pz;                 // Linked prize
 
-public Monster(String name, int combatLevel, BadConsequence bc, Prize pz) 
-{
-    this.name = name;
-    this.combatLevel = combatLevel;
-    this.bc = bc;
-    this.pz = pz;
-}
-    
-/***********************************************************************************/
+    /**************************************************************************/
+    // CONSTRUCTOR
 
-// Get methods
+    public Monster(String nm, int cl, BadConsequence badco, Prize prz) 
+    {
+        name = nm;
+        combatLevel = cl;
+        bc = badco;
+        pz = prz;
+    }
     
-    public String getName()
+    /**************************************************************************/
+    // GET METHODS
+    
+    public String getName ()
     {
         return name;
     }
-    
-    public int getCombatLevel()
+
+    public int getCombatLevel ()
     {
         return combatLevel;
     }
-    
-    public  BadConsequence getBadConsequence()
+
+    public  BadConsequence getBadConsequence ()
     {
         return bc;
-    
-    }
-    
-    public Prize getPrize()
-    {
-        return pz;
-    
     }
 
+    public Prize getPrize ()
+    {
+        return pz;
+    }
+    
+    public int getLevelsGained(){
+        
+        return pz.getLevel();
+    }
+    
+    public int getTreasuresGained(){
+        
+        return pz.getTreasures();
+    }
+
+    /**************************************************************************/
+    
+    @Override
     public String toString() {
         return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel
         + ", bc=" + bc + ", pz=" + pz + '}';
