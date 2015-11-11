@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package napakalaki;
-
+import java.util.Random;
 /**
  *
- * @author David Vargas Carrillo Alicia Vílchez
+ * @author davidvargascarrillo
  */
 
 /*
@@ -28,7 +28,13 @@ public class Dice {
     
     public static Dice getInstance() {
         return instance;
-    }
-    /**************************************************************************/
+    } 
     
+    /**************************************************************************/
+    // +nextNumber() : int
+    public double nextNumber(){
+        Random r = new Random();
+        int valorDado = r.nextInt(6)+1;
+        return valorDado;
+    }
 }
