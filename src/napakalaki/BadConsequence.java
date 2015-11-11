@@ -41,18 +41,21 @@ public class BadConsequence {
         levels = lvls;
         nVisibleTreasures = nVisible;
         nHiddenTreasures = nHidden;
+        specificVisibleTreasures = new ArrayList();
+        specificHiddenTreasures = new ArrayList();
+        death = false;
     }
     
     // To use for monsters which cause death
     public BadConsequence (String txt, boolean dth)
     {
         text = txt;
-        death = dth;
+        levels = 0;
         nVisibleTreasures = 0;
         nHiddenTreasures = 0;
         specificVisibleTreasures = new ArrayList();
         specificHiddenTreasures = new ArrayList();
-        // levels = 99;
+        death = true;
     }
     
     public BadConsequence (String txt, int lvls,
@@ -64,6 +67,7 @@ public class BadConsequence {
         specificHiddenTreasures = new ArrayList(tHidden);
         nVisibleTreasures = tVisible.size();
         nHiddenTreasures = tHidden.size();
+        death = false;
     }
     
     /**************************************************************************/
@@ -104,9 +108,22 @@ public class BadConsequence {
         return specificHiddenTreasures;
     }
     
+    // ¡REVISAR!
+    // Tener en cuenta: nVisibleTreasures y nHiddenTreasures toman valores
+    // distintos de 0 en TODOS LOS CASOS EXCEPTO en el que la condición
+    // death es verdadera (lo que causa la muerte en el jugador)
+    
     public boolean isEmpty ()
     {
-        return (text.isEmpty());
+        boolean result = false;
+        
+        if (!death)
+        {
+            if ((nVisibleTreasures == 0) && (nHiddenTreasures == 0))
+                result = true;
+        }
+        
+        return result;
     }
     
     /**************************************************************************/
