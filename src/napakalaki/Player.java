@@ -23,8 +23,8 @@ public class Player {
     // Parameters of THIS player
     private String name;                // Name of the player
     private int level;                  // Current level of the player
-    private boolean dead = true;        // Indicates if the player is dead
-    private boolean canISteal = true;   // Indicates if the player can steal
+    private boolean dead;               // Indicates if the player is dead
+    private boolean canISteal;          // Indicates if the player can steal
                                         // treasures from another one
     
     private Player enemy;                           // Main rival of this player
@@ -38,6 +38,8 @@ public class Player {
     public Player(String name)
     {
         this.name = name;
+        dead = true;
+        canISteal = true;
     }
     
     /**************************************************************************/
@@ -45,7 +47,12 @@ public class Player {
     
     private int getCombatLevel ()
     {
-        return level;
+        int result = level;
+        
+        for (Treasure a_treasure : visibleTreasures)
+            result += a_treasure.getBonus();
+        
+        return result;
     }
     
     public String getName()
@@ -68,7 +75,7 @@ public class Player {
         return visibleTreasures;
     }
     
-    public int getLevel () 
+    public int getLevels () 
     {
         return level;
     }
@@ -81,9 +88,9 @@ public class Player {
         this.pendingBadConsequence = b;
     }
     
-    public void setEnemy (Player enemy)
+    public void setEnemy (Player a_enemy)
     {
-        this.enemy = enemy;
+        this.enemy = a_enemy;
     }
     
     /**************************************************************************/
@@ -91,28 +98,29 @@ public class Player {
     
     private boolean canYouGiveMeATreasure ()
     {
-        // ...
-        return true;
+        boolean result = !(hiddenTreasures.isEmpty());
+        return result;
     }
     
+    // To execute after this player stoles a treasure
     private void haveStolen ()
     {
-        // ...
+        canISteal = false;
     } 
     
     private void bringToLife ()
     {
-        // ...
+        dead = false;
     }
     
     private void incrementLevels (int i)
     {
-        level = level + i;
+        level += i;
     } 
     
     private void decrementLevels (int i)
     {
-        level = level - i;
+        level -= i;
     } 
     
     private void applyPrize (Monster m)
@@ -133,13 +141,23 @@ public class Player {
     
     private int howManyVisibleTreasures (TreasureKind tKind)
     {    
-        // ...
-        return 0;
+        int count = 0;
+        
+        for (Treasure a_treasure : visibleTreasures)
+        {
+            if (a_treasure.getType() == tKind)
+                count++;
+        }
+        
+        return count;
     } 
-    
+   
     private void dieIfNoTreasures ()
     {
-        // ...
+        if ((visibleTreasures.isEmpty()) && (hiddenTreasures.isEmpty()))
+        {
+            dead = true;
+        }
     }
 
     private Treasure giveMeATreasure ()
@@ -169,10 +187,18 @@ public class Player {
         // ...
     } 
     
+    /* 
+    * Returns true when the player has not any bad consequence to do and has
+    * not more than 4 treasures too. Returns false in another case.
+    */
     public boolean validState ()
     {
-        // ...
-        return true;
+        boolean result = false;
+        
+        if ((hiddenTreasures.size() <= 4) && (pendingBadConsequence.isEmpty()))
+            result = true;
+        
+        return result;
     }
     
     public Treasure stealTreasure ()
@@ -181,6 +207,7 @@ public class Player {
         return null;
     }
     
+    // True if the player is able to steal a treasure from its enemy
     public boolean canISteal ()
     {
         return canISteal;

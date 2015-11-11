@@ -44,9 +44,56 @@ public class CardDealer {
     /**************************************************************************/
     // PRIVATE METHODS
     
+    ////////////////////////////////////////////////////////////////////////
+    // DEFINITION OF THE CARDS 
+    ////////////////////////////////////////////////////////////////////////
+
     private void initTreasureCardDeck ()
     {
-        // ...
+        /**********************************************************************/
+        // Si, mi amo!
+        unusedTreasures.add(new Treasure("Si, mi amo!", 4,
+                TreasureKind.HELMET));
+        
+        /**********************************************************************/
+        // Botas de investigacion
+        unusedTreasures.add(new Treasure("Botas de investigacion", 3,
+                TreasureKind.SHOES));
+        
+        /**********************************************************************/
+        // Capucha de Cthulhu
+        unusedTreasures.add(new Treasure("Capucha de Cthulhu", 3,
+                TreasureKind.HELMET));
+        
+        /**********************************************************************/
+        // A prueba de babas
+        unusedTreasures.add(new Treasure("A prueba de babas", 2, 
+                TreasureKind.ARMOR));
+        
+        /**********************************************************************/
+        // Botas de lluvia acida
+        unusedTreasures.add(new Treasure("Botas de lluvia acida", 1,
+                TreasureKind.BOTHHANDS));
+        
+        /**********************************************************************/
+        // Casco minero
+        unusedTreasures.add(new Treasure("Casco minero", 2,
+                TreasureKind.HELMET));
+        
+        /**********************************************************************/
+        // Ametralladora Thompson
+        unusedTreasures.add(new Treasure("Ametralladora Thompson", 4,
+                TreasureKind.BOTHHANDS));
+        
+        /**********************************************************************/
+        // Camiseta de la UGR
+        unusedTreasures.add(new Treasure("Camiseta de la UGR", 1,
+                TreasureKind.ARMOR));
+        
+        /**********************************************************************/
+        // Clavo de rail ferroviario
+        unusedTreasures.add(new Treasure("Clavo de rail ferroviario", 3,
+                TreasureKind.ONEHAND));
     }
     
     private void initMonsterCardDeck ()
