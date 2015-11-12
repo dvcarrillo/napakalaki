@@ -18,6 +18,7 @@ public class Monster {
 
     private String name;              // Name of the monster
     private int combatLevel;          // Combat level of the monster
+    
     private BadConsequence bc;        // Linked bad consequence
     private Prize pz;                 // Linked prize
 
@@ -54,8 +55,20 @@ public class Monster {
     {
         return pz;
     }
+    
+    public int getLevelsGained ()
+    {
+        return pz.getLevels();
+    }
+    
+    public int getTreasuresGained ()
+    {
+        return pz.getTreasures();
+    }
 
     /**************************************************************************/
+    // TOSTRING METHOD
+    // Returns the current state of the object
     
     @Override
     public String toString() {
