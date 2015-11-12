@@ -31,6 +31,9 @@ public class Treasure {
         this.type = t;
     }
     
+    /**************************************************************************/
+    // GET METHODS
+    
     public TreasureKind getType()
     {
         return type;
