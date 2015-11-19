@@ -74,28 +74,19 @@ public class Napakalaki {
         if (currentPlayer == null)
         {
             Random r = new Random();
-            posToReturn = r.nextInt();
+            posToReturn = r.nextInt(players.size());
         }
         else
         {
-            boolean found = false;
             int count = 0;
             
-            while ((found == false) || (count < players.size()))
-            {
-                Player a_player = players.get(count);
-                
-                if (a_player == currentPlayer)
-                {
-                    found = true;
-                }
-                else
-                {
-                    count++;
-                }
-            }
+            while (currentPlayer != players.get(count))
+                count++;
             
-            posToReturn = count;
+            posToReturn = count++;
+            
+            if (posToReturn == players.size())
+                posToReturn = 0;
         }
         
         return(players.get(posToReturn));
@@ -111,34 +102,21 @@ public class Napakalaki {
     }
     
     /*
-    Assignation of enemies between the players.
-    The rules this method follws are:
-    - There can be n players but the method will be ineficcient for big numbers
-    of n (probably won't be the case in this game)
-    - A player can ONLY be enemy of ONE another player
+    Assignation of enemies between the players. This method has been made to
+    use with n players
     */
     private void setEnemies()
-    {
-        // This array will keep a list with the remaining positions to assign
-        ArrayList<Integer> posArray = new ArrayList();
-        
-        // Fills the array with the positions from 0 to the length of the
-        // players array
-        for (int i = 0; i < players.size(); i++)
-            posArray.add(i);
-        
+    {   
         Random r = new Random();
         
-        // Assigns a random position of the list to a player, deleting then
-        // that position number from the array
+        // Assigns a random position of the list to the enemy attribute of 
+        // another player
         for (int i = 0; i < players.size(); i++)
         {
             int randomPos = r.nextInt(players.size() + 1);
             
-            while ((i == randomPos) || !(posArray.contains(i)))
+            while (i == randomPos)
                 randomPos = r.nextInt(players.size() + 1);
-            
-            posArray.remove(i);
             
             players.get(i).setEnemy(players.get(randomPos));
         }
@@ -195,6 +173,9 @@ public class Napakalaki {
         return false;
     }
     
+    /*
+    Returns 'true' if the result paratemer is WINGAME
+    */
     public boolean endOfGame (CombatResult result)
     {
         boolean ret_result = false;

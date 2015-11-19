@@ -6,6 +6,7 @@
 package napakalaki;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -133,10 +134,61 @@ public class Player {
         // ...
     } 
     
+    /*
+    Returns 'true' if the player is allowed to make the trasure t visible,
+    assuming it was hidden before
+    */
     private boolean canMakeTreasureVisible (Treasure t)
     {
-        // ...
-        return true;
+        boolean ret = true;
+        
+        TreasureKind type = t.getType();
+        
+        int count = 0;
+        
+        // SPECIAL CASE 1: t is ONEHAND treasure
+        // If there's a BOTHHANDS treasure in visibleTreasures, t won't be able
+        // to be added. In another case, the method will check if they are up to
+        // 2 treasures in visibleTreasures
+        if (type == TreasureKind.ONEHAND)
+        {
+            for (Treasure a_treasure : visibleTreasures)
+            {
+                if (a_treasure.getType() == TreasureKind.BOTHHANDS)
+                    ret = false;
+                else if (a_treasure.getType() == TreasureKind.ONEHAND)
+                {
+                    if (count < 2)
+                        count++;
+                    else
+                        ret = false;
+                }
+            }
+        }
+        // SPECIAL CASE 2: t is BOTHHANDS treasure
+        // There can't be a BOTHHANDS treasure if there's already a ONEHAND
+        // treasure on visibleTreasures
+        else if (type == TreasureKind.BOTHHANDS)
+        {
+            for (Treasure a_treasure : visibleTreasures)
+            {
+                if ((a_treasure.getType() == TreasureKind.ONEHAND) ||
+                        (a_treasure.getType() == TreasureKind.BOTHHANDS))
+                    ret = false;
+            }
+        }
+        // OTHER CASES: t won't be able to be added if there's a treasure
+        // of the same type in visibleTreasures
+        else
+        {
+            for (Treasure a_treasure : visibleTreasures)
+            {
+                if (a_treasure.getType() == type)
+                    ret = false;
+            }
+        }
+        
+        return ret;
     } 
     
     private int howManyVisibleTreasures (TreasureKind tKind)
@@ -162,8 +214,13 @@ public class Player {
 
     private Treasure giveMeATreasure ()
     {
-        // ...
-        return null;
+        Random r = new Random();
+        int posTreasure = r.nextInt(hiddenTreasures.size());
+        
+        Treasure returnTreasure = hiddenTreasures.get(posTreasure);
+        hiddenTreasures.remove(posTreasure);
+        
+        return returnTreasure;
     }
     
     public CombatResult combat (Monster m)
