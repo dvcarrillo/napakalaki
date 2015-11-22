@@ -165,6 +165,7 @@ public class Player {
                 }
             }
         }
+        
         // SPECIAL CASE 2: t is BOTHHANDS treasure
         // There can't be a BOTHHANDS treasure if there's already a ONEHAND
         // treasure on visibleTreasures
@@ -177,6 +178,7 @@ public class Player {
                     ret = false;
             }
         }
+        
         // OTHER CASES: t won't be able to be added if there's a treasure
         // of the same type in visibleTreasures
         else
