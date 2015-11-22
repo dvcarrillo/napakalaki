@@ -212,6 +212,10 @@ public class Player {
         }
     }
 
+    /*
+    Returns a random treasure and deletes it from hiddenTreasures array.
+    To use when the a player is going to steal a enemy's card
+    */
     private Treasure giveMeATreasure ()
     {
         Random r = new Random();
