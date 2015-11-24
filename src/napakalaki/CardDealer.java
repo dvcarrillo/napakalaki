@@ -6,6 +6,7 @@
 package napakalaki;
 
 import java.util.ArrayList;
+import java.util.Collections;    // For shuffle function
 
 /**
  *
@@ -44,9 +45,9 @@ public class CardDealer {
     /**************************************************************************/
     // PRIVATE METHODS
     
-    ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     // DEFINITION OF THE CARDS 
-    ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     private void initTreasureCardDeck ()
     {
@@ -96,7 +97,7 @@ public class CardDealer {
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Cuchillo de sushi arcano
+        // Cuchillo de sushi arcano
         unusedTreasures.add(new Treasure("Cuchillo de sushi arcano", 2,
                 TreasureKind.ONEHAND));
         
@@ -106,118 +107,119 @@ public class CardDealer {
                 TreasureKind.HELMET));
         
         /**********************************************************************/
-        //Hacha prehistorica
-         unusedTreasures.add(new Treasure("Hacha prehistorica", 2,
+        // Hacha prehistorica
+        unusedTreasures.add(new Treasure("Hacha prehistorica", 2,
                 TreasureKind.ONEHAND));
          
-         /**********************************************************************/
-        //El aparato del Pr. Tesla
+        /**********************************************************************/
+        // El aparato del Pr. Tesla
         unusedTreasures.add(new Treasure("El aparato del Pr. Tesla", 4,
                 TreasureKind.ARMOR));
         
-         /**********************************************************************/
-        //Gaita
-        unusedTreasures.add(new Treasure("Gaita", 4,
-                TreasureKind.BOTHHANDS));
+        /**********************************************************************/
+        // Gaita
+        unusedTreasures.add(new Treasure("Gaita", 4, TreasureKind.BOTHHANDS));
         
         /**********************************************************************/
-        //Insecticida
+        // Insecticida
         unusedTreasures.add(new Treasure("Insecticida", 2,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Escopeta de 3 cañones
+        // Escopeta de 3 cañones
         unusedTreasures.add(new Treasure("Escopeta de 3 cañones", 4,
                 TreasureKind.BOTHHANDS));
         
         /**********************************************************************/
-        //Garabato mistico
+        // Garabato mistico
         unusedTreasures.add(new Treasure("Garabato mistico", 2,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //La rebeca metalica
+        // La rebeca metalica
         unusedTreasures.add(new Treasure("La rebeca metalica", 2,
                 TreasureKind.ARMOR));
-        
         /**********************************************************************/
         //Lanzallamas
         unusedTreasures.add(new Treasure("Lanzallamas", 4,
                 TreasureKind.BOTHHANDS));
         
         /**********************************************************************/
-        //Necrocomicon
+        // Necrocomicon
         unusedTreasures.add(new Treasure("Necrocomicon", 1,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Necronomicon (NOMBRE PARECIDO)
+        // Necronomicon
         unusedTreasures.add(new Treasure("Necronomicon", 5,
                 TreasureKind.BOTHHANDS));
         
         /**********************************************************************/
-        //Linterna a 2 manos
+        // Linterna a 2 manos
         unusedTreasures.add(new Treasure("Linterna a 2 manos", 3,
                 TreasureKind.BOTHHANDS));
         
         /**********************************************************************/
-        //Necrognomicon
+        // Necrognomicon
         unusedTreasures.add(new Treasure("Necrognomicon", 2,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Necrotelecom
+        // Necrotelecom
         unusedTreasures.add(new Treasure("Necrotelecom", 2,
                 TreasureKind.HELMET));
         
         /**********************************************************************/
-        //Necrotelecom
+        // Mazo de los antiguos
         unusedTreasures.add(new Treasure("Mazo de los antiguos", 3,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Necroplayboycon
+        // Necroplayboycon
         unusedTreasures.add(new Treasure("Necroplayboycon", 3,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Porra preternatural
+        // Porra preternatural
         unusedTreasures.add(new Treasure("Porra preternatural", 2,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Shogulador
+        // Shogulador
         unusedTreasures.add(new Treasure("Shogulador", 1,
                 TreasureKind.BOTHHANDS));
         
         /**********************************************************************/
-        //Varita de atizamiento
+        // Varita de atizamiento
         unusedTreasures.add(new Treasure("Varita de atizamiento", 3,
                 TreasureKind.ONEHAND));
         
         /**********************************************************************/
-        //Tentaculo de pega
+        // Tentaculo de pega
         unusedTreasures.add(new Treasure("Tentaculo de pega", 2,
                 TreasureKind.HELMET));
         
         /**********************************************************************/
-        //Zapato deja-amigos
+        // Zapato deja-amigos
         unusedTreasures.add(new Treasure("Zapato deja-amigos", 1,
-                TreasureKind.SHOES));   
-
-
+                TreasureKind.SHOES)); 
+        
     }
     
-    
-    ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     // DEFINITION OF THE MONSTERS
-    ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     
     private void initMonsterCardDeck ()
     {
+        // Array which will store the monsters
+        ArrayList<Monster> monstruos = new ArrayList();
         
+        // Array which will store the visible and hidden treasures
+        // that the player can obtain by killing a monster 
         ArrayList<TreasureKind> tVisible = new ArrayList();
         ArrayList<TreasureKind> tHidden = new ArrayList();
+        
         /**********************************************************************/
         // 3 Byakhees de bonanza
         
@@ -229,7 +231,7 @@ public class CardDealer {
         
         Prize prize = new Prize(2, 1);
         
-        unusedMonsters.add(new Monster("3 Byakhees de bonanza", 8, badConsequence, 
+        monstruos.add(new Monster("3 Byakhees de bonanza", 8, badConsequence, 
                 prize));
         
         tVisible.clear();
@@ -246,7 +248,7 @@ public class CardDealer {
         
         prize = new Prize(1, 1);
         
-        unusedMonsters.add(new Monster("Chibithulhu", 2, badConsequence, prize));
+        monstruos.add(new Monster("Chibithulhu", 2, badConsequence, prize));
         
         tVisible.clear();
         tHidden.clear();
@@ -261,7 +263,7 @@ public class CardDealer {
         
         prize = new Prize(1, 1);
         
-        unusedMonsters.add(new Monster ("El sopor de Dunwich", 2, badConsequence, 
+        monstruos.add(new Monster ("El sopor de Dunwich", 2, badConsequence, 
                 prize));
         
         tVisible.clear();
@@ -279,7 +281,7 @@ public class CardDealer {
         
         prize = new Prize(4, 1);
         
-        unusedMonsters.add(new Monster("Ángeles de la noche ibicenca", 14,
+        monstruos.add(new Monster("Ángeles de la noche ibicenca", 14,
                 badConsequence, prize));
         
         tVisible.clear();
@@ -287,13 +289,16 @@ public class CardDealer {
         
         /**********************************************************************/
         // El gorrón en el umbral
-        // queda usada la variable de la clase BadConsequence MAXTREASURES
+        //
+        // We have assigned a large amount of visible treasures to lose in
+        // order to make the player lose all of them
+        
         badConsequence = new BadConsequence("Pierdes todos tus tesoros "
-                + "visibles", 0, badConsequence.MAXTREASURES, 0);
+                + "visibles", 0, 20, 0);
         
         prize = new Prize(3, 1);
         
-        unusedMonsters.add(new Monster("El gorrón en el umbral", 10, badConsequence,
+        monstruos.add(new Monster("El gorrón en el umbral", 10, badConsequence,
                 prize));
         
         /**********************************************************************/
@@ -306,7 +311,7 @@ public class CardDealer {
         
         prize = new Prize(2, 1);
         
-        unusedMonsters.add(new Monster("H.P Munchcraft", 6, badConsequence, prize));
+        monstruos.add(new Monster("H.P Munchcraft", 6, badConsequence, prize));
         
         tVisible.clear();
         
@@ -320,7 +325,7 @@ public class CardDealer {
         
         prize = new Prize(1, 1);
         
-        unusedMonsters.add(new Monster("Bichgooth", 2, badConsequence, prize));
+        monstruos.add(new Monster("Bichgooth", 2, badConsequence, prize));
         
         tVisible.clear();
         
@@ -332,7 +337,7 @@ public class CardDealer {
         
         prize = new Prize(4, 2);
         
-        unusedMonsters.add(new Monster("El rey de rosa", 13, badConsequence, prize));
+        monstruos.add(new Monster("El rey de rosa", 13, badConsequence, prize));
         
         /**********************************************************************/
         // La que redacta en las tinieblas
@@ -342,7 +347,7 @@ public class CardDealer {
         
         prize = new Prize(1, 1);
         
-        unusedMonsters.add(new Monster("La que redacta en las tinieblas", 2, 
+        monstruos.add(new Monster("La que redacta en las tinieblas", 2, 
                 badConsequence, prize));
         
         /**********************************************************************/
@@ -354,7 +359,7 @@ public class CardDealer {
         
         prize = new Prize(2, 1);
         
-        unusedMonsters.add(new Monster("Los hondos", 8, badConsequence, prize));
+        monstruos.add(new Monster("Los hondos", 8, badConsequence, prize));
         
         /**********************************************************************/
         // Semillas Cthulhu
@@ -364,7 +369,7 @@ public class CardDealer {
         
         prize = new Prize(2, 1);
         
-       unusedMonsters.add(new Monster("Semillas Cthulhu", 4, badConsequence, 
+        monstruos.add(new Monster("Semillas Cthulhu", 4, badConsequence, 
                 prize));
         
         /**********************************************************************/
@@ -377,7 +382,7 @@ public class CardDealer {
         
         prize = new Prize(2, 1);
         
-        unusedMonsters.add(new Monster("Dameargo", 1, badConsequence, prize));
+        monstruos.add(new Monster("Dameargo", 1, badConsequence, prize));
         
         tVisible.clear();
         
@@ -389,7 +394,7 @@ public class CardDealer {
         
         prize = new Prize(1, 1);
         
-        unusedMonsters.add(new Monster("Pollipólipo volante", 3, badConsequence, 
+        monstruos.add(new Monster("Pollipólipo volante", 3, badConsequence, 
                 prize));
         
         /**********************************************************************/
@@ -400,7 +405,7 @@ public class CardDealer {
         
         prize = new Prize(3, 1);
         
-        unusedMonsters.add(new Monster("Yskhtihyssg-Goth", 12, badConsequence, 
+        monstruos.add(new Monster("Yskhtihyssg-Goth", 12, badConsequence, 
                 prize));
         
         /**********************************************************************/
@@ -411,7 +416,7 @@ public class CardDealer {
         
         prize = new Prize(4, 1);
         
-        unusedMonsters.add(new Monster("Familia feliz", 1, badConsequence, prize));
+        monstruos.add(new Monster("Familia feliz", 1, badConsequence, prize));
         
         /**********************************************************************/
         // Roboggoth
@@ -424,7 +429,7 @@ public class CardDealer {
         
         prize = new Prize (2, 1);
         
-        unusedMonsters.add(new Monster("Roboggoth", 8, badConsequence, prize));
+        monstruos.add(new Monster("Roboggoth", 8, badConsequence, prize));
         
         tVisible.clear();
         
@@ -438,7 +443,7 @@ public class CardDealer {
         
         prize = new Prize (1, 1);
         
-        unusedMonsters.add(new Monster("El espia", 5, badConsequence, prize));
+        monstruos.add(new Monster("El espia", 5, badConsequence, prize));
         
         tVisible.clear();
         
@@ -450,7 +455,7 @@ public class CardDealer {
         
         prize = new Prize (1, 1);
         
-        unusedMonsters.add(new Monster("El Lenguas", 20, badConsequence, prize));
+        monstruos.add(new Monster("El Lenguas", 20, badConsequence, prize));
         
         /**********************************************************************/
         // Bicéfalo
@@ -465,18 +470,17 @@ public class CardDealer {
         
         prize = new Prize (1, 1);
         
-        unusedMonsters.add(new Monster("Bicéfalo", 20, badConsequence, prize));
-        
+        monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
     }
     
     private void shuffleTreasures ()
     {
-        // ...
+        Collections.shuffle(unusedMonsters);
     }
     
     private void shuffleMonsters ()
     {
-        // ... 
+        Collections.shuffle(unusedMonsters);
     }
     
     /**************************************************************************/
@@ -489,24 +493,56 @@ public class CardDealer {
     
     public Treasure nextTreasure ()
     {
-        // return <Treasure> t;
-        return null;
+        if(unusedTreasures.isEmpty()){
+            unusedTreasures = usedTreasures;
+            usedTreasures = new ArrayList();
+            Collections.shuffle(unusedTreasures);
+            
+        }
+        
+        int i=0;
+        boolean find = false;
+        Treasure trs;
+        while(i < unusedTreasures.size() && !find){
+            if(unusedTreasures.get(i) == null){
+                trs = unusedTreasures.get(i);
+                find = true;
+            }
+        }
+        return trs;      
     }
     
     public Monster nextMonster ()
     {
-        // return <Monster> m;
-        return null;
+         if(unusedMonsters.isEmpty()){
+            unusedMonsters = usedMonsters;
+            usedMonsters = new ArrayList();
+            Collections.shuffle(unusedMonsters);
+            
+        }
+        
+        int i=0;
+        boolean find = false;
+        Monster mst;
+        while(i < unusedMonsters.size() && !find){
+            if(unusedMonsters.get(i) == null){
+                mst = unusedMonsters.get(i);
+                find = true;
+            }
+        }
+        return mst;    
     }
     
     public void giveTreasureBack (Treasure t)
     {
-        usedTreasures.add(t);  
+        usedTreasures.add(t);
+        unusedTreasures.remove(t);
     }
     
     public void giveMonsterBack (Monster m)
     {
         usedMonsters.add(m);
+        unusedMonsters.remove(m);
     }
     
 }
