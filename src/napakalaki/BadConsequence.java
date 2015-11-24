@@ -20,10 +20,6 @@ import java.util.ArrayList;
 
 public class BadConsequence {
     
-    // class method
-    final int MAXTREASURES = 10;
-    
-    /**************************************************************************/
     private String text;            // What does a Bad Consequence says
     
     private int levels;             // The number of levels to lose
@@ -134,12 +130,56 @@ public class BadConsequence {
     
     public void substractVisibleTreasure (Treasure t)
     {
-        specificVisibleTreasures.remove(t);
+        TreasureKind trk = t.getType();
+        //CASE 1: The specificVisibleTreasures array is empty but there is a 
+        //number greater than 0 on nVisibleTreasures
+        //SOLUTION: decrement in an unit nVisibleTreasures
+    
+        if(specificVisibleTreasures.isEmpty() && nVisibleTreasures > 0)
+            nVisibleTreasures--;
+        
+        // CASE 2: The specific_visible_treasures array is not empty.
+        // SOLUTION: The method will look for the specified treasure in the array,
+        // and if it finds it, it will delete it. In another case, nothing will
+        // happen.
+        else{
+            int i=0;
+            boolean find = false;
+            while(i < specificVisibleTreasures.size() && !find){
+                if(specificVisibleTreasures.get(i) == trk){
+                    specificVisibleTreasures.remove(trk);
+                    find = true;
+                }
+                i++;
+            }
+        }
     }
     
     public void substractHiddenTreasure (Treasure t)
     {
-        specificHiddenTreasures.remove(t);
+        TreasureKind trk = t.getType();
+        //CASE 1: The specificHiddenTreasures array is empty but there is a 
+        //number greater than 0 on n_hidden_treasures
+        //SOLUTION: decrement in an unit nHiddenTreasures
+    
+        if(specificHiddenTreasures.isEmpty() && nHiddenTreasures > 0)
+            nHiddenTreasures--;
+        
+        // CASE 2: The specificHiddenTreasures array is not empty.
+        // SOLUTION: The method will look for the specified treasure in the array,
+        // and if it finds it, it will delete it. In another case, nothing will
+        // happen.
+        else{
+            int i=0;
+            boolean find = false;
+            while(i < specificHiddenTreasures.size() && !find){
+                if(specificHiddenTreasures.get(i) == trk){
+                    specificHiddenTreasures.remove(trk);
+                    find = true;
+                }
+                i++;
+            }
+        }
     }
     
     /**************************************************************************/
@@ -152,7 +192,7 @@ public class BadConsequence {
         // return <BadConsequence> bc;
         return null;
     }
-    
+
     /**************************************************************************/
     // TOSTRING
     
