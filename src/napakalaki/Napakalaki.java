@@ -162,9 +162,26 @@ public class Napakalaki {
         // ...
     }
     
-    public void initGame (String players)
+    /*
+    Initializes the game by requesting CardDealer class to initialize both 
+    card decks, initializing the players assigning them a name and a enemy,
+    and calling nextTurn method to begin the first turn
+    */
+    public void initGame (ArrayList<String> players)
     {
-        // ...
+        CardDealer cd = CardDealer.getInstance();
+        
+        // Initializes the players on the game
+        initPlayers(players);
+        
+        // Assigns the enemies between the players
+        setEnemies();
+        
+        // Initializes the decks of cards
+        cd.initCards();
+        
+        // Initializes the first turn
+        nextTurn();
     }
     
     public boolean nextTurn ()
