@@ -45,6 +45,16 @@ public class CardDealer {
     /**************************************************************************/
     // PRIVATE METHODS
     
+    private void shuffleTreasures ()
+    {
+        Collections.shuffle(unusedMonsters);
+    }
+    
+    private void shuffleMonsters ()
+    {
+        Collections.shuffle(unusedMonsters);
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     // DEFINITION OF THE CARDS 
     ////////////////////////////////////////////////////////////////////////////
@@ -473,34 +483,81 @@ public class CardDealer {
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
     }
     
-    private void shuffleTreasures ()
-    {
-        Collections.shuffle(unusedMonsters);
-    }
-    
-    private void shuffleMonsters ()
-    {
-        Collections.shuffle(unusedMonsters);
-    }
-    
     /**************************************************************************/
     // OTHER METHODS
     
     public void initCards()
     {
-        // ...
+        initTreasureCardDeck();
+        initMonsterCardDeck();
     }
+    
+    // Returns the next treasure of the unused treasures card deck
+    // If it was empty, it would shuffle the used ones and introduce them again
+    // into the unused ones
     
     public Treasure nextTreasure ()
     {
-        // return <Treasure> t;
-        return null;
+        // Checks if the unused_treasures array is empty and, if so, shuffle 
+        // the used ones and introduce them again into the unused ones
+        
+        if(unusedTreasures.isEmpty())
+        {
+            unusedTreasures = usedTreasures;
+            usedTreasures = new ArrayList();
+            shuffleTreasures();
+        }
+        
+        int i=0;
+        boolean find = false;
+        Treasure trs = null;
+        
+        // Finds and returns the next treasure
+        
+        while(i < unusedTreasures.size() && !find)
+        {
+            if(unusedTreasures.get(i) != null)
+            {
+                trs = unusedTreasures.get(i);
+                find = true;
+            }
+        }
+        
+        return trs;     
     }
+    
+    // Returns the next monster of the unused monsters card deck
+    // If it was empty, it would shuffle the used ones and introduce them again
+    // into the unused ones
     
     public Monster nextMonster ()
     {
-        // return <Monster> m;
-        return null;
+        // Checks if the unused_monsters array is empty and, if so, shuffle 
+        // the used ones and introduce them again into the unused ones
+        
+        if(unusedMonsters.isEmpty())
+        {
+            unusedMonsters = usedMonsters;
+            usedMonsters = new ArrayList();
+            shuffleMonsters();    
+        }
+        
+        int i=0;
+        boolean find = false;
+        Monster mst = null;
+        
+        // Finds and returns the next monster
+        
+        while(i < unusedMonsters.size() && !find)
+        {
+            if(unusedMonsters.get(i) == null)
+            {
+                mst = unusedMonsters.get(i);
+                find = true;
+            }
+        }
+        
+        return mst;
     }
     
     public void giveTreasureBack (Treasure t)

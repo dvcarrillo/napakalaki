@@ -141,10 +141,7 @@ public class Player {
     private boolean canMakeTreasureVisible (Treasure t)
     {
         boolean ret = true;
-        
         TreasureKind type = t.getType();
-        
-        int count = 0;
         
         // SPECIAL CASE 1: t is ONEHAND treasure
         // If there's a BOTHHANDS treasure in visibleTreasures, t won't be able
@@ -152,18 +149,9 @@ public class Player {
         // 2 treasures in visibleTreasures
         if (type == TreasureKind.ONEHAND)
         {
-            for (Treasure a_treasure : visibleTreasures)
-            {
-                if (a_treasure.getType() == TreasureKind.BOTHHANDS)
-                    ret = false;
-                else if (a_treasure.getType() == TreasureKind.ONEHAND)
-                {
-                    if (count < 2)
-                        count++;
-                    else
-                        ret = false;
-                }
-            }
+            if ((howManyVisibleTreasures(TreasureKind.BOTHHANDS) > 0) || 
+                    (howManyVisibleTreasures(TreasureKind.ONEHAND) > 1))
+                ret = false;
         }
         
         // SPECIAL CASE 2: t is BOTHHANDS treasure
@@ -171,23 +159,17 @@ public class Player {
         // treasure on visibleTreasures
         else if (type == TreasureKind.BOTHHANDS)
         {
-            for (Treasure a_treasure : visibleTreasures)
-            {
-                if ((a_treasure.getType() == TreasureKind.ONEHAND) ||
-                        (a_treasure.getType() == TreasureKind.BOTHHANDS))
-                    ret = false;
-            }
+            if ((howManyVisibleTreasures(TreasureKind.BOTHHANDS) > 0) ||
+                    (howManyVisibleTreasures(TreasureKind.ONEHAND) > 0))
+                ret = false;
         }
         
         // OTHER CASES: t won't be able to be added if there's a treasure
         // of the same type in visibleTreasures
         else
         {
-            for (Treasure a_treasure : visibleTreasures)
-            {
-                if (a_treasure.getType() == type)
-                    ret = false;
-            }
+            if (howManyVisibleTreasures(type) > 0)
+                ret = false;
         }
         
         return ret;
