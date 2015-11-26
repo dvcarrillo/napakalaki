@@ -46,7 +46,7 @@ public class Napakalaki {
     }
     
     /**************************************************************************/
-    // PRIVATE METHODS OF THE CLASS
+    // PRIVATE METHODS
     
     /*
     Initializes the 'players' array, adding as many players as they are
@@ -138,14 +138,30 @@ public class Napakalaki {
     /**************************************************************************/
     // METHODS FOR DISCARDING TREASURES
     
+    /*
+    Erases all the visible treasures, and if the player has a pending bad
+    consequence, the treasures are deleted from the pending bad consequence too.
+    Eventually the player will die if he has no treasures (dieOfNoTreasures
+    method) and the deleted treasures will be returned to the card dealer
+    */
     public void discardVisibleTreasures (ArrayList <Treasure> treasures)
     {
-        // ...
+        for (int i = 0; i < treasures.size(); i++)
+        {
+            Treasure a_treasure = treasures.get(i);
+            currentPlayer.discardVisibleTreasure(a_treasure);
+            dealer.giveTreasureBack(a_treasure);
+        }
     }
     
     public void discardHiddenTreasures (ArrayList <Treasure> treasures)
     {
-        // ...
+        for (int i = 0; i < treasures.size(); i++)
+        {
+            Treasure a_treasure = treasures.get(i);
+            currentPlayer.discardVisibleTreasure(a_treasure);
+            dealer.giveTreasureBack(a_treasure);
+        }
     }
     
     /**************************************************************************/
@@ -169,7 +185,7 @@ public class Napakalaki {
     */
     public void initGame (ArrayList<String> players)
     {
-        CardDealer cd = CardDealer.getInstance();
+        dealer = CardDealer.getInstance();
         
         // Initializes the players on the game
         initPlayers(players);
@@ -178,16 +194,34 @@ public class Napakalaki {
         setEnemies();
         
         // Initializes the decks of cards
-        cd.initCards();
+        dealer.initCards();
         
         // Initializes the first turn
         nextTurn();
     }
     
+    /*
+    Sets the next player and the next monster on the game and if the next player
+    is dead, brings him to life and initializes his treasures
+    */
+    
     public boolean nextTurn ()
     {
-        // ...
-        return false;
+        boolean stateOK = nextTurnAllowed();
+        
+        if (stateOK)
+        {
+            currentMonster = dealer.nextMonster();
+            currentPlayer = nextPlayer();
+            boolean dead = currentPlayer.isDead();
+            
+            if (dead)
+            {
+                currentPlayer.initTreasures();
+            }
+        }
+        
+        return stateOK;
     }
     
     /*
