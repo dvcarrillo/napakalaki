@@ -508,20 +508,8 @@ public class CardDealer {
             shuffleTreasures();
         }
         
-        int i=0;
-        boolean find = false;
-        Treasure trs = null;
-        
-        // Finds and returns the next treasure
-        
-        while(i < unusedTreasures.size() && !find)
-        {
-            if(unusedTreasures.get(i) != null)
-            {
-                trs = unusedTreasures.get(i);
-                find = true;
-            }
-        }
+        Treasure trs = unusedTreasures.get(0);
+        unusedTreasures.remove(trs);
         
         return trs;     
     }
@@ -542,20 +530,8 @@ public class CardDealer {
             shuffleMonsters();    
         }
         
-        int i=0;
-        boolean find = false;
-        Monster mst = null;
-        
-        // Finds and returns the next monster
-        
-        while(i < unusedMonsters.size() && !find)
-        {
-            if(unusedMonsters.get(i) == null)
-            {
-                mst = unusedMonsters.get(i);
-                find = true;
-            }
-        }
+        Monster mst = unusedMonsters.get(0);
+        unusedMonsters.remove(mst);
         
         return mst;
     }
@@ -563,13 +539,13 @@ public class CardDealer {
     public void giveTreasureBack (Treasure t)
     {
         usedTreasures.add(t);
-        unusedTreasures.remove(t);
+        // unusedTreasures.remove(t);
     }
     
     public void giveMonsterBack (Monster m)
     {
         usedMonsters.add(m);
-        unusedMonsters.remove(m);
+        // unusedMonsters.remove(m);
     }
     
 }
