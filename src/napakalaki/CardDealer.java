@@ -539,13 +539,11 @@ public class CardDealer {
     public void giveTreasureBack (Treasure t)
     {
         usedTreasures.add(t);
-        // unusedTreasures.remove(t);
     }
     
     public void giveMonsterBack (Monster m)
     {
         usedMonsters.add(m);
-        // unusedMonsters.remove(m);
     }
     
 }
