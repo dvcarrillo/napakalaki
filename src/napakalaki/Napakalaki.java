@@ -159,7 +159,7 @@ public class Napakalaki {
         for (int i = 0; i < treasures.size(); i++)
         {
             Treasure a_treasure = treasures.get(i);
-            currentPlayer.discardVisibleTreasure(a_treasure);
+            currentPlayer.discardHiddenTreasure(a_treasure);
             dealer.giveTreasureBack(a_treasure);
         }
     }

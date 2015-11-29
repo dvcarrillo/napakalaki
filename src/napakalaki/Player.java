@@ -222,9 +222,15 @@ public class Player {
         // ...
     }
     
+    /*
+    Methods that erase a treasure from the visible or hidden array of treasures,
+    and applies the pending bad consequence (if any). Then, if the player has no
+    treasures, dies
+    */
+    
     public void discardVisibleTreasure (Treasure t)
     {
-        visibleTreasures.remove(t);
+        boolean remove = visibleTreasures.remove(t);
         
         if ((pendingBadConsequence != null) &&
                 (!pendingBadConsequence.isEmpty()))
@@ -239,7 +245,7 @@ public class Player {
         
         if ((pendingBadConsequence != null) &&
                 (!pendingBadConsequence.isEmpty()))
-            pendingBadConsequence.substractVisibleTreasure(t);
+            pendingBadConsequence.substractHiddenTreasure(t);
         
         dieIfNoTreasures();
     } 
