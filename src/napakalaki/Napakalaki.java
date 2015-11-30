@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
- * @author davidvargascarrillo
+ * @author David Vargas
  */
 
 /*
@@ -180,9 +179,17 @@ public class Napakalaki {
         return combatResult;
     }
     
+    /*
+    For the current player, this array makes visible the desired array of
+    treasures if the player, for each one, is able to do so
+    */
     public void makeTreasuresVisible (ArrayList <Treasure> treasures)
     {
-        // ...
+        for (int i = 0; i < treasures.size(); i++)
+        {
+            Treasure t = treasures.get(i);
+            currentPlayer.makeTreasureVisible(t);
+        }
     }
     
     /*
@@ -243,5 +250,4 @@ public class Napakalaki {
         
         return ret_result;
     }
-    
 }
