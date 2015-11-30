@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
- * @author davidvargascarrillo
+ * @author David Vargas
  */
 
 /*
@@ -124,14 +123,42 @@ public class Player {
         level -= i;
     } 
     
+    /*
+    Applies a prize to the player after winning a combat
+    */
     private void applyPrize (Monster m)
     {
-        // ...
-    } 
+        int nLevels = m.getLevelsGained();
+        incrementLevels(nLevels);
+        int nTreasures = m.getTreasuresGained();
+        
+        if (nTreasures > 0)
+        {
+            CardDealer dealer = CardDealer.getInstance();
+            
+            for (int i = 0; i < nTreasures; i++)
+            {
+                Treasure treasure = dealer.nextTreasure();
+                hiddenTreasures.add(treasure);
+            }
+        }
+    }
     
+    /*
+    Applies a bad consequence to the player after losing a combat
+    */
     private void applyBadConsequence (Monster m)
     {
-        // ...
+        BadConsequence badConsequence = m.getBadConsequence();
+        int nLevels = badConsequence.getLevels();
+        
+        decrementLevels(nLevels);
+        
+        BadConsequence pendingBad = 
+                badConsequence.adjustToFitTreasureLists (visibleTreasures, 
+                        hiddenTreasures);
+        
+        setPendingBadConsequence(pendingBad);
     } 
     
     /*
@@ -175,6 +202,10 @@ public class Player {
         return ret;
     } 
     
+    /*
+    Counts the number of treasures of the specified type in the visible
+    treasures array
+    */
     private int howManyVisibleTreasures (TreasureKind tKind)
     {    
         int count = 0;
@@ -205,26 +236,67 @@ public class Player {
         Random r = new Random();
         int posTreasure = r.nextInt(hiddenTreasures.size());
         
-        Treasure returnTreasure = hiddenTreasures.get(posTreasure);
+        Treasure rTreasure = hiddenTreasures.get(posTreasure);
         hiddenTreasures.remove(posTreasure);
         
-        return returnTreasure;
+        return rTreasure;
     }
     
+    /*
+    To use in the development of a combat, called from Napakalaki class. Returns
+    the result of the combat
+    */
     public CombatResult combat (Monster m)
     {
-        // ...
-        return null;
+        int myLevel = getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
+        
+        CombatResult combatResult;
+        
+        // Player wins 
+        if (myLevel > monsterLevel)
+        {
+            applyPrize(m);
+            
+            if (level > MAXLEVEL)
+                combatResult = CombatResult.WINGAME;
+            else
+                combatResult = CombatResult.WIN;
+        }
+        
+        // Player loses
+        else
+        {
+            applyBadConsequence(m);
+            combatResult = CombatResult.LOSE;
+        }
+        
+        return combatResult;
     }
     
+    /*
+    Moves the desired treasure from the hidden treasures array to the visible
+    one, if the player is able to do so
+    */
     public void makeTreasureVisible (Treasure t)
     {
-        // ...
+        boolean canI = canMakeTreasureVisible(t);
+        
+        if (canI)
+        {
+            visibleTreasures.add(t);
+            hiddenTreasures.remove(t);
+        }
     }
     
+    /*
+    Methods that erase a treasure from the visible or hidden array of treasures,
+    and applies the pending bad consequence (if any). Then, if the player has no
+    treasures, dies
+    */
     public void discardVisibleTreasure (Treasure t)
     {
-        visibleTreasures.remove(t);
+        boolean remove = visibleTreasures.remove(t);
         
         if ((pendingBadConsequence != null) &&
                 (!pendingBadConsequence.isEmpty()))
@@ -239,7 +311,7 @@ public class Player {
         
         if ((pendingBadConsequence != null) &&
                 (!pendingBadConsequence.isEmpty()))
-            pendingBadConsequence.substractVisibleTreasure(t);
+            pendingBadConsequence.substractHiddenTreasure(t);
         
         dieIfNoTreasures();
     } 
@@ -258,25 +330,114 @@ public class Player {
         return result;
     }
     
+    /*
+    Checks if the player is able to steal a treasure from its enemy and if his
+    enemy can provide it. If so, the enemy gives a treasure from its hidden
+    array of treasures. The player that has stolen a treasure IS NOT ABLE to do
+    it again
+    */
     public Treasure stealTreasure ()
     {
-        // ...
-        return null;
+        // Checks if this player is able to steal a treasure
+        boolean canI = canISteal();
+        
+        // Treasure to return.
+        // This object will be null when, for any reason, the player is not able
+        // to steal a treasure from his enemy
+        Treasure ret;
+        
+        if (canI)
+        {
+            // Checks if the enemy can provide the player a treasure
+            boolean canYou = enemy.canYouGiveMeATreasure();
+            
+            if (canYou)
+            {
+                // A random treasure from the enemy is added to the hidden ones
+                // of the player
+                Treasure treasure = enemy.giveMeATreasure();
+                hiddenTreasures.add(treasure);
+                
+                // Sets canISteal to false
+                haveStolen();
+                
+                // As the enemy can provide a treasure, there is a treasure to
+                // return
+                ret = treasure;
+            }
+            else ret = null;
+            
+        }
+        else ret = null;
+        
+        return ret;
     }
     
-    // True if the player is able to steal a treasure from its enemy
+    /*
+    True if the player is able to steal a treasure from its enemy, and false
+    when the player has already stolen a treasure
+    */
     public boolean canISteal ()
     {
         return canISteal;
     }
     
+    /*
+    The player discards all his visible and hidden treasures, verifying that
+    the pending bad consequence is applied by adding the discardVisibleTreasure
+    and discardHiddenTreasure methods
+    */
     public void discardAllTreasures()
     {
-        // ...
+        for (int i = 0; i < visibleTreasures.size(); i++)
+        {
+            Treasure treasure = visibleTreasures.get(i);
+            discardVisibleTreasure(treasure);
+        }
+        
+        for (int i = 0; i < hiddenTreasures.size(); i++)
+        {
+            Treasure treasure = hiddenTreasures.get(i);
+            discardHiddenTreasure(treasure);
+        }
     }
     
+    /*
+    Provide treasures for a player in his first turn or for one that has run out
+    of treasures to make him keep playing. The number of treasures that he 
+    obtains is conditioned by the value he gets throwing the dice, so:
+        - if (dice == 1), steals ONE treasure
+        - if (1 < dice < 6), steals TWO treasures
+        - if (dice == 6), steals THREE treasures
+    */
     public void initTreasures()
     {
-        // ...
+        // Instance of CardDealer singleton
+        CardDealer dealer = CardDealer.getInstance();
+        
+        // Instance of Dice singleton
+        Dice dice = Dice.getInstance();
+        
+        // Brings to life this player
+        bringToLife();
+        
+        // Adds a first treasure
+        Treasure treasure = dealer.nextTreasure();
+        hiddenTreasures.add(treasure);
+ 
+        // Depending on the number, the method will add more treasures or not
+        int number = dice.nextNumber();
+        
+        if (number > 1)
+        {
+            treasure = dealer.nextTreasure();
+            hiddenTreasures.add(treasure);
+        }
+        
+        if (number == 6)
+        {
+            treasure = dealer.nextTreasure();
+            hiddenTreasures.add(treasure);
+        }
     }
 }

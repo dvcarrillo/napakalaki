@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
- * @author davidvargascarrillo
+ * @author David Vargas
  */
 
 /*
@@ -159,7 +158,7 @@ public class Napakalaki {
         for (int i = 0; i < treasures.size(); i++)
         {
             Treasure a_treasure = treasures.get(i);
-            currentPlayer.discardVisibleTreasure(a_treasure);
+            currentPlayer.discardHiddenTreasure(a_treasure);
             dealer.giveTreasureBack(a_treasure);
         }
     }
@@ -167,15 +166,30 @@ public class Napakalaki {
     /**************************************************************************/
     // OTHER METHODS
     
+    /*
+    If the combat level of the current player is above the level of the monster
+    he will fight against, the prize is applied to him. Otherwise, the player
+    loses the combat and has to suffer the bad consequence
+    */
     public CombatResult developCombat ()
     {
-        // return <CombatResult> res;
-        return null;
+        CombatResult combatResult = currentPlayer.combat(currentMonster);
+        dealer.giveMonsterBack(currentMonster);
+        
+        return combatResult;
     }
     
+    /*
+    For the current player, this array makes visible the desired array of
+    treasures if the player, for each one, is able to do so
+    */
     public void makeTreasuresVisible (ArrayList <Treasure> treasures)
     {
-        // ...
+        for (int i = 0; i < treasures.size(); i++)
+        {
+            Treasure t = treasures.get(i);
+            currentPlayer.makeTreasureVisible(t);
+        }
     }
     
     /*
@@ -236,5 +250,4 @@ public class Napakalaki {
         
         return ret_result;
     }
-    
 }
