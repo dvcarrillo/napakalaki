@@ -167,10 +167,17 @@ public class Napakalaki {
     /**************************************************************************/
     // OTHER METHODS
     
+    /*
+    If the combat level of the current player is above the level of the monster
+    he will fight against, the prize is applied to him. Otherwise, the player
+    loses the combat and has to suffer the bad consequence
+    */
     public CombatResult developCombat ()
     {
-        // return <CombatResult> res;
-        return null;
+        CombatResult combatResult = currentPlayer.combat(currentMonster);
+        dealer.giveMonsterBack(currentMonster);
+        
+        return combatResult;
     }
     
     public void makeTreasuresVisible (ArrayList <Treasure> treasures)

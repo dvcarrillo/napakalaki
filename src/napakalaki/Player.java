@@ -124,14 +124,42 @@ public class Player {
         level -= i;
     } 
     
+    /*
+    Applies a prize to the player after winning a combat
+    */
     private void applyPrize (Monster m)
     {
-        // ...
-    } 
+        int nLevels = m.getLevelsGained();
+        incrementLevels(nLevels);
+        int nTreasures = m.getTreasuresGained();
+        
+        if (nTreasures > 0)
+        {
+            CardDealer dealer = CardDealer.getInstance();
+            
+            for (int i = 0; i < nTreasures; i++)
+            {
+                Treasure treasure = dealer.nextTreasure();
+                hiddenTreasures.add(treasure);
+            }
+        }
+    }
     
+    /*
+    Applies a bad consequence to the player after losing a combat
+    */
     private void applyBadConsequence (Monster m)
     {
-        // ...
+        BadConsequence badConsequence = m.getBadConsequence();
+        int nLevels = badConsequence.getLevels();
+        
+        decrementLevels(nLevels);
+        
+        BadConsequence pendingBad = 
+                badConsequence.adjustToFitTreasureLists (visibleTreasures, 
+                        hiddenTreasures);
+        
+        setPendingBadConsequence(pendingBad);
     } 
     
     /*
@@ -213,8 +241,30 @@ public class Player {
     
     public CombatResult combat (Monster m)
     {
-        // ...
-        return null;
+        int myLevel = getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
+        
+        CombatResult combatResult;
+        
+        // The player wins 
+        if (myLevel > monsterLevel)
+        {
+            applyPrize(m);
+            
+            if (level > MAXLEVEL)
+                combatResult = CombatResult.WINGAME;
+            else
+                combatResult = CombatResult.WIN;
+        }
+        
+        // The players loses
+        else
+        {
+            applyBadConsequence(m);
+            combatResult = CombatResult.LOSE;
+        }
+        
+        return combatResult;
     }
     
     public void makeTreasureVisible (Treasure t)
