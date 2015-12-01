@@ -16,7 +16,7 @@ package napakalaki;
 
 public class Treasure {
     
-    TreasureKind type;              // Type of the treasure
+    private TreasureKind type;      // Type of the treasure
     
     private String name;            // Name of the treasure 
     private int bonus;              // Bonus that the treasure can give

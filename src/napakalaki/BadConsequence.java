@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 public class BadConsequence {
     
+    static final int MAXTREASURES = 10;
+    
     private String text;            // What does a Bad Consequence says
     
     private int levels;             // The number of levels to lose
@@ -41,8 +43,8 @@ public class BadConsequence {
         levels = lvls;
         nVisibleTreasures = nVisible;
         nHiddenTreasures = nHidden;
-        specificVisibleTreasures = new ArrayList();
-        specificHiddenTreasures = new ArrayList();
+        //specificVisibleTreasures = new ArrayList();
+        //specificHiddenTreasures = new ArrayList();
         death = false;
     }
     
@@ -50,11 +52,11 @@ public class BadConsequence {
     public BadConsequence (String txt, boolean dth)
     {
         text = txt;
-        levels = 0;
-        nVisibleTreasures = 0;
-        nHiddenTreasures = 0;
-        specificVisibleTreasures = new ArrayList();
-        specificHiddenTreasures = new ArrayList();
+        levels = Player.MAXLEVEL;
+        nVisibleTreasures = MAXTREASURES;
+        nHiddenTreasures = MAXTREASURES;
+        //specificVisibleTreasures = new ArrayList();
+        //specificHiddenTreasures = new ArrayList();
         death = true;
     }
     
@@ -63,8 +65,10 @@ public class BadConsequence {
     {
         text = txt;
         levels = lvls;
-        specificVisibleTreasures = new ArrayList(tVisible);
-        specificHiddenTreasures = new ArrayList(tHidden);
+        //specificVisibleTreasures = new ArrayList(tVisible);
+        //specificHiddenTreasures = new ArrayList(tHidden);
+        specificVisibleTreasures = tVisible;
+        specificHiddenTreasures = tHidden;
         nVisibleTreasures = tVisible.size();
         nHiddenTreasures = tHidden.size();
         death = false;
@@ -194,18 +198,136 @@ public class BadConsequence {
     }
     
     /**************************************************************************/
+    // OTHER METHODS
     
+    /*
+    Returns a new object of bad consequence adjusted to the possibilities of the
+    player, as the he sometimes won't be able to discard all the treasures that
+    bad consequence indicates
+    */
     public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> v,
             ArrayList<Treasure> h)
     {
-        // ...
+        BadConsequence badCon;
         
-        // return <BadConsequence> bc;
-        return null;
+        // CASE 1:
+        // The Bad Consequence DOES NOT remove any SPECIFIC TREASURE. That
+        // means that nVisibleTreasures AND nHiddenTreasures attributes will
+        // have some particular value while their specific arrays will be empty
+        if ((specificVisibleTreasures.isEmpty()) &&
+                (specificHiddenTreasures.isEmpty()))
+        {
+            int newNVisibleTreasures = nVisibleTreasures;
+            int newNHiddenTreasures = nHiddenTreasures;
+            
+            if (newNVisibleTreasures > v.size())
+            {
+                newNVisibleTreasures = v.size();
+            }
+            
+            if (newNHiddenTreasures > h.size())
+            {
+                newNHiddenTreasures = h.size();
+            }
+            
+            badCon = new BadConsequence(this.text, this.levels, 
+                    newNVisibleTreasures, newNHiddenTreasures);
+        }
+        
+        // CASE 2:
+        // The Bad Consequence's specific arrays ARE NOT empty. That means that
+        // there will be neccesary to adjust the arrays to the possibilities
+        // of the player
+        else
+        {
+            // FOR VISIBLE TREASURES
+            ArrayList<TreasureKind> newSpecificVisible = new ArrayList();
+            int newOneHandNum = 0;
+            int theOneHandNum = 0;
+            
+            for (Treasure aTreasure : v)
+            {
+                TreasureKind aType = aTreasure.getType();
+
+                if (aType == TreasureKind.ONEHAND)
+                    newOneHandNum++;
+                else
+                {
+                    for (TreasureKind visTreasure : specificVisibleTreasures)
+                    {
+                        if (visTreasure == TreasureKind.ONEHAND)
+                            theOneHandNum++;
+                        else if ((aType == visTreasure) && 
+                                !(newSpecificVisible.contains(aType)))
+                            newSpecificVisible.add(aType);
+                    }
+                }
+            }
+            
+            // Adjustment of ONEHAND treasures
+            int diffOneHand = theOneHandNum - newOneHandNum;
+            
+            switch (diffOneHand)
+            {
+                case 1:
+                    for (int i = 0; i < 2; i++)
+                        newSpecificVisible.add(TreasureKind.ONEHAND);
+                    break;
+                    
+                case 0:
+                    newSpecificVisible.add(TreasureKind.ONEHAND);
+                    break;
+            }
+            
+            
+            // FOR HIDDEN TREASURES
+            ArrayList<TreasureKind> newSpecificHidden = new ArrayList();
+            newOneHandNum = 0;
+            theOneHandNum = 0;
+            
+            for (Treasure aTreasure : h)
+            {
+                TreasureKind aType = aTreasure.getType();
+
+                if (aType == TreasureKind.ONEHAND)
+                    newOneHandNum++;
+                else
+                {
+                    for (TreasureKind hidTreasure : specificHiddenTreasures)
+                    {
+                        if (hidTreasure == TreasureKind.ONEHAND)
+                            theOneHandNum++;
+                        else if ((aType == hidTreasure) && 
+                                !(newSpecificHidden.contains(aType)))
+                            newSpecificHidden.add(aType);
+                    }
+                }
+            }
+            
+            // Adjustment of ONEHAND treasures
+            diffOneHand = theOneHandNum - newOneHandNum;
+            
+            switch (diffOneHand)
+            {
+                case 1:
+                    for (int i = 0; i < 2; i++)
+                        newSpecificHidden.add(TreasureKind.ONEHAND);
+                    break;
+                    
+                case 0:
+                    newSpecificHidden.add(TreasureKind.ONEHAND);
+                    break;
+            }
+            
+            badCon = new BadConsequence(this.text, this.levels,
+                    newSpecificVisible, newSpecificHidden);
+        }
+        
+        return badCon;
     }
     
     /**************************************************************************/
-    // TOSTRING
+    // TO STRING METHOD
     
     @Override
     public String toString() {

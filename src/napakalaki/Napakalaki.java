@@ -95,9 +95,16 @@ public class Napakalaki {
     Checks if the current player fulfills the rules of the game to end up
     its turn making use of the 'validState' method of the Player class
     */
-    private boolean nextTurnAllowed()
+    private boolean nextTurnIsAllowed()
     {
-        return (currentPlayer.validState());
+        boolean retValue = false;
+        
+        if (!(currentPlayer == null) && (currentPlayer.validState()))
+        {
+            retValue = true;
+        }
+        
+        return (retValue);
     }
     
     /*
@@ -221,7 +228,7 @@ public class Napakalaki {
     
     public boolean nextTurn ()
     {
-        boolean stateOK = nextTurnAllowed();
+        boolean stateOK = nextTurnIsAllowed();
         
         if (stateOK)
         {

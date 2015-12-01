@@ -389,15 +389,20 @@ public class Player {
     */
     public void discardAllTreasures()
     {
-        for (int i = 0; i < visibleTreasures.size(); i++)
+        // It is neccessary to make copies before of both arrays to iterate
+        // over them
+        ArrayList<Treasure> visTreasures = new ArrayList(visibleTreasures);
+        ArrayList<Treasure> hidTreasures = new ArrayList(hiddenTreasures);
+                
+        for (int i = 0; i < visTreasures.size(); i++)
         {
-            Treasure treasure = visibleTreasures.get(i);
+            Treasure treasure = visTreasures.get(i);
             discardVisibleTreasure(treasure);
         }
         
-        for (int i = 0; i < hiddenTreasures.size(); i++)
+        for (int i = 0; i < hidTreasures.size(); i++)
         {
-            Treasure treasure = hiddenTreasures.get(i);
+            Treasure treasure = hidTreasures.get(i);
             discardHiddenTreasure(treasure);
         }
     }
