@@ -49,4 +49,13 @@ public class Treasure {
         return bonus;
     }
     
+    /**************************************************************************/
+    // TO STRING
+    
+    @Override
+    public String toString()
+    {
+        return ("Name: " + name + "\nBonus: " + bonus + "\nType: " + type);
+    }
+    
 }

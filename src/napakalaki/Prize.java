@@ -48,7 +48,9 @@ public class Prize {
     // Returns the current state of the object
     
     @Override
-    public String toString() {
-        return "Prize{" + "treasures=" + treasures + ", level=" + level + '}';
+    public String toString()
+    {
+        return ("Levels you may gain: " + level +
+                "\nNum. of treasures you may gain: " + treasures);
     }
 }

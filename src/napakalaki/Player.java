@@ -38,8 +38,12 @@ public class Player {
     public Player(String name)
     {
         this.name = name;
+        level = 1;
         dead = true;
         canISteal = true;
+        
+        visibleTreasures = new ArrayList();
+        hiddenTreasures = new ArrayList();
     }
     
     /**************************************************************************/
@@ -324,7 +328,8 @@ public class Player {
     {
         boolean result = false;
         
-        if ((hiddenTreasures.size() <= 4) && (pendingBadConsequence.isEmpty()))
+        if ((hiddenTreasures.size() <= 4) && ((pendingBadConsequence == null) ||
+                (pendingBadConsequence.isEmpty())))
             result = true;
         
         return result;
@@ -432,6 +437,7 @@ public class Player {
  
         // Depending on the number, the method will add more treasures or not
         int number = dice.nextNumber();
+        System.out.println("NUMERO OBTENIDO: " + number);
         
         if (number > 1)
         {
@@ -444,5 +450,32 @@ public class Player {
             treasure = dealer.nextTreasure();
             hiddenTreasures.add(treasure);
         }
+    }
+    
+    /**************************************************************************/
+    // TO STRING METHOD
+    
+    @Override
+    public String toString()
+    {
+        String toRet = name + "\n";
+        
+        if (dead)
+        {
+            toRet += "\nThis player is dead.";
+        }
+        
+        else
+        {
+            toRet += "\nCombat level: " + getCombatLevel() +
+                    "\nEnemy: " + enemy.getName();
+            
+            if (canISteal)
+                toRet += "\nThis player CAN steal";
+            else
+                toRet += "\nThis player CAN NOT steal";
+        }
+        
+        return toRet;
     }
 }

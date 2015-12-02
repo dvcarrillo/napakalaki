@@ -22,12 +22,12 @@ import java.util.Collections;    // For shuffle function
 public class CardDealer {
     
     // Arrays for the treasures (used and unused)
-    private ArrayList <Treasure> unusedTreasures;
-    private ArrayList <Treasure> usedTreasures;
+    private ArrayList <Treasure> unusedTreasures = new ArrayList();
+    private ArrayList <Treasure> usedTreasures = new ArrayList();
     
     // Arrays for the monsters (used and unused)
-    private ArrayList <Monster> usedMonsters;
-    private ArrayList <Monster> unusedMonsters;
+    private ArrayList <Monster> usedMonsters = new ArrayList();
+    private ArrayList <Monster> unusedMonsters = new ArrayList();
     
     /**************************************************************************/
     // Code for making this class a singleton
@@ -47,7 +47,7 @@ public class CardDealer {
     
     private void shuffleTreasures ()
     {
-        Collections.shuffle(unusedMonsters);
+        Collections.shuffle(unusedTreasures);
     }
     
     private void shuffleMonsters ()
@@ -212,8 +212,9 @@ public class CardDealer {
         /**********************************************************************/
         // Zapato deja-amigos
         unusedTreasures.add(new Treasure("Zapato deja-amigos", 1,
-                TreasureKind.SHOES)); 
+                TreasureKind.SHOES));
         
+        shuffleTreasures();
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -244,8 +245,8 @@ public class CardDealer {
         monstruos.add(new Monster("3 Byakhees de bonanza", 8, badConsequence, 
                 prize));
         
-        tVisible.clear();
-        tHidden.clear();
+        tVisible = new ArrayList();
+        tHidden = new ArrayList();
         
         /**********************************************************************/
         // Chibithulhu
@@ -260,8 +261,8 @@ public class CardDealer {
         
         monstruos.add(new Monster("Chibithulhu", 2, badConsequence, prize));
         
-        tVisible.clear();
-        tHidden.clear();
+        tVisible = new ArrayList();
+        tHidden = new ArrayList();
         
         /**********************************************************************/
         // El sopor de Dunwich
@@ -276,8 +277,7 @@ public class CardDealer {
         monstruos.add(new Monster ("El sopor de Dunwich", 2, badConsequence, 
                 prize));
         
-        tVisible.clear();
-        tHidden.clear();
+        tVisible = new ArrayList();
         
         /**********************************************************************/
         // Ángeles de la noche ibicenca
@@ -294,8 +294,8 @@ public class CardDealer {
         monstruos.add(new Monster("Ángeles de la noche ibicenca", 14,
                 badConsequence, prize));
         
-        tVisible.clear();
-        tHidden.clear();
+        tVisible = new ArrayList();
+        tHidden = new ArrayList();
         
         /**********************************************************************/
         // El gorrón en el umbral
@@ -323,7 +323,7 @@ public class CardDealer {
         
         monstruos.add(new Monster("H.P Munchcraft", 6, badConsequence, prize));
         
-        tVisible.clear();
+        tVisible = new ArrayList();
         
         /**********************************************************************/
         // Bichgooth
@@ -337,7 +337,7 @@ public class CardDealer {
         
         monstruos.add(new Monster("Bichgooth", 2, badConsequence, prize));
         
-        tVisible.clear();
+        tVisible = new ArrayList();
         
         /**********************************************************************/
         // El rey de rosa
@@ -394,7 +394,7 @@ public class CardDealer {
         
         monstruos.add(new Monster("Dameargo", 1, badConsequence, prize));
         
-        tVisible.clear();
+        tVisible = new ArrayList();
         
         /**********************************************************************/
         // Pollipólipo volante
@@ -441,7 +441,7 @@ public class CardDealer {
         
         monstruos.add(new Monster("Roboggoth", 8, badConsequence, prize));
         
-        tVisible.clear();
+        tVisible = new ArrayList();
         
         /**********************************************************************/
         // El espia
@@ -455,7 +455,7 @@ public class CardDealer {
         
         monstruos.add(new Monster("El espia", 5, badConsequence, prize));
         
-        tVisible.clear();
+        tVisible = new ArrayList();
         
         /**********************************************************************/
         // El Lenguas
@@ -481,6 +481,9 @@ public class CardDealer {
         prize = new Prize (1, 1);
         
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
+        
+        unusedMonsters = monstruos;
+        shuffleMonsters();
     }
     
     /**************************************************************************/

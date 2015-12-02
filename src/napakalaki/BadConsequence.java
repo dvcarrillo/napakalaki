@@ -238,6 +238,8 @@ public class BadConsequence {
         // The Bad Consequence's specific arrays ARE NOT empty. That means that
         // there will be neccesary to adjust the arrays to the possibilities
         // of the player
+        
+        /*
         else
         {
             // FOR VISIBLE TREASURES
@@ -322,6 +324,59 @@ public class BadConsequence {
             badCon = new BadConsequence(this.text, this.levels,
                     newSpecificVisible, newSpecificHidden);
         }
+        */
+        
+        else
+        {
+            // For visible treasures
+            
+            ArrayList <Treasure> copiaV = new ArrayList(v);
+            ArrayList<TreasureKind> newSpecificVisible = new ArrayList();
+            
+            for (TreasureKind tk : specificVisibleTreasures)
+            {
+                int i = 0;
+                boolean found = false;
+                
+                while ((i < copiaV.size()) && !(found))
+                {
+                    if (copiaV.get(i).getType() == tk)
+                    {
+                        found = true;
+                        newSpecificVisible.add(tk);
+                        copiaV.remove(i);
+                    }
+                    
+                    i++;
+                }
+            }
+            
+            // For hidden treasures
+            
+            ArrayList <Treasure> copiaH = new ArrayList(v);
+            ArrayList<TreasureKind> newSpecificHidden = new ArrayList();
+            
+            for (TreasureKind tk : specificHiddenTreasures)
+            {
+                int i = 0;
+                boolean found = false;
+                
+                while ((i < copiaH.size()) && !(found))
+                {
+                    if (copiaH.get(i).getType() == tk)
+                    {
+                        found = true;
+                        newSpecificHidden.add(tk);
+                        copiaH.remove(i);
+                    }
+                    
+                    i++;
+                }
+            }
+            
+            badCon = new BadConsequence(this.text,this.levels,
+                    newSpecificVisible,newSpecificHidden);
+        }
         
         return badCon;
     }
@@ -330,12 +385,44 @@ public class BadConsequence {
     // TO STRING METHOD
     
     @Override
-    public String toString() {
-        return "BadConsequence{" + "text=" + text + ", levels=" + levels
-        + ", nVisibleTreasures=" + nVisibleTreasures + ", nHiddenTreasures="
-        + nHiddenTreasures + ", death=" + death + ", specificVisibleTreasures="
-        + specificVisibleTreasures + ", specificHiddenTreasures="
-        + specificHiddenTreasures + '}';
+    public String toString()
+    {
+        String toRet = text;
+    
+        if (getDeath())
+        {
+            toRet += "\nThis monster causes the death";
+        }
+        else
+        {
+            toRet += "\nLevels you may lose: " + levels;
+            
+            if (!specificVisibleTreasures.isEmpty())
+            {
+                toRet += "\nVisible treasures you may lose: ";
+            
+                for (int i = 0; i < specificVisibleTreasures.size(); i++)
+                    toRet += specificVisibleTreasures.get(i) + " ";
+            }
+            
+            if (!specificHiddenTreasures.isEmpty())
+            {
+                toRet += "\nHidden treasures you may lose: ";
+            
+                for (int i = 0; i < specificHiddenTreasures.size(); i++)
+                    toRet += specificHiddenTreasures.get(i) + " ";
+            }
+            
+            if ((specificHiddenTreasures.isEmpty()) &&
+                    (specificVisibleTreasures.isEmpty()))
+            {
+                toRet +=
+                "\nNum. of visible treasures you may lose: " + nVisibleTreasures +
+                "\nNum. ofHidden treasures you may lose: " + nHiddenTreasures;
+            }
+        }
+        
+        return toRet;
     }
     
 }

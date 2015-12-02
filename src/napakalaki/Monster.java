@@ -71,8 +71,12 @@ public class Monster {
     // Returns the current state of the object
     
     @Override
-    public String toString() {
-        return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel
-        + ", bc=" + bc + ", pz=" + pz + '}';
+    public String toString()
+    {
+        String toRet = "Name: " + name + "\nCombat level: " + combatLevel;
+        toRet += "\n\nBAD CONSEQUENCE:\n" + bc.toString();
+        toRet += "\n\nPRIZE:\n" + pz.toString();
+        
+        return toRet;
     }
 }

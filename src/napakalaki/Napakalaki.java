@@ -29,6 +29,7 @@ public class Napakalaki {
     // Stores the monster which is currently fighting against the player
     Monster currentMonster;
     
+    // Instance of Card Dealer class
     CardDealer dealer;
     
     /**************************************************************************/
@@ -99,7 +100,7 @@ public class Napakalaki {
     {
         boolean retValue = false;
         
-        if (!(currentPlayer == null) && (currentPlayer.validState()))
+        if ((currentPlayer == null) || (currentPlayer.validState()))
         {
             retValue = true;
         }
@@ -119,10 +120,10 @@ public class Napakalaki {
         // another player
         for (int i = 0; i < players.size(); i++)
         {
-            int randomPos = r.nextInt(players.size() + 1);
+            int randomPos = r.nextInt(players.size());
             
             while (i == randomPos)
-                randomPos = r.nextInt(players.size() + 1);
+                randomPos = r.nextInt(players.size());
             
             players.get(i).setEnemy(players.get(randomPos));
         }
