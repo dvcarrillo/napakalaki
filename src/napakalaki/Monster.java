@@ -18,6 +18,7 @@ public class Monster {
 
     private String name;              // Name of the monster
     private int combatLevel;          // Combat level of the monster
+    
     private BadConsequence bc;        // Linked bad consequence
     private Prize pz;                 // Linked prize
 
@@ -54,12 +55,28 @@ public class Monster {
     {
         return pz;
     }
+    
+    public int getLevelsGained ()
+    {
+        return pz.getLevels();
+    }
+    
+    public int getTreasuresGained ()
+    {
+        return pz.getTreasures();
+    }
 
     /**************************************************************************/
+    // TOSTRING METHOD
+    // Returns the current state of the object
     
     @Override
-    public String toString() {
-        return "Monster{" + "name=" + name + ", combatLevel=" + combatLevel
-        + ", bc=" + bc + ", pz=" + pz + '}';
+    public String toString()
+    {
+        String toRet = "Name: " + name + "\nCombat level: " + combatLevel;
+        toRet += "\n\nBAD CONSEQUENCE:\n" + bc.toString();
+        toRet += "\n\nPRIZE:\n" + pz.toString();
+        
+        return toRet;
     }
 }

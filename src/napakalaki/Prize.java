@@ -18,8 +18,8 @@ package napakalaki;
 
 public class Prize {
     
-    private int treasures;
-    private int level;
+    private int treasures;            // Bonus of treasures given by the prize
+    private int level;                // Bonus of levels given by the prize
     
     /**************************************************************************/
     // CONSTRUCTOR
@@ -31,19 +31,6 @@ public class Prize {
     }
     
     /**************************************************************************/
-    // SET METHODS
-    
-    public void setTreasures (int tre)
-    {
-        treasures=tre;
-    }
-    
-    public void setLevel (int lvl)
-    {
-        level=lvl;
-    }
-    
-    /**************************************************************************/
     // GET METHODS
     
     public int getTreasures ()
@@ -51,16 +38,19 @@ public class Prize {
         return treasures;
     }
     
-    public int getLevel ()
+    public int getLevels ()
     {
         return level;
     }
 
-    /******************************************************************/
+    /**************************************************************************/
     // TO STRING METHOD
+    // Returns the current state of the object
     
     @Override
-    public String toString() {
-        return "Prize{" + "treasures=" + treasures + ", level=" + level + '}';
+    public String toString()
+    {
+        return ("Levels you may gain: " + level +
+                "\nNum. of treasures you may gain: " + treasures);
     }
 }

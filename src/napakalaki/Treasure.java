@@ -16,7 +16,7 @@ package napakalaki;
 
 public class Treasure {
     
-    TreasureKind type;              // Type of the treasure
+    private TreasureKind type;      // Type of the treasure
     
     private String name;            // Name of the treasure 
     private int bonus;              // Bonus that the treasure can give
@@ -30,7 +30,10 @@ public class Treasure {
         this.bonus = bonus;
         this.type = t;
     }
-
+    
+    /**************************************************************************/
+    // GET METHODS
+    
     public TreasureKind getType()
     {
         return type;
@@ -44,6 +47,15 @@ public class Treasure {
     public int getBonus()
     {
         return bonus;
+    }
+    
+    /**************************************************************************/
+    // TO STRING
+    
+    @Override
+    public String toString()
+    {
+        return ("\nName: " + name + "\nBonus: " + bonus + "\nType: " + type);
     }
     
 }
