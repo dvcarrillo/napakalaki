@@ -55,7 +55,7 @@ public class Treasure {
     @Override
     public String toString()
     {
-        return ("Name: " + name + "\nBonus: " + bonus + "\nType: " + type);
+        return ("\nName: " + name + "\nBonus: " + bonus + "\nType: " + type);
     }
     
 }

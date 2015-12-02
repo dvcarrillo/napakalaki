@@ -437,7 +437,6 @@ public class Player {
  
         // Depending on the number, the method will add more treasures or not
         int number = dice.nextNumber();
-        System.out.println("NUMERO OBTENIDO: " + number);
         
         if (number > 1)
         {

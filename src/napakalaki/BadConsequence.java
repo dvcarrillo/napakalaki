@@ -41,8 +41,25 @@ public class BadConsequence {
     {
         text = txt;
         levels = lvls;
-        nVisibleTreasures = nVisible;
-        nHiddenTreasures = nHidden;
+        
+        if (nVisible > MAXTREASURES)
+        {
+            nVisibleTreasures = MAXTREASURES;
+        }
+        else
+        {
+            nVisibleTreasures = nVisible;
+        }
+        
+        if (nHidden > MAXTREASURES)
+        {
+            nHiddenTreasures = MAXTREASURES;
+        }
+        else
+        {
+            nHiddenTreasures = nHidden;
+        }
+        
         //specificVisibleTreasures = new ArrayList();
         //specificHiddenTreasures = new ArrayList();
         death = false;
@@ -239,7 +256,8 @@ public class BadConsequence {
         // there will be neccesary to adjust the arrays to the possibilities
         // of the player
         
-        /*
+        /* 
+        ******************* OLD VERSION OF THIS METOD **************************
         else
         {
             // FOR VISIBLE TREASURES
@@ -324,13 +342,12 @@ public class BadConsequence {
             badCon = new BadConsequence(this.text, this.levels,
                     newSpecificVisible, newSpecificHidden);
         }
-        */
+        ***********************************************************************/
         
         else
         {
-            // For visible treasures
-            
-            ArrayList <Treasure> copiaV = new ArrayList(v);
+            // FOR VISIBLE TREASURES
+            ArrayList<Treasure> copiaV = new ArrayList(v);
             ArrayList<TreasureKind> newSpecificVisible = new ArrayList();
             
             for (TreasureKind tk : specificVisibleTreasures)
@@ -351,9 +368,8 @@ public class BadConsequence {
                 }
             }
             
-            // For hidden treasures
-            
-            ArrayList <Treasure> copiaH = new ArrayList(v);
+            // FOR HIDDEN TREASURES
+            ArrayList <Treasure> copiaH = new ArrayList(h);
             ArrayList<TreasureKind> newSpecificHidden = new ArrayList();
             
             for (TreasureKind tk : specificHiddenTreasures)

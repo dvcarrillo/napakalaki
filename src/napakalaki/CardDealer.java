@@ -214,6 +214,7 @@ public class CardDealer {
         unusedTreasures.add(new Treasure("Zapato deja-amigos", 1,
                 TreasureKind.SHOES));
         
+        // Shuffle the added treasures
         shuffleTreasures();
     }
     
@@ -483,6 +484,8 @@ public class CardDealer {
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
         
         unusedMonsters = monstruos;
+        
+        // Shuffle the added monsters
         shuffleMonsters();
     }
     

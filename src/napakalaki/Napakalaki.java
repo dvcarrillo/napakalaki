@@ -70,6 +70,7 @@ public class Napakalaki {
     private Player nextPlayer ()
     {
         int posToReturn;
+        Player playerRet;
         
         if (currentPlayer == null)
         {
@@ -83,13 +84,17 @@ public class Napakalaki {
             while (currentPlayer != players.get(count))
                 count++;
             
-            posToReturn = count++;
+            count = count + 1;
+            
+            posToReturn = count;
             
             if (posToReturn == players.size())
                 posToReturn = 0;
         }
         
-        return(players.get(posToReturn));
+        playerRet = players.get(posToReturn);
+        
+        return(playerRet);
     }
     
     /*
