@@ -3,8 +3,7 @@
 
 *We are currently developing this game...*
 
-**UPDATED 12/2/2015**
-
+**UPDATED 12/2/2015:** 
 Finally, the base game is working and by now there is not any reported
 issue. There are more things to add, as the sectarian players, and, of
 course, the UI.
