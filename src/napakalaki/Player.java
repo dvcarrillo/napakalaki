@@ -38,8 +38,12 @@ public class Player {
     public Player(String name)
     {
         this.name = name;
+        level = 1;
         dead = true;
         canISteal = true;
+        
+        visibleTreasures = new ArrayList();
+        hiddenTreasures = new ArrayList();
     }
     
     /**************************************************************************/
@@ -324,7 +328,8 @@ public class Player {
     {
         boolean result = false;
         
-        if ((hiddenTreasures.size() <= 4) && (pendingBadConsequence.isEmpty()))
+        if ((hiddenTreasures.size() <= 4) && ((pendingBadConsequence == null) ||
+                (pendingBadConsequence.isEmpty())))
             result = true;
         
         return result;
@@ -389,15 +394,20 @@ public class Player {
     */
     public void discardAllTreasures()
     {
-        for (int i = 0; i < visibleTreasures.size(); i++)
+        // It is neccessary to make copies before of both arrays to iterate
+        // over them
+        ArrayList<Treasure> visTreasures = new ArrayList(visibleTreasures);
+        ArrayList<Treasure> hidTreasures = new ArrayList(hiddenTreasures);
+                
+        for (int i = 0; i < visTreasures.size(); i++)
         {
-            Treasure treasure = visibleTreasures.get(i);
+            Treasure treasure = visTreasures.get(i);
             discardVisibleTreasure(treasure);
         }
         
-        for (int i = 0; i < hiddenTreasures.size(); i++)
+        for (int i = 0; i < hidTreasures.size(); i++)
         {
-            Treasure treasure = hiddenTreasures.get(i);
+            Treasure treasure = hidTreasures.get(i);
             discardHiddenTreasure(treasure);
         }
     }
@@ -439,5 +449,32 @@ public class Player {
             treasure = dealer.nextTreasure();
             hiddenTreasures.add(treasure);
         }
+    }
+    
+    /**************************************************************************/
+    // TO STRING METHOD
+    
+    @Override
+    public String toString()
+    {
+        String toRet = name + "\n";
+        
+        if (dead)
+        {
+            toRet += "\nThis player is dead.";
+        }
+        
+        else
+        {
+            toRet += "\nCombat level: " + getCombatLevel() +
+                    "\nEnemy: " + enemy.getName();
+            
+            if (canISteal)
+                toRet += "\nThis player CAN steal";
+            else
+                toRet += "\nThis player CAN NOT steal";
+        }
+        
+        return toRet;
     }
 }

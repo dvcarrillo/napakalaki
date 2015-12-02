@@ -29,6 +29,7 @@ public class Napakalaki {
     // Stores the monster which is currently fighting against the player
     Monster currentMonster;
     
+    // Instance of Card Dealer class
     CardDealer dealer;
     
     /**************************************************************************/
@@ -69,6 +70,7 @@ public class Napakalaki {
     private Player nextPlayer ()
     {
         int posToReturn;
+        Player playerRet;
         
         if (currentPlayer == null)
         {
@@ -82,22 +84,33 @@ public class Napakalaki {
             while (currentPlayer != players.get(count))
                 count++;
             
-            posToReturn = count++;
+            count = count + 1;
+            
+            posToReturn = count;
             
             if (posToReturn == players.size())
                 posToReturn = 0;
         }
         
-        return(players.get(posToReturn));
+        playerRet = players.get(posToReturn);
+        
+        return(playerRet);
     }
     
     /*
     Checks if the current player fulfills the rules of the game to end up
     its turn making use of the 'validState' method of the Player class
     */
-    private boolean nextTurnAllowed()
+    private boolean nextTurnIsAllowed()
     {
-        return (currentPlayer.validState());
+        boolean retValue = false;
+        
+        if ((currentPlayer == null) || (currentPlayer.validState()))
+        {
+            retValue = true;
+        }
+        
+        return (retValue);
     }
     
     /*
@@ -112,10 +125,10 @@ public class Napakalaki {
         // another player
         for (int i = 0; i < players.size(); i++)
         {
-            int randomPos = r.nextInt(players.size() + 1);
+            int randomPos = r.nextInt(players.size());
             
             while (i == randomPos)
-                randomPos = r.nextInt(players.size() + 1);
+                randomPos = r.nextInt(players.size());
             
             players.get(i).setEnemy(players.get(randomPos));
         }
@@ -221,7 +234,7 @@ public class Napakalaki {
     
     public boolean nextTurn ()
     {
-        boolean stateOK = nextTurnAllowed();
+        boolean stateOK = nextTurnIsAllowed();
         
         if (stateOK)
         {
