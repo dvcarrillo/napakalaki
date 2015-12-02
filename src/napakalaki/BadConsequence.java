@@ -417,12 +417,11 @@ public class BadConsequence {
                     (specificVisibleTreasures.isEmpty()))
             {
                 toRet +=
-                "\nNum. of visible treasures you may lose: " + nVisibleTreasures +
-                "\nNum. ofHidden treasures you may lose: " + nHiddenTreasures;
+                "\nNum. of visible treasures you may lose: " + nVisibleTreasures
+                + "\nNum. ofHidden treasures you may lose: " + nHiddenTreasures;
             }
         }
         
         return toRet;
     }
-    
 }
