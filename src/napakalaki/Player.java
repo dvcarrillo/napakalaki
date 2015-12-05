@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author David Vargas
+ *
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 /*
@@ -470,7 +472,7 @@ public class Player {
         else
         {
             toRet += "\nCombat level: " + getCombatLevel() + " (" + level + ")"
-                    + "\nEnemy -> " + enemy.getName();
+                    + "\nEnemy: " + enemy.getName();
             
             if (canISteal)
                 toRet += "\nThis player CAN steal";
@@ -485,29 +487,29 @@ public class Player {
             
             if (pendingBadConsequence.getLevels() > 0)
             {
-                toRet += "\nLevels: " + pendingBadConsequence.getLevels();
+                toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
             }
             
             if (pendingBadConsequence.getNVisibleTreasures() > 0)
-                toRet += "\nNum. of visible treasures: " + 
+                toRet += "\nNum. of visible treasures to lose: " + 
                         pendingBadConsequence.getNVisibleTreasures();
-            
-            if (pendingBadConsequence.getNHiddenTreasures() > 0)
-                toRet += "\nNum. of hidden treasures: " + 
-                        pendingBadConsequence.getNHiddenTreasures();
             
             if (!(pendingBadConsequence.getSpecificVisibleTreasures().isEmpty())
                && (pendingBadConsequence.getSpecificVisibleTreasures() != null))
             {   
-                toRet += "\n";
+                toRet += "\nSpecific visible treasures you must discard: ";
                 for (int i = 0; i < pendingBadConsequence.getSpecificVisibleTreasures().size(); i++)
                     toRet += pendingBadConsequence.getSpecificVisibleTreasures().get(i) + " ";
             }
             
+            if (pendingBadConsequence.getNHiddenTreasures() > 0)
+                toRet += "\nNum. of hidden treasures to lose: " + 
+                        pendingBadConsequence.getNHiddenTreasures();
+            
             if (!(pendingBadConsequence.getSpecificHiddenTreasures().isEmpty())
                && (pendingBadConsequence.getSpecificHiddenTreasures() != null))
             {   
-                toRet += "\n";
+                toRet += "\nSpecific hidden treasures you must discard: ";
                 for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
                     toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
             }

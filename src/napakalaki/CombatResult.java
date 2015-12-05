@@ -7,7 +7,8 @@ package napakalaki;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 // This enum specifies all the possible results in a fight

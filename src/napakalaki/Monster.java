@@ -7,7 +7,8 @@ package napakalaki;
 
 /**
  *
- * @author Alicia Vílchez, David Vargas
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 /*
