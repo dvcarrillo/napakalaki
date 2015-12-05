@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author David Vargas
+ *
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 /*

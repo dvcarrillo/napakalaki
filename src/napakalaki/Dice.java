@@ -9,7 +9,8 @@ import java.util.Random;    // For creating random numbers
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 /*

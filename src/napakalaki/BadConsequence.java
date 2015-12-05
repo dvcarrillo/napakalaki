@@ -166,19 +166,9 @@ public class BadConsequence {
         // nothing will happen.
         
         else
-        {
-            int i = 0;
-            boolean found = false;
-            
-            while(i < specificVisibleTreasures.size() && !found)
-            {
-                if(specificVisibleTreasures.get(i) == trk)
-                {
-                    specificVisibleTreasures.remove(trk);
-                    found = true;
-                }
-                i++;
-            }
+        { 
+            specificVisibleTreasures.remove(trk);
+            nVisibleTreasures--;
         }
     }
     
@@ -199,18 +189,9 @@ public class BadConsequence {
         // nothing will happen
         
         else
-        {
-            int i = 0;
-            boolean find = false;
-            while(i < specificHiddenTreasures.size() && !find)
-            {
-                if(specificHiddenTreasures.get(i) == trk)
-                {
-                    specificHiddenTreasures.remove(trk);
-                    find = true;
-                }
-                i++;
-            }
+        { 
+            specificHiddenTreasures.remove(trk);
+            nHiddenTreasures--;
         }
     }
     
@@ -405,17 +386,19 @@ public class BadConsequence {
     {
         String toRet = text;
     
+        /* Usuallyy indicated on the text of bad consequence
         if (getDeath())
         {
             toRet += "\nThis monster causes the death";
         }
-        else
+        */
+        if (!getDeath())
         {
             toRet += "\nLevels you may lose: " + levels;
             
             if (!specificVisibleTreasures.isEmpty())
             {
-                toRet += "\nVisible treasures you may lose: ";
+                toRet += "\nVisible treasures you lose: ";
             
                 for (int i = 0; i < specificVisibleTreasures.size(); i++)
                     toRet += specificVisibleTreasures.get(i) + " ";
@@ -423,7 +406,7 @@ public class BadConsequence {
             
             if (!specificHiddenTreasures.isEmpty())
             {
-                toRet += "\nHidden treasures you may lose: ";
+                toRet += "\nHidden treasures you lose: ";
             
                 for (int i = 0; i < specificHiddenTreasures.size(); i++)
                     toRet += specificHiddenTreasures.get(i) + " ";
@@ -433,8 +416,8 @@ public class BadConsequence {
                     (specificVisibleTreasures.isEmpty()))
             {
                 toRet +=
-                "\nNum. of visible treasures you may lose: " + nVisibleTreasures
-                + "\nNum. ofHidden treasures you may lose: " + nHiddenTreasures;
+                "\nNum. of visible treasures you lose: " + nVisibleTreasures
+                + "\nNum. ofHidden treasures you lose: " + nHiddenTreasures;
             }
         }
         

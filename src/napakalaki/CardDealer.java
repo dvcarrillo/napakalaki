@@ -10,11 +10,12 @@ import java.util.Collections;    // For shuffle function
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 /*
-* INTRODUCIR EXPLICACIÓN DE LA CLASE!!!
+* Class that manages the decks of cards
 */
 
 // This class is a singleton: it means that there can only be one instance
@@ -263,7 +264,6 @@ public class CardDealer {
         monstruos.add(new Monster("Chibithulhu", 2, badConsequence, prize));
         
         tVisible = new ArrayList();
-        tHidden = new ArrayList();
         
         /**********************************************************************/
         // El sopor de Dunwich
@@ -305,7 +305,7 @@ public class CardDealer {
         // order to make the player lose all of them
         
         badConsequence = new BadConsequence("Pierdes todos tus tesoros "
-                + "visibles", 0, 20, 0);
+                + "visibles", 0, 10, 0);
         
         prize = new Prize(3, 1);
         
