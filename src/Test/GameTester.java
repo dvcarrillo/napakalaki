@@ -63,7 +63,7 @@ public class GameTester {
           if (combatResult != CombatResult.WINGAME) {
             do { // Hasta que se avance de turno 
               System.out.println ("******* ******* ******* ******* ******* ******* *******");
-              System.out.println ("\n\n Turno de: " + currentPlayer.toString());
+              System.out.println ("\n\nTurno de: " + currentPlayer.toString());
               if (currentPlayer.canISteal())
                 command = getCommandAfterFighting();
               else 
@@ -256,7 +256,7 @@ public class GameTester {
         if (aTreasure == null)
           System.out.println ("\n\n No has podido robar nada \n\n");
         else
-          System.out.println ("\n\n Has robado este tesoro: \n\n" + aTreasure.toString());
+          System.out.println ("\n\n Has robado este tesoro: \n" + aTreasure.toString());
         break;
       case NextTurn :
         if (! game.nextTurn ()) {

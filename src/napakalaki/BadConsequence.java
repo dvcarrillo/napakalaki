@@ -166,19 +166,9 @@ public class BadConsequence {
         // nothing will happen.
         
         else
-        {
-            int i = 0;
-            boolean found = false;
-            
-            while(i < specificVisibleTreasures.size() && !found)
-            {
-                if(specificVisibleTreasures.get(i) == trk)
-                {
-                    specificVisibleTreasures.remove(trk);
-                    found = true;
-                }
-                i++;
-            }
+        { 
+            specificVisibleTreasures.remove(trk);
+            nVisibleTreasures--;
         }
     }
     
@@ -199,18 +189,9 @@ public class BadConsequence {
         // nothing will happen
         
         else
-        {
-            int i = 0;
-            boolean find = false;
-            while(i < specificHiddenTreasures.size() && !find)
-            {
-                if(specificHiddenTreasures.get(i) == trk)
-                {
-                    specificHiddenTreasures.remove(trk);
-                    find = true;
-                }
-                i++;
-            }
+        { 
+            specificHiddenTreasures.remove(trk);
+            nHiddenTreasures--;
         }
     }
     

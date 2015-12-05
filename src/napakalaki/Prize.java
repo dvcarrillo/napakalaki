@@ -50,7 +50,7 @@ public class Prize {
     @Override
     public String toString()
     {
-        return ("Levels you may gain: " + level +
-                "\nNum. of treasures you may gain: " + treasures);
+        return ("Levels you gain: " + level +
+                "\nNum. of treasures you gain: " + treasures);
     }
 }

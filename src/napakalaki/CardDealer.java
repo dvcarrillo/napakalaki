@@ -263,7 +263,6 @@ public class CardDealer {
         monstruos.add(new Monster("Chibithulhu", 2, badConsequence, prize));
         
         tVisible = new ArrayList();
-        tHidden = new ArrayList();
         
         /**********************************************************************/
         // El sopor de Dunwich
@@ -303,9 +302,10 @@ public class CardDealer {
         //
         // We have assigned a large amount of visible treasures to lose in
         // order to make the player lose all of them
+        /*
         
         badConsequence = new BadConsequence("Pierdes todos tus tesoros "
-                + "visibles", 0, 20, 0);
+                + "visibles", 0, 10, 0);
         
         prize = new Prize(3, 1);
         
@@ -314,6 +314,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // H.P Munchcraft
+        /*
         
         tVisible.add(TreasureKind.ARMOR);
         
@@ -328,6 +329,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Bichgooth
+        /*
         
         tVisible.add(TreasureKind.ARMOR);
         
@@ -342,6 +344,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // El rey de rosa
+        /*
         
         badConsequence = new BadConsequence("Pierdes 5 niveles y 3 tesoros "
                 + "visibles.", 5, 3, 0);
@@ -352,6 +355,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // La que redacta en las tinieblas
+        /*
         
         badConsequence = new BadConsequence("Toses los pulmones y pierdes 2"
                 + " niveles", 2, 0, 0);
@@ -363,6 +367,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Los hondos
+        /*
         
         badConsequence = new BadConsequence("Estos monstruos resultan bastante"
                 + " superficiales y te aburren mortalmente. Estás muerto", 
@@ -374,6 +379,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Semillas Cthulhu
+        /*
         
         badConsequence = new BadConsequence("Pierdes 2 niveles y 2 tesoros "
                 + "ocultos", 2, 0, 2);
@@ -399,6 +405,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Pollipólipo volante
+        /*
         
         badConsequence = new BadConsequence("Da mucho asquito. Pierdes 3 "
                 + "niveles", 3, 0, 0);
@@ -410,6 +417,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Yskhtihyssg-Goth
+        /*
         
         badConsequence = new BadConsequence("No le hace gracia que pronuncien"
                 + " mal su nombre. Estás muerto", true);
@@ -421,6 +429,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Familia feliz
+        /*
         
         badConsequence = new BadConsequence("La familia te atrapa. Estás "
                 + "muerto", true);
@@ -431,6 +440,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // Roboggoth
+        /*
         
         tVisible.add(TreasureKind.BOTHHANDS);
         
@@ -446,6 +456,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // El espia
+        /*
         
         tVisible.add(TreasureKind.HELMET);
         
@@ -460,6 +471,7 @@ public class CardDealer {
         
         /**********************************************************************/
         // El Lenguas
+        /*
         
         badConsequence = new BadConsequence ("Menudo susto te llevas. Pierdes "
                 + "2 niveles y 5 tesoros visibles", 2, 5, 0);
