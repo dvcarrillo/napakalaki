@@ -394,7 +394,7 @@ public class BadConsequence {
         */
         if (!getDeath())
         {
-            toRet += "\nLevels you may lose: " + levels;
+            toRet += "\nLevels you lose: " + levels;
             
             if (!specificVisibleTreasures.isEmpty())
             {

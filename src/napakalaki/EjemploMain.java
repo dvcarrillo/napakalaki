@@ -23,8 +23,8 @@ public class EjemploMain {
         System.out.println("////////////////// NAPAKALAKI HELP ///////////////////////");
         System.out.println();
         System.out.println("Napakalaki is a card game based on one of the most popular");
-        System.out.println("card games right now. This game is about gaining levels by");
-        System.out.println("obtaining treasures that increase them.");
+        System.out.println("card games. This game is about gaining levels by obtaining");
+        System.out.println("treasures that increase them.");
         System.out.println();
         System.out.println("When the game begins, every player will have 1, 2 or 3 ");
         System.out.println("treasures to equip (make them visible), and with the level");
@@ -34,7 +34,7 @@ public class EjemploMain {
         System.out.println("Otherwise, the player will suffer a 'bad consequence', ");
         System.out.println("which is a loss of levels and treasures.");
         System.out.println();
-        System.out.println("The first player to reach the (player) level 10, wins.");
+        System.out.println("The first player to reach the (player) level 10 wins.");
         System.out.println();
         System.out.println("For more help, see:");
         System.out.println("https://github.com/dvcarrillo/napakalaki/tree/master/doc");
@@ -47,7 +47,7 @@ public class EjemploMain {
       
       // Maximum number of players that can play the game (adjust them according
       // to the number of avaliable cards and treasures)
-      final int MAXPLAYERS = 5;
+      final int MAXPLAYERS = 4;
       
       System.out.println ("**********************************************************");
       System.out.println ("*                    - NAPAKALAKI -                      *");
@@ -56,7 +56,7 @@ public class EjemploMain {
       System.out.println ("*                                                        *");
       System.out.println ("*              http://github.com/dvcarrillo              *");
       System.out.println ("**********************************************************");
-      System.out.println ("version 0.1 beta");
+      System.out.println ("version 0.1");
       System.out.println ();
       System.out.println ();
       
