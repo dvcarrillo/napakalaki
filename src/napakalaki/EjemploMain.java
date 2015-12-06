@@ -56,7 +56,7 @@ public class EjemploMain {
       System.out.println ("*                                                        *");
       System.out.println ("*              http://github.com/dvcarrillo              *");
       System.out.println ("**********************************************************");
-      System.out.println ("version 0.1");
+      System.out.println ("v0.5-beta");
       System.out.println ();
       System.out.println ();
       
