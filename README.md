@@ -1,5 +1,5 @@
 # :mahjong: Napakalaki :mahjong:
-## A card game with UI based on Munchkin
+## The card game everyone has played
 
 *We are currently developing this game...*
 
