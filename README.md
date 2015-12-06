@@ -3,6 +3,10 @@
 
 *We are currently developing this game...*
 
+**UPDATED 12/6/2015 - version 0.1 ready:** 
+The game is now fully in English and all the bugs have been fixed.
+Now includes amount of players selection and help section too.
+
 **UPDATED 12/2/2015:** 
 Finally, the base game is working and by now there is not any reported
 issue. There are more things to add, as the sectarian players, and, of
