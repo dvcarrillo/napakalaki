@@ -3,7 +3,7 @@
 
 *We are currently developing this game...*
 
-**UPDATED 12/6/2015 - version 0.1 ready:** 
+**UPDATED 12/6/2015 - version 0.5-beta ready:** 
 The game is now fully in English and all the bugs have been fixed.
 Now includes amount of players selection and help section too.
 
