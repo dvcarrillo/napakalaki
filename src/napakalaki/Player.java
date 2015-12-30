@@ -29,14 +29,15 @@ public class Player {
     private boolean canISteal;          // Indicates if the player can steal
                                         // treasures from another one
     
-    private Player enemy;                           // Main rival of this player
+    protected Player enemy;                         // Main rival of this player
     private ArrayList <Treasure> visibleTreasures;  // Array of vis. treasures
     private ArrayList <Treasure> hiddenTreasures;   // Array of hid. tresures
     private BadConsequence pendingBadConsequence;
 
     /**************************************************************************/
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     
+    // Receives a name and initializes the player with the default parameters
     public Player(String name)
     {
         this.name = name;
@@ -48,10 +49,16 @@ public class Player {
         hiddenTreasures = new ArrayList();
     }
     
+    // Copies a player from another one
+    public Player (Player p)
+    {
+        // ...
+    }
+    
     /**************************************************************************/
     // GET METHODS
     
-    private int getCombatLevel ()
+    protected int getCombatLevel ()
     {
         int result = level;
         
@@ -84,6 +91,20 @@ public class Player {
     public int getLevels () 
     {
         return level;
+    }
+    
+    // METHODS RELATED TO THE CULTIST PLAYERS
+    
+    protected int getOpponentLevel (Monster m)
+    {
+        // ...
+        return 0;
+    }
+    
+    protected boolean shouldConvert ()
+    {
+        // ...
+        return false;
     }
     
     /**************************************************************************/

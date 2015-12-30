@@ -14,5 +14,5 @@ package napakalaki;
 // This enum specifies all the possible results in a fight
 
 public enum CombatResult {
-    WINGAME, WIN, LOSE
+    WINGAME, WIN, LOSE, LOSEANDCONVERT
 }

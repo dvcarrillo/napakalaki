@@ -56,8 +56,13 @@ public class CardDealer {
         Collections.shuffle(unusedMonsters);
     }
     
+    private void shuffleCultists ()
+    {
+        // ...
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
-    // DEFINITION OF THE CARDS 
+    // DEFINITION OF THE TREASURES 
     ////////////////////////////////////////////////////////////////////////////
 
     private void initTreasureCardDeck ()
@@ -489,6 +494,15 @@ public class CardDealer {
         shuffleMonsters();
     }
     
+    ////////////////////////////////////////////////////////////////////////////
+    // DEFINITION OF THE CULTISTS
+    ////////////////////////////////////////////////////////////////////////////
+    
+    public void initCultistCardDeck ()
+    {
+        // ...
+    }
+    
     /**************************************************************************/
     // OTHER METHODS
     
@@ -540,6 +554,12 @@ public class CardDealer {
         unusedMonsters.remove(mst);
         
         return mst;
+    }
+    
+    public Cultist nextCultist ()
+    {
+        // ...
+        return null;
     }
     
     public void giveTreasureBack (Treasure t)

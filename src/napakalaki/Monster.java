@@ -22,9 +22,11 @@ public class Monster {
     
     private BadConsequence bc;        // Linked bad consequence
     private Prize pz;                 // Linked prize
+    
+    private int levelChangeAgainstCultistPlayer;
 
     /**************************************************************************/
-    // CONSTRUCTOR
+    // CONSTRUCTORS
 
     public Monster(String nm, int cl, BadConsequence badco, Prize prz) 
     {
@@ -32,6 +34,16 @@ public class Monster {
         combatLevel = cl;
         bc = badco;
         pz = prz;
+    }
+    
+    // For cultists
+    public Monster(String nm, int cl, BadConsequence badco, Prize prz, int lC) 
+    {
+        name = nm;
+        combatLevel = cl;
+        bc = badco;
+        pz = prz;
+        levelChangeAgainstCultistPlayer = lC;
     }
     
     /**************************************************************************/
@@ -65,6 +77,12 @@ public class Monster {
     public int getTreasuresGained ()
     {
         return pz.getTreasures();
+    }
+    
+    public int getCombatLevelAgainstCultistPlayer ()
+    {
+        // ...
+        return 0;
     }
 
     /**************************************************************************/
