@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package Test;
 
@@ -23,6 +28,7 @@ public class GameTester {
   }
   
   public void play (Napakalaki aGame, int numberOfPlayers) {
+      
     Command command;
     CombatResult combatResult;
     Player currentPlayer;
@@ -31,39 +37,48 @@ public class GameTester {
     game = aGame;
     names = getPlayerNames(numberOfPlayers);
     game.initGame(names);
-    do { // Mientras dure la partida
+    
+    do { // While the game is on
+        
       currentPlayer = game.getCurrentPlayer();
+      
       do { // Mientras el jugador se decide a conocer al monstruo
-        System.out.println ("******* ******* ******* ******* ******* ******* *******");
-        System.out.println ("\n\nTurno de: " + currentPlayer.toString());
+          
+        System.out.println ("*******************************************************");
+        System.out.println ("\n\nTurn of " + currentPlayer.toString());
         command = getCommandBeforeKnowingMonster ();
         command = processCommand (command, currentPlayer);        
+        
       } while (command != Command.Exit && command != Command.ShowMonster);
-      if (command == Command.ShowMonster) {
-        do { // Mientras el jugador se decida a combatir 
-          System.out.println ("******* ******* ******* ******* ******* ******* *******");
-          System.out.println ("\n\nTurno de: " + currentPlayer.toString());
+      
+      if (command == Command.ShowMonster)
+      {
+        do { // Just before the combat
+          System.out.println ("*******************************************************");
+          System.out.println ("\n\nTurn of " + currentPlayer.toString());
           command = getCommandBeforeFighting ();
           command = processCommand (command, currentPlayer);
         } while (command != Command.Exit && command != Command.Combat);
+        
         if (command == Command.Combat) {
           combatResult = game.developCombat();
           switch (combatResult) {
             case WINGAME : 
               System.out.println ("\n\n       " + currentPlayer.getName());
-              System.out.println ("\n\n ¡¡¡ H A S   G A N A D O   L A   P A R T I D A !!!");
+              System.out.println ("\n\n ¡¡¡ Y O U  H A V E  W O N  T H E  G A M E !!!");
               break;
             case WIN :
-              System.out.println ("\n\n Ganaste el combate");
+              System.out.println ("\n\nYou have won the combat!");
               break;
             case LOSE :
-              System.out.println ("\n\n Has perdido el combate, te toca cumplir el mal rollo");
+              System.out.println ("\n\nYou have lost the fight");
+              System.out.println ("It's time to comply the bad consequence");
               break;
           }
           if (combatResult != CombatResult.WINGAME) {
             do { // Hasta que se avance de turno 
-              System.out.println ("******* ******* ******* ******* ******* ******* *******");
-              System.out.println ("\n\n Turno de: " + currentPlayer.toString());
+              System.out.println ("*******************************************************");
+              System.out.println ("\n\nTurn of " + currentPlayer.toString());
               if (currentPlayer.canISteal())
                 command = getCommandAfterFighting();
               else 
@@ -85,7 +100,7 @@ public class GameTester {
       Command.MakeTreasureVisible,    Command.StealTreasure,
       Command.NextTurn, Command.Exit};
     
-    return manageMenu ("Opciones antes de pasar turno", commands);
+    return manageMenu ("Options before next turn", commands);
   }
   
   private Command getCommandAfterFightingNoSteal () {
@@ -95,7 +110,7 @@ public class GameTester {
       Command.MakeTreasureVisible,
       Command.NextTurn, Command.Exit};
     
-    return manageMenu ("Opciones antes de pasar turno", commands);
+    return manageMenu ("Options before next turn", commands);
   }
 
   private Command getCommandBeforeFighting () {
@@ -103,7 +118,7 @@ public class GameTester {
       Command.ShowVisibleTreasure, Command.ShowHiddenTreasure,  
       Command.Combat, Command.Exit};
     
-    return manageMenu ("Opciones antes de combatir", commands);
+    return manageMenu ("Options before fighting", commands);
   }
   
   private Command getCommandBeforeKnowingMonster () {
@@ -112,14 +127,14 @@ public class GameTester {
       Command.MakeTreasureVisible,  
       Command.Exit};
     
-      return manageMenu ("Opciones antes de conocer al monstruo", commands);
+      return manageMenu ("Options before meeting the monster", commands);
   }
   
   private ArrayList<String> getPlayerNames (int numberOfPlayers) {
     ArrayList<String> names = new ArrayList();
     
     for (int i = 1; i <= numberOfPlayers; i++) {
-      System.out.print ("Escribe el nombre del jugador " + i + ": ");
+      System.out.print ("Type the name of player " + i + ": ");
       names.add (in.nextLine());
     }
     return names;
@@ -132,7 +147,7 @@ public class GameTester {
     
     validInput = true;
     option = Command.GoBack.menu;
-    System.out.print ("\n Elige un tesoro: ");
+    System.out.print ("\nChoose a treasure: ");
     capture = in.nextLine();
     try {
       option = Integer.valueOf(capture);
@@ -150,7 +165,7 @@ public class GameTester {
   }
   
   private void inputErrorMessage () {
-    System.out.println ("\n\n ¡¡¡ E R R O R !!! \n\n Selección errónea. Inténtalo de nuevo.\n\n");    
+    System.out.println ("\n\nERROR:\n\nWrong selection, try again.\n\n");    
   }
   
   private void manageDiscardTreasures (boolean visible, Player aPlayer) {
@@ -159,9 +174,9 @@ public class GameTester {
     
     do { // Se descartan tesoros hasta que se vuelve al menú anterior
       if (visible) {
-        howMany = showTreasures ("Elige tesoros visibles para descartar", aPlayer.getVisibleTreasures(), true);
+        howMany = showTreasures ("Choose visible treasures to discard", aPlayer.getVisibleTreasures(), true);
       } else {
-        howMany = showTreasures ("Elige tesoros ocultos para descartar", aPlayer.getHiddenTreasures(), true);
+        howMany = showTreasures ("Choose hidden treasures to discard", aPlayer.getHiddenTreasures(), true);
       }
       option = getTreasure (howMany);
       if (option > Command.GoBack.menu) {
@@ -179,7 +194,7 @@ public class GameTester {
     int option;
     
     do { // Se hacen tesoros visibles hasta que se vuelve al menú anterior
-      howMany = showTreasures ("Elige tesoros para intentar hacerlos visibles", aPlayer.getHiddenTreasures(), true);
+      howMany = showTreasures ("Choose treasures to try to make them visible", aPlayer.getHiddenTreasures(), true);
       option = getTreasure (howMany);
       if (option > Command.GoBack.menu) {
         aPlayer.makeTreasureVisible (aPlayer.getHiddenTreasures().get(option));
@@ -199,12 +214,12 @@ public class GameTester {
     do { // Hasta que se hace una selección válida
       validInput = true;
       option = Command.GoBack.menu;
-      System.out.println ("\n\n------- ------ ------ ------ ------ ------ ------");
+      System.out.println ("\n\n-------------------------------------------------------");
       System.out.println ("**** " + message + " ****\n");
       for (Command c : menu) { // se muestran las opciones del menú
         System.out.println (String.format ("%2d",c.menu) + " : " + c.text);
       } 
-      System.out.print ("\n Elige una opción: ");
+      System.out.print ("\nChoose an option: ");
       capture = in.nextLine();
       try {
         option = Integer.valueOf(capture);
@@ -230,14 +245,14 @@ public class GameTester {
       case Combat :
         break;
       case ShowMonster : 
-        System.out.println ("\n------- ------- ------- ------- ------- ------- ------- ");
-        System.out.println ("El monstruo actual es:\n\n" + game.getCurrentMonster().toString());
+        System.out.println ("\n------------------------------------------------------- ");
+        System.out.println ("The current monster is:\n\n" + game.getCurrentMonster().toString());
         break;
       case ShowVisibleTreasure :
-        showTreasures ("Esta es tu lista de tesoros visibles", aPlayer.getVisibleTreasures(), false);
+        showTreasures ("This is your visible treasures list", aPlayer.getVisibleTreasures(), false);
         break;
       case ShowHiddenTreasure :
-        showTreasures ("Esta es tu lista de tesoros ocultos", aPlayer.getHiddenTreasures(), false);
+        showTreasures ("This is your hidden treasures list", aPlayer.getHiddenTreasures(), false);
         break;
       case MakeTreasureVisible :
         manageMakeTreasureVisible (aPlayer);
@@ -254,16 +269,16 @@ public class GameTester {
       case StealTreasure :
         aTreasure = aPlayer.stealTreasure ();
         if (aTreasure == null)
-          System.out.println ("\n\n No has podido robar nada \n\n");
+          System.out.println ("\n\nYou could not steal anything \n\n");
         else
-          System.out.println ("\n\n Has robado este tesoro: \n\n" + aTreasure.toString());
+          System.out.println ("\n\nYou have stolen this treasure: \n" + aTreasure.toString());
         break;
       case NextTurn :
         if (! game.nextTurn ()) {
-          System.out.println ("\n\n ERROR \n");
-          System.out.println ("No cumples las condiciones para pasar de turno.");
-          System.out.println ("O bien tienes más de 4 tesoros ocultos");
-          System.out.println ("O bien te queda mal rollo por cumplir");
+          System.out.println ("\n\nERROR:\n");
+          System.out.println ("You do not satisfy the required conditions before the next turn.");
+          System.out.println ("Either you have more than 4 hidden trasures");
+          System.out.println ("or you must carry out a bad consequence ");
         } else {
           command = Command.NextTurnAllowed;
         }
@@ -275,7 +290,7 @@ public class GameTester {
   private int showTreasures (String message, ArrayList <Treasure> treasures, boolean menu) {
     int optionMenu = Command.GoBack.menu;
 
-    System.out.println ("\n------- ------- ------- ------- ------- ------- -------");
+    System.out.println ("\n-------------------------------------------------------");
     System.out.println (message + "\n");
     if (menu)
       System.out.println ("\n" + Command.GoBack.menu + " : " + Command.GoBack.text);

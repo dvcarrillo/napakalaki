@@ -166,19 +166,9 @@ public class BadConsequence {
         // nothing will happen.
         
         else
-        {
-            int i = 0;
-            boolean found = false;
-            
-            while(i < specificVisibleTreasures.size() && !found)
-            {
-                if(specificVisibleTreasures.get(i) == trk)
-                {
-                    specificVisibleTreasures.remove(trk);
-                    found = true;
-                }
-                i++;
-            }
+        { 
+            specificVisibleTreasures.remove(trk);
+            nVisibleTreasures--;
         }
     }
     
@@ -199,18 +189,9 @@ public class BadConsequence {
         // nothing will happen
         
         else
-        {
-            int i = 0;
-            boolean find = false;
-            while(i < specificHiddenTreasures.size() && !find)
-            {
-                if(specificHiddenTreasures.get(i) == trk)
-                {
-                    specificHiddenTreasures.remove(trk);
-                    find = true;
-                }
-                i++;
-            }
+        { 
+            specificHiddenTreasures.remove(trk);
+            nHiddenTreasures--;
         }
     }
     
@@ -255,95 +236,6 @@ public class BadConsequence {
         // The Bad Consequence's specific arrays ARE NOT empty. That means that
         // there will be neccesary to adjust the arrays to the possibilities
         // of the player
-        
-        /* 
-        ******************* OLD VERSION OF THIS METOD **************************
-        else
-        {
-            // FOR VISIBLE TREASURES
-            ArrayList<TreasureKind> newSpecificVisible = new ArrayList();
-            int newOneHandNum = 0;
-            int theOneHandNum = 0;
-            
-            for (Treasure aTreasure : v)
-            {
-                TreasureKind aType = aTreasure.getType();
-
-                if (aType == TreasureKind.ONEHAND)
-                    newOneHandNum++;
-                else
-                {
-                    for (TreasureKind visTreasure : specificVisibleTreasures)
-                    {
-                        if (visTreasure == TreasureKind.ONEHAND)
-                            theOneHandNum++;
-                        else if ((aType == visTreasure) && 
-                                !(newSpecificVisible.contains(aType)))
-                            newSpecificVisible.add(aType);
-                    }
-                }
-            }
-            
-            // Adjustment of ONEHAND treasures
-            int diffOneHand = theOneHandNum - newOneHandNum;
-            
-            switch (diffOneHand)
-            {
-                case 1:
-                    for (int i = 0; i < 2; i++)
-                        newSpecificVisible.add(TreasureKind.ONEHAND);
-                    break;
-                    
-                case 0:
-                    newSpecificVisible.add(TreasureKind.ONEHAND);
-                    break;
-            }
-            
-            
-            // FOR HIDDEN TREASURES
-            ArrayList<TreasureKind> newSpecificHidden = new ArrayList();
-            newOneHandNum = 0;
-            theOneHandNum = 0;
-            
-            for (Treasure aTreasure : h)
-            {
-                TreasureKind aType = aTreasure.getType();
-
-                if (aType == TreasureKind.ONEHAND)
-                    newOneHandNum++;
-                else
-                {
-                    for (TreasureKind hidTreasure : specificHiddenTreasures)
-                    {
-                        if (hidTreasure == TreasureKind.ONEHAND)
-                            theOneHandNum++;
-                        else if ((aType == hidTreasure) && 
-                                !(newSpecificHidden.contains(aType)))
-                            newSpecificHidden.add(aType);
-                    }
-                }
-            }
-            
-            // Adjustment of ONEHAND treasures
-            diffOneHand = theOneHandNum - newOneHandNum;
-            
-            switch (diffOneHand)
-            {
-                case 1:
-                    for (int i = 0; i < 2; i++)
-                        newSpecificHidden.add(TreasureKind.ONEHAND);
-                    break;
-                    
-                case 0:
-                    newSpecificHidden.add(TreasureKind.ONEHAND);
-                    break;
-            }
-            
-            badCon = new BadConsequence(this.text, this.levels,
-                    newSpecificVisible, newSpecificHidden);
-        }
-        ***********************************************************************/
-        
         else
         {
             // FOR VISIBLE TREASURES
@@ -369,7 +261,7 @@ public class BadConsequence {
             }
             
             // FOR HIDDEN TREASURES
-            ArrayList <Treasure> copiaH = new ArrayList(h);
+            ArrayList<Treasure> copiaH = new ArrayList(h);
             ArrayList<TreasureKind> newSpecificHidden = new ArrayList();
             
             for (TreasureKind tk : specificHiddenTreasures)
@@ -405,17 +297,19 @@ public class BadConsequence {
     {
         String toRet = text;
     
+        /* Usuallyy indicated on the text of bad consequence
         if (getDeath())
         {
             toRet += "\nThis monster causes the death";
         }
-        else
+        */
+        if (!getDeath())
         {
-            toRet += "\nLevels you may lose: " + levels;
+            toRet += "\nLevels you lose: " + levels;
             
             if (!specificVisibleTreasures.isEmpty())
             {
-                toRet += "\nVisible treasures you may lose: ";
+                toRet += "\nVisible treasures you lose: ";
             
                 for (int i = 0; i < specificVisibleTreasures.size(); i++)
                     toRet += specificVisibleTreasures.get(i) + " ";
@@ -423,7 +317,7 @@ public class BadConsequence {
             
             if (!specificHiddenTreasures.isEmpty())
             {
-                toRet += "\nHidden treasures you may lose: ";
+                toRet += "\nHidden treasures you lose: ";
             
                 for (int i = 0; i < specificHiddenTreasures.size(); i++)
                     toRet += specificHiddenTreasures.get(i) + " ";
@@ -433,8 +327,8 @@ public class BadConsequence {
                     (specificVisibleTreasures.isEmpty()))
             {
                 toRet +=
-                "\nNum. of visible treasures you may lose: " + nVisibleTreasures
-                + "\nNum. ofHidden treasures you may lose: " + nHiddenTreasures;
+                "\nNum. of visible treasures you lose: " + nVisibleTreasures
+                + "\nNum. ofHidden treasures you lose: " + nHiddenTreasures;
             }
         }
         

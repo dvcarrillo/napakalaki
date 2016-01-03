@@ -8,6 +8,7 @@ package napakalaki;
 /**
  *
  * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 // This enum specifies all the types of treasures that are avaliable

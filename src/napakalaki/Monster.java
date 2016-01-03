@@ -7,7 +7,8 @@ package napakalaki;
 
 /**
  *
- * @author Alicia Vílchez, David Vargas
+ * @author David Vargas, Alicia Vílchez
+ * ETSIIT, University of Granada
  */
 
 /*
@@ -21,9 +22,13 @@ public class Monster {
     
     private BadConsequence bc;        // Linked bad consequence
     private Prize pz;                 // Linked prize
+    
+    // Indicates the increment or decrement of level when it fights against a 
+    // cultist player
+    private int levelChangeAgainstCultistPlayer;
 
     /**************************************************************************/
-    // CONSTRUCTOR
+    // CONSTRUCTORS
 
     public Monster(String nm, int cl, BadConsequence badco, Prize prz) 
     {
@@ -31,6 +36,17 @@ public class Monster {
         combatLevel = cl;
         bc = badco;
         pz = prz;
+        levelChangeAgainstCultistPlayer = 0;
+    }
+    
+    // For monsters that modify their level against a cultist player
+    public Monster(String nm, int cl, BadConsequence badco, Prize prz, int lC) 
+    {
+        name = nm;
+        combatLevel = cl;
+        bc = badco;
+        pz = prz;
+        levelChangeAgainstCultistPlayer = lC;
     }
     
     /**************************************************************************/
@@ -65,6 +81,11 @@ public class Monster {
     {
         return pz.getTreasures();
     }
+    
+    public int getCombatLevelAgainstCultistPlayer ()
+    {
+        return (combatLevel + levelChangeAgainstCultistPlayer);
+    }
 
     /**************************************************************************/
     // TOSTRING METHOD
@@ -74,6 +95,11 @@ public class Monster {
     public String toString()
     {
         String toRet = "Name: " + name + "\nCombat level: " + combatLevel;
+        
+        if (levelChangeAgainstCultistPlayer != 0)
+            toRet = "\nLevel change against cultist players: " +
+                    levelChangeAgainstCultistPlayer;
+        
         toRet += "\n\nBAD CONSEQUENCE:\n" + bc.toString();
         toRet += "\n\nPRIZE:\n" + pz.toString();
         
