@@ -23,6 +23,8 @@ public class Monster {
     private BadConsequence bc;        // Linked bad consequence
     private Prize pz;                 // Linked prize
     
+    // Indicates the increment or decrement of level when it fights against a 
+    // cultist player
     private int levelChangeAgainstCultistPlayer;
 
     /**************************************************************************/
@@ -34,9 +36,10 @@ public class Monster {
         combatLevel = cl;
         bc = badco;
         pz = prz;
+        levelChangeAgainstCultistPlayer = 0;
     }
     
-    // For cultists
+    // For monsters that modify their level against a cultist player
     public Monster(String nm, int cl, BadConsequence badco, Prize prz, int lC) 
     {
         name = nm;
@@ -81,8 +84,7 @@ public class Monster {
     
     public int getCombatLevelAgainstCultistPlayer ()
     {
-        // ...
-        return 0;
+        return (combatLevel + levelChangeAgainstCultistPlayer);
     }
 
     /**************************************************************************/
@@ -93,6 +95,11 @@ public class Monster {
     public String toString()
     {
         String toRet = "Name: " + name + "\nCombat level: " + combatLevel;
+        
+        if (levelChangeAgainstCultistPlayer != 0)
+            toRet = "\nLevel change against cultist players: " +
+                    levelChangeAgainstCultistPlayer;
+        
         toRet += "\n\nBAD CONSEQUENCE:\n" + bc.toString();
         toRet += "\n\nPRIZE:\n" + pz.toString();
         

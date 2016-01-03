@@ -50,9 +50,21 @@ public class Player {
     }
     
     // Copies a player from another one
+    // In the moment of the copy, the original player MUST have completed its 
+    // bad consequence
     public Player (Player p)
     {
-        // ...
+        if (p.validState()) {
+            this.name = p.getName();
+            this.level = p.getLevels();
+            this.dead = p.isDead();
+            this.canISteal = p.canISteal();
+
+            this.enemy = p.enemy;
+            this.visibleTreasures = p.getVisibleTreasures();
+            this.hiddenTreasures = p.getHiddenTreasures();
+            this.setPendingBadConsequence(null);
+        }
     }
     
     /**************************************************************************/
@@ -93,18 +105,12 @@ public class Player {
         return level;
     }
     
-    // METHODS RELATED TO THE CULTIST PLAYERS
-    
+    /*
+    Returns the combat level of the monster the player is fighting against
+    */
     protected int getOpponentLevel (Monster m)
     {
-        // ...
-        return 0;
-    }
-    
-    protected boolean shouldConvert ()
-    {
-        // ...
-        return false;
+        return m.getCombatLevel();
     }
     
     /**************************************************************************/
@@ -123,7 +129,7 @@ public class Player {
     /**************************************************************************/
     // OTHER METHODS
     
-    private boolean canYouGiveMeATreasure ()
+    protected boolean canYouGiveMeATreasure ()
     {
         boolean result = !(hiddenTreasures.isEmpty());
         return result;
@@ -261,7 +267,7 @@ public class Player {
     Returns a random treasure and deletes it from hiddenTreasures array.
     To use when the a player is going to steal a enemy's card
     */
-    private Treasure giveMeATreasure ()
+    protected Treasure giveMeATreasure ()
     {
         Random r = new Random();
         int posTreasure = r.nextInt(hiddenTreasures.size());
@@ -279,7 +285,7 @@ public class Player {
     public CombatResult combat (Monster m)
     {
         int myLevel = getCombatLevel();
-        int monsterLevel = m.getCombatLevel();
+        int monsterLevel = getOpponentLevel(m);
         
         CombatResult combatResult;
         
@@ -298,7 +304,12 @@ public class Player {
         else
         {
             applyBadConsequence(m);
-            combatResult = CombatResult.LOSE;
+            
+            // Checks if the player has to convert to cultist
+            if (shouldConvert())
+                combatResult = CombatResult.LOSEANDCONVERT;
+            else
+                combatResult = CombatResult.LOSE;
         }
         
         return combatResult;
@@ -475,6 +486,24 @@ public class Player {
             treasure = dealer.nextTreasure();
             hiddenTreasures.add(treasure);
         }
+    }
+    
+    /*
+    RELATED TO THE CULTIST PLAYERS
+    Throws the dice and, if the result is 1, makes able the conversion to
+    cultist player
+    */
+    protected boolean shouldConvert ()
+    {
+        boolean toRet = false;
+        
+        Dice dice = Dice.getInstance();
+        int randnum = dice.nextNumber();
+        
+        if (randnum == 1)
+            toRet = true;
+        
+        return toRet;
     }
     
     /**************************************************************************/

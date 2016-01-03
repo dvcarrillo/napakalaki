@@ -26,7 +26,8 @@ public class Cultist {
     
     public Cultist (String name, int gainedLevels)
     {
-        // ...
+        this.name = name;
+        this.gainedLevels = gainedLevels;
     }
     
     /**************************************************************************/

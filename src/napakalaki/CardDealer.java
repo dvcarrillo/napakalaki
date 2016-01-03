@@ -30,6 +30,9 @@ public class CardDealer {
     private ArrayList <Monster> usedMonsters = new ArrayList();
     private ArrayList <Monster> unusedMonsters = new ArrayList();
     
+    // Array for the unused cultists (a cultist card cannot be given back)
+    private ArrayList <Cultist> unusedCultists = new ArrayList();
+    
     /**************************************************************************/
     // Code for making this class a singleton
     
@@ -58,7 +61,7 @@ public class CardDealer {
     
     private void shuffleCultists ()
     {
-        // ...
+        Collections.shuffle(unusedCultists);
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -488,6 +491,98 @@ public class CardDealer {
         
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
         
+        tVisible = new ArrayList();
+        
+        ////////////////////////////////////////////////////////////////////////
+        // MONSTERS WITH MODIFICATIONS FOR SECTARIAN PLAYERS
+        
+        /**********************************************************************/
+        // El mal indecible impronunciable
+        
+        tVisible.add(TreasureKind.ONEHAND);
+        
+        badConsequence = new BadConsequence ("Pierdes una mano visible", 0,
+                tVisible, tHidden);
+        
+        prize = new Prize (3, 1);
+        
+        monstruos.add(new Monster("El mal indecible impronunciable", 10,
+                badConsequence, prize, -2));
+        
+        tVisible = new ArrayList();
+        
+        /**********************************************************************/
+        // Testigos Oculares
+        
+        badConsequence = new BadConsequence ("Pierdes tus tesoros visibles. " 
+                + "Jajaja", 0, 10, 0);
+        
+        prize = new Prize (2, 1);
+        
+        monstruos.add(new Monster("Testigos Oculares", 6, badConsequence,
+                prize, 2));
+        
+        /**********************************************************************/
+        // El gran cthulhu
+        
+        badConsequence = new BadConsequence ("Hoy no es tu dia de suerte. " 
+                + "Mueres", true);
+        
+        prize = new Prize (2, 5);
+        
+        monstruos.add(new Monster("El gran cthulhu", 20,
+                badConsequence, prize, 4));
+        
+        /**********************************************************************/
+        // Serpiente politico
+        
+        badConsequence = new BadConsequence ("Tu gobierno te recorta 2 niveles", 
+                2, 0, 0);
+        
+        prize = new Prize (2, 1);
+        
+        monstruos.add(new Monster("Serpiente politico", 8, badConsequence,
+                prize, -2));
+        
+        /**********************************************************************/
+        // Felpuggoth
+        
+        tVisible.add(TreasureKind.ARMOR);
+        tVisible.add(TreasureKind.HELMET);
+        tHidden.add(TreasureKind.ONEHAND);
+        tHidden.add(TreasureKind.ONEHAND);
+        tHidden.add(TreasureKind.BOTHHANDS);
+        
+        badConsequence = new BadConsequence ("Pierdes tu casco y tu armadura "
+                + "visible. Pierdes tus manos ocultas", 0, tVisible, tHidden);
+        
+        prize = new Prize (1, 1);
+        
+        monstruos.add(new Monster("Felpuggoth", 2, badConsequence, prize, +5));
+        
+        tVisible = new ArrayList();
+        tHidden = new ArrayList();
+        
+        /**********************************************************************/
+        // Shoggoth
+        
+        badConsequence = new BadConsequence ("Pierdes 2 niveles.", 2, 0, 0);
+        
+        prize = new Prize (4, 2);
+        
+        monstruos.add(new Monster("Shoggoth", 16, badConsequence, prize, -4));
+        
+        /**********************************************************************/
+        // Lolitagooth
+        
+        badConsequence = new BadConsequence ("Pintalabios negro. "
+                + "Pierdes 2 niveles", 2, 0, 0);
+        
+        prize = new Prize (1, 1);
+        
+        monstruos.add(new Monster("Lolitagooth", 2, badConsequence, prize, +3));
+        
+        // Assigns the filled array of monsters to the unused monsters array
         unusedMonsters = monstruos;
         
         // Shuffle the added monsters
@@ -498,9 +593,34 @@ public class CardDealer {
     // DEFINITION OF THE CULTISTS
     ////////////////////////////////////////////////////////////////////////////
     
-    public void initCultistCardDeck ()
+    private void initCultistCardDeck ()
     {
-        // ...
+        /**********************************************************************/
+        // Sectario (1)
+        unusedCultists.add(new Cultist("Sectario", 1));
+        
+        /**********************************************************************/
+        // Sectario (2)
+        unusedCultists.add(new Cultist("Sectario", 2));
+        
+        /**********************************************************************/
+        // Sectario (3)
+        unusedCultists.add(new Cultist("Sectario", 1));
+        
+        /**********************************************************************/
+        // Sectario (4)
+        unusedCultists.add(new Cultist("Sectario", 2));
+        
+        /**********************************************************************/
+        // Sectario (5)
+        unusedCultists.add(new Cultist("Sectario", 1));
+        
+        /**********************************************************************/
+        // Sectario (6)
+        unusedCultists.add(new Cultist("Sectario", 1));
+        
+        // Shuffle the added cultists
+        shuffleCultists();
     }
     
     /**************************************************************************/
@@ -510,6 +630,7 @@ public class CardDealer {
     {
         initTreasureCardDeck();
         initMonsterCardDeck();
+        initCultistCardDeck();
     }
     
     // Returns the next treasure of the unused treasures card deck
@@ -556,10 +677,14 @@ public class CardDealer {
         return mst;
     }
     
+    // Returns the next cultist of the unused cultists card deck
+    
     public Cultist nextCultist ()
     {
-        // ...
-        return null;
+        Cultist clt = unusedCultists.get(0);
+        unusedCultists.remove(clt);
+        
+        return clt;
     }
     
     public void giveTreasureBack (Treasure t)
