@@ -79,6 +79,9 @@ public class GameTester {
               System.out.println ("LUCKY! You've been converted to cultist player");
               break;
           }
+          
+          currentPlayer = game.getCurrentPlayer();
+          
           if (combatResult != CombatResult.WINGAME) {
             do { // Hasta que se avance de turno 
               System.out.println ("*******************************************************");

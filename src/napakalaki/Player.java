@@ -503,8 +503,7 @@ public class Player {
         if (randnum == 1)
             toRet = true;
         
-        //return toRet;
-        return true;
+        return toRet;
     }
     
     /**************************************************************************/
@@ -536,37 +535,35 @@ public class Player {
         {
             toRet += "\n\nPending bad consequence:\n";
             toRet += pendingBadConsequence.toString();
-            
-            /*
-            if (pendingBadConsequence.getLevels() > 0)
-            {
-                toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
-            }
-            
-            if (pendingBadConsequence.getNVisibleTreasures() > 0)
-                toRet += "\nNum. of visible treasures to lose: " + 
-                        pendingBadConsequence.getNVisibleTreasures();
-            
-            if (!(pendingBadConsequence.getSpecificVisibleTreasures().isEmpty())
-               && (pendingBadConsequence.getSpecificVisibleTreasures() != null))
-            {   
-                toRet += "\nSpecific visible treasures you must discard: ";
-                for (int i = 0; i < pendingBadConsequence.getSpecificVisibleTreasures().size(); i++)
-                    toRet += pendingBadConsequence.getSpecificVisibleTreasures().get(i) + " ";
-            }
-            
-            if (pendingBadConsequence.getNHiddenTreasures() > 0)
-                toRet += "\nNum. of hidden treasures to lose: " + 
-                        pendingBadConsequence.getNHiddenTreasures();
-            
-            if (!(pendingBadConsequence.getSpecificHiddenTreasures().isEmpty())
-               && (pendingBadConsequence.getSpecificHiddenTreasures() != null))
-            {   
-                toRet += "\nSpecific hidden treasures you must discard: ";
-                for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
-                    toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
-            }
-            */
+//            
+//            if (pendingBadConsequence.getLevels() > 0)
+//            {
+//                toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
+//            }
+//            
+//            if (pendingBadConsequence.getNVisibleTreasures() > 0)
+//                toRet += "\nNum. of visible treasures to lose: " + 
+//                        pendingBadConsequence.getNVisibleTreasures();
+//            
+//            if (!(pendingBadConsequence.getSpecificVisibleTreasures().isEmpty())
+//               && (pendingBadConsequence.getSpecificVisibleTreasures() != null))
+//            {   
+//                toRet += "\nSpecific visible treasures you must discard: ";
+//                for (int i = 0; i < pendingBadConsequence.getSpecificVisibleTreasures().size(); i++)
+//                    toRet += pendingBadConsequence.getSpecificVisibleTreasures().get(i) + " ";
+//            }
+//            
+//            if (pendingBadConsequence.getNHiddenTreasures() > 0)
+//                toRet += "\nNum. of hidden treasures to lose: " + 
+//                        pendingBadConsequence.getNHiddenTreasures();
+//            
+//            if (!(pendingBadConsequence.getSpecificHiddenTreasures().isEmpty())
+//               && (pendingBadConsequence.getSpecificHiddenTreasures() != null))
+//            {   
+//                toRet += "\nSpecific hidden treasures you must discard: ";
+//                for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
+//                    toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
+//            }
         }
         
         return toRet;
