@@ -97,8 +97,10 @@ public class Monster {
         String toRet = "Name: " + name + "\nCombat level: " + combatLevel;
         
         if (levelChangeAgainstCultistPlayer != 0)
-            toRet = "\nLevel change against cultist players: " +
+        {
+            toRet += "\nLevel change against cultist players: " +
                     levelChangeAgainstCultistPlayer;
+        }
         
         toRet += "\n\nBAD CONSEQUENCE:\n" + bc.toString();
         toRet += "\n\nPRIZE:\n" + pz.toString();
