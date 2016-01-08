@@ -503,8 +503,7 @@ public class Player {
         if (randnum == 1)
             toRet = true;
         
-        //return toRet;
-        return true;
+        return toRet;
     }
     
     /**************************************************************************/
