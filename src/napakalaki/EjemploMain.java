@@ -47,7 +47,7 @@ public class EjemploMain {
       
       // Maximum number of players that can play the game (adjust them according
       // to the number of avaliable cards and treasures)
-      final int MAXPLAYERS = 4;
+      final int MAXPLAYERS = 3;
       
       System.out.println ("**********************************************************");
       System.out.println ("*                    - NAPAKALAKI -                      *");
@@ -56,7 +56,7 @@ public class EjemploMain {
       System.out.println ("*                                                        *");
       System.out.println ("*              http://github.com/dvcarrillo              *");
       System.out.println ("**********************************************************");
-      System.out.println ("v0.5-beta");
+      System.out.println ("v0.8-beta");
       System.out.println ();
       System.out.println ();
       
