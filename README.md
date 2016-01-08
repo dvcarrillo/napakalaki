@@ -3,6 +3,11 @@
 
 *We are currently developing this game...*
 
+**UPDATED 12/6/2015 - version 0.8-beta ready:** 
+We have included the cultist players and fixed some new bugs.
+Now, when you die, there is a chance you become a cultist player,
+much more powerful. There are new monsters and new cultist cards.
+
 **UPDATED 12/6/2015 - version 0.5-beta ready:** 
 The game is now fully in English and all the bugs have been fixed.
 Now includes amount of players selection and help section too.
