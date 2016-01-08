@@ -29,14 +29,15 @@ public class Player {
     private boolean canISteal;          // Indicates if the player can steal
                                         // treasures from another one
     
-    private Player enemy;                           // Main rival of this player
+    protected Player enemy;                         // Main rival of this player
     private ArrayList <Treasure> visibleTreasures;  // Array of vis. treasures
     private ArrayList <Treasure> hiddenTreasures;   // Array of hid. tresures
     private BadConsequence pendingBadConsequence;
 
     /**************************************************************************/
-    // CONSTRUCTOR
+    // CONSTRUCTORS
     
+    // Receives a name and initializes the player with the default parameters
     public Player(String name)
     {
         this.name = name;
@@ -48,10 +49,28 @@ public class Player {
         hiddenTreasures = new ArrayList();
     }
     
+    // Copies a player from another one
+    // In the moment of the copy, the original player MUST have completed its 
+    // bad consequence
+    public Player (Player p)
+    {
+        if (p.validState()) {
+            this.name = p.getName();
+            this.level = p.getLevels();
+            this.dead = p.isDead();
+            this.canISteal = p.canISteal();
+
+            this.enemy = p.enemy;
+            this.visibleTreasures = p.getVisibleTreasures();
+            this.hiddenTreasures = p.getHiddenTreasures();
+            this.setPendingBadConsequence(null);
+        }
+    }
+    
     /**************************************************************************/
     // GET METHODS
     
-    private int getCombatLevel ()
+    protected int getCombatLevel ()
     {
         int result = level;
         
@@ -86,6 +105,14 @@ public class Player {
         return level;
     }
     
+    /*
+    Returns the combat level of the monster the player is fighting against
+    */
+    protected int getOpponentLevel (Monster m)
+    {
+        return m.getCombatLevel();
+    }
+    
     /**************************************************************************/
     // SET METHODS
     
@@ -102,7 +129,7 @@ public class Player {
     /**************************************************************************/
     // OTHER METHODS
     
-    private boolean canYouGiveMeATreasure ()
+    protected boolean canYouGiveMeATreasure ()
     {
         boolean result = !(hiddenTreasures.isEmpty());
         return result;
@@ -240,7 +267,7 @@ public class Player {
     Returns a random treasure and deletes it from hiddenTreasures array.
     To use when the a player is going to steal a enemy's card
     */
-    private Treasure giveMeATreasure ()
+    protected Treasure giveMeATreasure ()
     {
         Random r = new Random();
         int posTreasure = r.nextInt(hiddenTreasures.size());
@@ -258,7 +285,7 @@ public class Player {
     public CombatResult combat (Monster m)
     {
         int myLevel = getCombatLevel();
-        int monsterLevel = m.getCombatLevel();
+        int monsterLevel = getOpponentLevel(m);
         
         CombatResult combatResult;
         
@@ -277,7 +304,12 @@ public class Player {
         else
         {
             applyBadConsequence(m);
-            combatResult = CombatResult.LOSE;
+            
+            // Checks if the player has to convert to cultist
+            if (shouldConvert())
+                combatResult = CombatResult.LOSEANDCONVERT;
+            else
+                combatResult = CombatResult.LOSE;
         }
         
         return combatResult;
@@ -305,7 +337,7 @@ public class Player {
     */
     public void discardVisibleTreasure (Treasure t)
     {
-        boolean remove = visibleTreasures.remove(t);
+        visibleTreasures.remove(t);
         
         if ((pendingBadConsequence != null) &&
                 (!pendingBadConsequence.isEmpty()))
@@ -456,6 +488,24 @@ public class Player {
         }
     }
     
+    /*
+    RELATED TO THE CULTIST PLAYERS
+    Throws the dice and, if the result is 1, makes able the conversion to
+    cultist player
+    */
+    protected boolean shouldConvert ()
+    {
+        boolean toRet = false;
+        
+        Dice dice = Dice.getInstance();
+        int randnum = dice.nextNumber();
+        
+        if (randnum == 1)
+            toRet = true;
+        
+        return toRet;
+    }
+    
     /**************************************************************************/
     // TO STRING METHOD
     
@@ -483,36 +533,37 @@ public class Player {
         if ((pendingBadConsequence != null) && 
                 !(pendingBadConsequence.isEmpty()))
         {
-            toRet += "\n\nPending bad consequence:";
-            
-            if (pendingBadConsequence.getLevels() > 0)
-            {
-                toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
-            }
-            
-            if (pendingBadConsequence.getNVisibleTreasures() > 0)
-                toRet += "\nNum. of visible treasures to lose: " + 
-                        pendingBadConsequence.getNVisibleTreasures();
-            
-            if (!(pendingBadConsequence.getSpecificVisibleTreasures().isEmpty())
-               && (pendingBadConsequence.getSpecificVisibleTreasures() != null))
-            {   
-                toRet += "\nSpecific visible treasures you must discard: ";
-                for (int i = 0; i < pendingBadConsequence.getSpecificVisibleTreasures().size(); i++)
-                    toRet += pendingBadConsequence.getSpecificVisibleTreasures().get(i) + " ";
-            }
-            
-            if (pendingBadConsequence.getNHiddenTreasures() > 0)
-                toRet += "\nNum. of hidden treasures to lose: " + 
-                        pendingBadConsequence.getNHiddenTreasures();
-            
-            if (!(pendingBadConsequence.getSpecificHiddenTreasures().isEmpty())
-               && (pendingBadConsequence.getSpecificHiddenTreasures() != null))
-            {   
-                toRet += "\nSpecific hidden treasures you must discard: ";
-                for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
-                    toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
-            }
+            toRet += "\n\nPending bad consequence:\n";
+            toRet += pendingBadConsequence.toString();
+//            
+//            if (pendingBadConsequence.getLevels() > 0)
+//            {
+//                toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
+//            }
+//            
+//            if (pendingBadConsequence.getNVisibleTreasures() > 0)
+//                toRet += "\nNum. of visible treasures to lose: " + 
+//                        pendingBadConsequence.getNVisibleTreasures();
+//            
+//            if (!(pendingBadConsequence.getSpecificVisibleTreasures().isEmpty())
+//               && (pendingBadConsequence.getSpecificVisibleTreasures() != null))
+//            {   
+//                toRet += "\nSpecific visible treasures you must discard: ";
+//                for (int i = 0; i < pendingBadConsequence.getSpecificVisibleTreasures().size(); i++)
+//                    toRet += pendingBadConsequence.getSpecificVisibleTreasures().get(i) + " ";
+//            }
+//            
+//            if (pendingBadConsequence.getNHiddenTreasures() > 0)
+//                toRet += "\nNum. of hidden treasures to lose: " + 
+//                        pendingBadConsequence.getNHiddenTreasures();
+//            
+//            if (!(pendingBadConsequence.getSpecificHiddenTreasures().isEmpty())
+//               && (pendingBadConsequence.getSpecificHiddenTreasures() != null))
+//            {   
+//                toRet += "\nSpecific hidden treasures you must discard: ";
+//                for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
+//                    toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
+//            }
         }
         
         return toRet;

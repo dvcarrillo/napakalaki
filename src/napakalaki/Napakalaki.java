@@ -189,6 +189,34 @@ public class Napakalaki {
     public CombatResult developCombat ()
     {
         CombatResult combatResult = currentPlayer.combat(currentMonster);
+        
+        // Replaces the current player with the respective cultist one
+        if (combatResult == CombatResult.LOSEANDCONVERT)
+        {
+            CardDealer cardDealer = CardDealer.getInstance();
+            Cultist nextCultistCard = cardDealer.nextCultist();
+            
+            Player newCultistPlayer = 
+                    new CultistPlayer(currentPlayer, nextCultistCard);
+            
+            int index = players.indexOf(currentPlayer);
+            players.add(index, newCultistPlayer);
+            players.remove(index + 1);
+            
+            // Checks the enemies on the other players, and if one of them is 
+            // the current one, exchanges the new cultist player for it
+            for (Player a_player : players)
+            {
+                if (a_player != newCultistPlayer)
+                {
+                    if (a_player.enemy == currentPlayer)
+                        a_player.enemy = newCultistPlayer;
+                }
+            }
+            
+            currentPlayer = newCultistPlayer;
+        }
+        
         dealer.giveMonsterBack(currentMonster);
         
         return combatResult;
@@ -233,7 +261,6 @@ public class Napakalaki {
     Sets the next player and the next monster on the game and if the next player
     is dead, brings him to life and initializes his treasures
     */
-    
     public boolean nextTurn ()
     {
         boolean stateOK = nextTurnIsAllowed();
