@@ -196,11 +196,24 @@ public class Napakalaki {
             CardDealer cardDealer = CardDealer.getInstance();
             Cultist nextCultistCard = cardDealer.nextCultist();
             
-            CultistPlayer newCultistPlayer = 
+            Player newCultistPlayer = 
                     new CultistPlayer(currentPlayer, nextCultistCard);
             
             int index = players.indexOf(currentPlayer);
             players.add(index, newCultistPlayer);
+            players.remove(index + 1);
+            
+            // Checks the enemies on the other players, and if one of them is 
+            // the current one, exchanges the new cultist player for it
+            for (Player a_player : players)
+            {
+                if (a_player != newCultistPlayer)
+                {
+                    if (a_player.enemy == currentPlayer)
+                        a_player.enemy = newCultistPlayer;
+                }
+            }
+            
             currentPlayer = newCultistPlayer;
         }
         

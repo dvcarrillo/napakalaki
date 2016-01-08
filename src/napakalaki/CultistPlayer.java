@@ -105,4 +105,16 @@ public class CultistPlayer extends Player {
         boolean result = !(visible.isEmpty());
         return result;
     }
+    
+    /**************************************************************************/
+    // TO STRING METHOD
+    
+    @Override
+    public String toString()
+    {
+        String toRet = super.toString();
+        toRet += "\n\nThis is a CULTIST PLAYER.\n";
+        
+        return toRet;
+    }
 }

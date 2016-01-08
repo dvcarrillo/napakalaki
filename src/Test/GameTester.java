@@ -74,6 +74,10 @@ public class GameTester {
               System.out.println ("\n\nYou have lost the fight");
               System.out.println ("It's time to comply the bad consequence");
               break;
+            case LOSEANDCONVERT :
+              System.out.println ("\n\nYou have lost the fight");
+              System.out.println ("LUCKY! You've been converted to cultist player");
+              break;
           }
           if (combatResult != CombatResult.WINGAME) {
             do { // Hasta que se avance de turno 

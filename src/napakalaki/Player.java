@@ -337,7 +337,7 @@ public class Player {
     */
     public void discardVisibleTreasure (Treasure t)
     {
-        boolean remove = visibleTreasures.remove(t);
+        visibleTreasures.remove(t);
         
         if ((pendingBadConsequence != null) &&
                 (!pendingBadConsequence.isEmpty()))
@@ -503,7 +503,8 @@ public class Player {
         if (randnum == 1)
             toRet = true;
         
-        return toRet;
+        //return toRet;
+        return true;
     }
     
     /**************************************************************************/
@@ -533,8 +534,10 @@ public class Player {
         if ((pendingBadConsequence != null) && 
                 !(pendingBadConsequence.isEmpty()))
         {
-            toRet += "\n\nPending bad consequence:";
+            toRet += "\n\nPending bad consequence:\n";
+            toRet += pendingBadConsequence.toString();
             
+            /*
             if (pendingBadConsequence.getLevels() > 0)
             {
                 toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
@@ -563,6 +566,7 @@ public class Player {
                 for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
                     toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
             }
+            */
         }
         
         return toRet;
