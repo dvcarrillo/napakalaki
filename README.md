@@ -3,7 +3,7 @@
 
 *We are currently developing this game...*
 
-**UPDATED 1/8/2015 - version 0.8-beta ready:** 
+**UPDATED 1/8/2016 - version 0.8-beta ready:** 
 We have included the cultist players and fixed some new bugs.
 Now, when you die, there is a chance you become a cultist player,
 much more powerful. There are new monsters and new cultist cards.
