@@ -50,7 +50,7 @@ public class CultistPlayer extends Player {
     cultist players in the game
     */
     @Override
-    protected int getCombatLevel ()
+    public int getCombatLevel ()
     {
         double toRet = super.getCombatLevel() * 1.2;
         toRet += myCultistCard.getGainedLevels();
@@ -76,6 +76,12 @@ public class CultistPlayer extends Player {
     protected boolean shouldConvert ()
     {
         return false;
+    }
+    
+    @Override
+    public boolean getIsCultist ()
+    {
+        return true;
     }
     
     /**************************************************************************/

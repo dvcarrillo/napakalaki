@@ -5,6 +5,7 @@
  */
 package napakalaki;
 
+import GUI.Dice;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -70,7 +71,7 @@ public class Player {
     /**************************************************************************/
     // GET METHODS
     
-    protected int getCombatLevel ()
+    public int getCombatLevel ()
     {
         int result = level;
         
@@ -103,6 +104,25 @@ public class Player {
     public int getLevels () 
     {
         return level;
+    }
+    
+    /*
+    Needed by the GUI
+    */
+    
+    public BadConsequence getPendingBadConsequence ()
+    {
+        return pendingBadConsequence;
+    }
+    
+    public Player getEnemy ()
+    {
+        return enemy;
+    }
+    
+    public boolean getIsCultist ()
+    {
+        return false;
     }
     
     /*
