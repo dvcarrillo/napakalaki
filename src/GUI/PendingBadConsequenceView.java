@@ -35,10 +35,15 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
     {
         pendingBadModel = b;
         
-        if (b.isEmpty())
-            text.setText(" ");
+        if (b != null)
+        {
+            if (b.isEmpty())
+                text.setText(" ");
+            else
+                text.setText(pendingBadModel.toString());
+        }
         else
-            text.setText(pendingBadModel.toString());
+            text.setText(" ");
         
         repaint();
     }
