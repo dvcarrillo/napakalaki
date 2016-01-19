@@ -78,12 +78,6 @@ public class CultistPlayer extends Player {
         return false;
     }
     
-    @Override
-    public boolean getIsCultist ()
-    {
-        return true;
-    }
-    
     /**************************************************************************/
     // OTHER METHODS
     

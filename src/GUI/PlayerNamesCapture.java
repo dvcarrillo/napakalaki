@@ -59,7 +59,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
 
         napakalaki_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/napakalaki-logo-unico-80x80.png"))); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         p1_label.setText("Player 1:");
 

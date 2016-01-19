@@ -120,11 +120,6 @@ public class Player {
         return enemy;
     }
     
-    public boolean getIsCultist ()
-    {
-        return false;
-    }
-    
     /*
     Returns the combat level of the monster the player is fighting against
     */
