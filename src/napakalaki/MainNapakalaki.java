@@ -32,15 +32,15 @@ public class MainNapakalaki {
         // Creates the instance of the graphic dice
         Dice.createInstance(napakalakiView);
         
-        // Links the model to the view
-        napakalakiView.setNapakalaki(game);
-        
-        ArrayList<String> names = new ArrayList();
+        ArrayList<String> names;
         PlayerNamesCapture namesCapture = 
                 new PlayerNamesCapture (napakalakiView,true);
         names = namesCapture.getNames();
         
         game.initGame(names);
+        
+        // Links the model to the view
+        napakalakiView.setNapakalaki(game);
         
         // Shows the window of the application
         napakalakiView.setVisible(true);

@@ -24,15 +24,15 @@ public class PlayerView extends javax.swing.JPanel {
         playerModel = p;
         
         playerName.setText(playerModel.getName());
-        playerLevelLabel.setText(Integer.toString(playerModel.getLevels()));
-        playerLevelLabel.setText(Integer.toString(playerModel.getCombatLevel()));
-        enemyLabel.setText(playerModel.getEnemy().getName());
+        playerLevel.setText(Integer.toString(playerModel.getLevels()));
+        combatLevel.setText(Integer.toString(playerModel.getCombatLevel()));
+        enemy.setText(playerModel.getEnemy().getName());
         
         boolean canSteal = playerModel.canISteal();
         if (canSteal)
-            ableToSteal.setText("You can steal");
+            ableToSteal.setText("You CAN steal");
         else
-            ableToSteal.setText("You cannot steal");
+            ableToSteal.setText("You CANNOT steal");
         
         pendingBadConsequence.setPendingBadConsequenceView(p.getPendingBadConsequence());
                 
