@@ -66,16 +66,4 @@ public abstract class BadConsequence {
     */
     public abstract BadConsequence adjustToFitTreasureLists
         (ArrayList<Treasure> v, ArrayList<Treasure> h);
-    
-    /**************************************************************************/
-    // TO STRING METHOD
-    
-    @Override
-    public String toString()
-    {
-        String toRet = text;
-        toRet += "\nLevels you lose: " + levels;
-        
-        return toRet;
-    }
 }

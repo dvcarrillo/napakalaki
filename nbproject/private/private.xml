@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/napakalaki/MainNapakalaki.java</file>
             <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/GUI/TreasureView.java</file>
-            <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/GUI/BadConsequenceView.java</file>
-            <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/GUI/PrizeView.java</file>
+            <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/GUI/PlayerView.java</file>
+            <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/GUI/NapakalakiView.java</file>
+            <file>file:/Users/davidvargascarrillo/Documents/Napakalaki/napakalaki/src/napakalaki/NumericBadConsequence.java</file>
         </group>
     </open-files>
 </project-private>

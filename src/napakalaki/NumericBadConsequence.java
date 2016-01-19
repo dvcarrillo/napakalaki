@@ -134,8 +134,8 @@ public class NumericBadConsequence extends BadConsequence
     {
         String toRet = super.toString();
         
-        toRet += "\nNum. of visible treasures you lose: " + nVisibleTreasures 
-                + "\nNum. of hidden treasures you lose: " + nHiddenTreasures;
+        toRet += "Visible tr. to lose: " + nVisibleTreasures 
+                + "\nHidden tr. to lose: " + nHiddenTreasures;
         
         return toRet;
     }
