@@ -94,7 +94,7 @@ public class Dice extends javax.swing.JDialog {
     jL_message2 = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    setTitle("Dice");
+    setTitle("Napakalaki Dice");
     setMinimumSize(new java.awt.Dimension(400, 280));
     setPreferredSize(new java.awt.Dimension(400, 280));
 
@@ -120,7 +120,7 @@ public class Dice extends javax.swing.JDialog {
     });
 
     jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel1.setText("pincha sobre el dado para detenerlo");
+    jLabel1.setText("           Click on the dice to stop it");
 
     jL_message2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jL_message2.setText("jLabel1");
