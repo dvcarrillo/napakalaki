@@ -56,6 +56,8 @@ public class PrizeView extends javax.swing.JPanel {
         numTreasures = new javax.swing.JLabel();
         numLevels = new javax.swing.JLabel();
 
+        setOpaque(false);
+
         treasuresLabel.setText("Treasures:");
 
         levelsLabel.setText("Levels:");

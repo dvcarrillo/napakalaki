@@ -58,6 +58,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel1.setOpaque(false);
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -65,6 +66,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
         jLabel1.setText("BAD CONSEQUENCE:");
 
         jScrollPane1.setBorder(null);
+        jScrollPane1.setOpaque(false);
 
         text.setEditable(false);
         text.setBackground(new java.awt.Color(204, 204, 204));
@@ -75,6 +77,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
         text.setWrapStyleWord(true);
         text.setBorder(null);
         text.setFocusable(false);
+        text.setOpaque(false);
         jScrollPane1.setViewportView(text);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -184,6 +184,10 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_cancel_buttonActionPerformed
+
     private void play_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_play_buttonActionPerformed
         names.add(name_player_1.getText());
         names.add(name_player_2.getText());
@@ -194,10 +198,6 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
     private void name_player_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_player_1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name_player_1ActionPerformed
-
-    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_cancel_buttonActionPerformed
 
     /**
      * @param args the command line arguments

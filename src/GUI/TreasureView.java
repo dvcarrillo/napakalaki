@@ -51,6 +51,7 @@ public class TreasureView extends javax.swing.JPanel {
      */
     public TreasureView() {
         initComponents();
+        repaint();
     }
 
     /**
