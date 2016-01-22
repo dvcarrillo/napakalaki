@@ -85,6 +85,7 @@ public class TreasureView extends javax.swing.JPanel {
         treasureName.setColumns(20);
         treasureName.setLineWrap(true);
         treasureName.setRows(3);
+        treasureName.setText("text");
         treasureName.setWrapStyleWord(true);
         treasureName.setBorder(null);
         treasureName.setFocusable(false);
