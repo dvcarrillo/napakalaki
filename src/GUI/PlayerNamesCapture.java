@@ -73,7 +73,8 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
 
         p3_label.setText("Player 3:");
 
-        play_button.setText("PLAY");
+        play_button.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        play_button.setText("Start");
         play_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 play_buttonActionPerformed(evt);

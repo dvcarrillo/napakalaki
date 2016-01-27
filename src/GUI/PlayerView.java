@@ -5,9 +5,11 @@
  */
 package GUI;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import napakalaki.CultistPlayer;
+import napakalaki.Napakalaki;
 import napakalaki.Player;
 import napakalaki.Treasure;
 
@@ -18,6 +20,7 @@ import napakalaki.Treasure;
 public class PlayerView extends javax.swing.JPanel {
 
     private Player playerModel;
+    private Napakalaki napakalakiModel;
     
     public void setPlayer (Player p)
     {
@@ -71,6 +74,32 @@ public class PlayerView extends javax.swing.JPanel {
         aPanel.revalidate();
     }
     
+    /*
+    Setter for napakalakiModel
+    */
+    public void setNapakalakiModel(Napakalaki n)
+    {
+        napakalakiModel = n;
+    }
+    
+    /*
+    * Returns an ArrayList with the selected treasures
+    */
+    private ArrayList<Treasure> getSelectedTreasures(JPanel aPanel)
+    {
+        TreasureView tv;
+        ArrayList<Treasure> output = new ArrayList();
+        
+        for (Component c : aPanel.getComponents())
+        {
+           tv = (TreasureView) c;
+           if (tv.isSelected())
+              output.add (tv.getTreasure());
+        }
+        
+        return output;
+    }
+    
     /**
      * Creates new form PlayerView
      */
@@ -101,7 +130,7 @@ public class PlayerView extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         ableToSteal = new javax.swing.JLabel();
         playerName = new javax.swing.JLabel();
-        playerCPImg = new Utilities.JPanelBackground();
+        playerCPImg = new utilities.JPanelBackground();
         player_attributes = new javax.swing.JPanel();
         playerLevelLabel = new javax.swing.JLabel();
         combatLevelLabel = new javax.swing.JLabel();
@@ -179,33 +208,37 @@ public class PlayerView extends javax.swing.JPanel {
             player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(player_attributesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(playerLevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                    .addComponent(playerLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(player_attributesLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(combatLevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(playerLevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(playerLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(player_attributesLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(combatLevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(player_attributesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(combatLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(player_attributesLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(combatLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pendingBadConsequence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(pendingBadConsequence, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         player_attributesLayout.setVerticalGroup(
             player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(player_attributesLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playerLevelLabel)
                     .addComponent(combatLevelLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(player_attributesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(playerLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(combatLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pendingBadConsequence, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(playerLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(combatLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pendingBadConsequence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout playerCPImgLayout = new javax.swing.GroupLayout(playerCPImg);
@@ -252,7 +285,7 @@ public class PlayerView extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(hiddenTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(visibleTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,9 +321,11 @@ public class PlayerView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ArrayList selHidden = getSelectedTreasures(hiddenTreasures);
+        napakalakiModel.makeTreasuresVisible(selHidden);
+        setPlayer(napakalakiModel.getCurrentPlayer());
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -309,7 +344,7 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel numberOfCultists;
     private GUI.PendingBadConsequenceView pendingBadConsequence;
-    private Utilities.JPanelBackground playerCPImg;
+    private utilities.JPanelBackground playerCPImg;
     private javax.swing.JLabel playerLevel;
     private javax.swing.JLabel playerLevelLabel;
     private javax.swing.JLabel playerName;
