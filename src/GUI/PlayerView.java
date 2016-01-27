@@ -6,12 +6,15 @@
 package GUI;
 
 import java.awt.Component;
+import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import napakalaki.CultistPlayer;
 import napakalaki.Napakalaki;
 import napakalaki.Player;
 import napakalaki.Treasure;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,6 +110,11 @@ public class PlayerView extends javax.swing.JPanel {
         initComponents();
         playerCPImg.setBackground("src/images/PlayerCPBackground.png");
         repaint();
+    }
+    
+    public static void infoBox(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -327,7 +335,18 @@ public class PlayerView extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Treasure stolen = playerModel.stealTreasure();
+        
+        if (stolen == null)
+        {
+            infoBox("There are no treasures to steal", "");
+        }
+        else
+        {
+            setPlayer(napakalakiModel.getCurrentPlayer());
+            jButton1.setEnabled(false);
+            infoBox("You have stolen: " + stolen.getName(), "");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
