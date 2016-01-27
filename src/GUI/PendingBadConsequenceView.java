@@ -64,23 +64,23 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        text = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        text = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(0, 0, 0));
 
+        jScrollPane1.setBorder(null);
+
         text.setEditable(false);
         text.setBackground(new java.awt.Color(0, 0, 0));
+        text.setColumns(20);
         text.setForeground(new java.awt.Color(0, 255, 0));
-        text.setText("text");
-        text.setAlignmentY(0.0F);
+        text.setLineWrap(true);
+        text.setRows(2);
+        text.setText("text\n");
+        text.setWrapStyleWord(true);
         text.setBorder(null);
-        text.setFocusable(false);
-        text.setRequestFocusEnabled(false);
-        text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(text);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,21 +88,18 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField text;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea text;
     // End of variables declaration//GEN-END:variables
 }

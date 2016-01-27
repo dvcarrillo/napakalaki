@@ -15,6 +15,7 @@ import napakalaki.TreasureKind;
 public class TreasureView extends javax.swing.JPanel {
 
     private Treasure treasureModel;
+    private boolean selected = false;
     
     public void setTreasure (Treasure t)
     {
@@ -46,6 +47,22 @@ public class TreasureView extends javax.swing.JPanel {
         repaint();
     }
     
+    /*
+    Returns if the treasure is selected by the user
+    */
+    public boolean isSelected ()
+    {
+        return selected;
+    }
+    
+    /*
+    Returns this treasure
+    */
+    public Treasure getTreasure()
+    {
+        return treasureModel;
+    }
+    
     /**
      * Creates new form TreasureView
      */
@@ -72,6 +89,11 @@ public class TreasureView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 204, 204));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -154,6 +176,28 @@ public class TreasureView extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if (selected)
+        {
+            selected = false;
+            setBackground(new java.awt.Color(204,204,204));
+            jPanel1.setBackground(new java.awt.Color(204,204,204));
+            jPanel3.setBackground(new java.awt.Color(204,204,204));
+            treasureName.setBackground(new java.awt.Color(204,204,204));
+            repaint();
+        }
+        else
+        {
+            selected = true;
+            setBackground(new java.awt.Color(153,204,255));
+            jPanel1.setBackground(new java.awt.Color(153,204,255));
+            jPanel3.setBackground(new java.awt.Color(153,204,255));
+            treasureName.setBackground(new java.awt.Color(153,204,255));
+            repaint();
+        }
+            
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -44,7 +44,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="Utilities.JPanelBackground" name="backgroundImg">
+    <Container class="utilities.JPanelBackground" name="backgroundImg">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -99,13 +99,10 @@
                           <Component id="jLabel3" min="-2" pref="99" max="-2" attributes="0"/>
                           <Component id="monsterPrize" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="monsterLevel" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel2" pref="106" max="32767" attributes="0"/>
+                          <Component id="monsterLevel" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

@@ -39,6 +39,8 @@ public class NapakalakiView extends javax.swing.JFrame {
         
         currentMonster = aGame.getCurrentMonster();
         monsterView.setMonster(currentMonster);
+        
+        playerView.setNapakalakiModel(napakalakiModel);
     }
 
     /**
@@ -57,6 +59,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerView = new GUI.PlayerView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         meetMonsterButton.setText("Discover");
 
