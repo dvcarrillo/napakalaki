@@ -155,11 +155,11 @@ public class SpecificBadConsequence extends BadConsequence
     @Override
     public String toString()
     {
-        String toRet = super.toString();
+        String toRet = "";
         
         if (!specificVisibleTreasures.isEmpty())
         {
-            toRet += "\nVisible tr. to lose: ";
+            toRet = "\nVisible tr. to lose: ";
 
             for (int i = 0; i < specificVisibleTreasures.size(); i++)
                 toRet += specificVisibleTreasures.get(i) + " ";
@@ -167,7 +167,7 @@ public class SpecificBadConsequence extends BadConsequence
 
         if (!specificHiddenTreasures.isEmpty())
         {
-            toRet += "\nHidden tr. to lose: ";
+            toRet = "\nHidden tr. to lose: ";
 
             for (int i = 0; i < specificHiddenTreasures.size(); i++)
                 toRet += specificHiddenTreasures.get(i) + " ";

@@ -501,8 +501,8 @@ public class Player {
         hiddenTreasures.add(treasure);
  
         // Depending on the number, the method will add more treasures or not
-        int number = dice.nextNumber("You are dead.", "Throw the dice to get " +
-                "some treasures.");
+        int number = dice.nextNumber("Turn of " + name + ".", "Throw the dice" +
+                " to get some treasures.");
         
         if (number > 1)
         {
