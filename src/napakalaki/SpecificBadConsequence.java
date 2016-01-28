@@ -146,7 +146,7 @@ public class SpecificBadConsequence extends BadConsequence
         
         if (!specificVisibleTreasures.isEmpty())
         {
-            toRet += "Visible tr. to lose: ";
+            toRet += "\nVisible tr. to lose: ";
 
             for (int i = 0; i < specificVisibleTreasures.size(); i++)
                 toRet += specificVisibleTreasures.get(i) + " ";

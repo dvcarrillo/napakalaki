@@ -43,7 +43,7 @@ public class DeathBadConsequence extends NumericBadConsequence
     @Override
     public String toString()
     {
-        String toRet = "You are dead\nDiscard all your treasures";
+        String toRet = "\nYou are dead\nDiscard all your treasures";
         
         return toRet;
     }

@@ -86,6 +86,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Next Turn"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextTurnButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="GUI.MonsterView" name="monsterView">
     </Component>

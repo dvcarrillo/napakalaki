@@ -42,7 +42,7 @@ public class PlayerView extends javax.swing.JPanel {
         }
         else
         {
-            stealText = "Yoy CANNOT steal";
+            stealText = "You CANNOT steal";
         }
         ableToSteal.setText(stealText);
         
@@ -62,7 +62,7 @@ public class PlayerView extends javax.swing.JPanel {
         discardButton.setEnabled(true);
         discardAllButton.setEnabled(true);
         makeVisibleButton.setEnabled(true);
-        stealButton.setEnabled(false);
+        
         
         if (playerModel.getHiddenTreasures().isEmpty())
         {
@@ -388,7 +388,7 @@ public class PlayerView extends javax.swing.JPanel {
         
         if (stolen == null)
         {
-            infoBox("There are no treasures to steal", "");
+            infoBox("There are no treasures to steal.", "");
         }
         else
         {

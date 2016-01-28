@@ -134,7 +134,7 @@ public class NumericBadConsequence extends BadConsequence
     {
         String toRet = super.toString();
         
-        toRet += "Visible tr. to lose: " + nVisibleTreasures 
+        toRet += "\nVisible tr. to lose: " + nVisibleTreasures 
                 + "\nHidden tr. to lose: " + nHiddenTreasures;
         
         return toRet;

@@ -77,6 +77,7 @@ public class MonsterView extends javax.swing.JPanel {
         monsterLevel.setText(levelText);
         monsterPrize.setPrize(monsterModel.getPrize());
         monsterBc.setBadConsequence(monsterModel.getBadConsequence());
+        HideMonster();
         
         repaint();
     }

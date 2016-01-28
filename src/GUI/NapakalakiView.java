@@ -41,12 +41,14 @@ public class NapakalakiView extends javax.swing.JFrame {
         
         currentMonster = aGame.getCurrentMonster();
         monsterView.setMonster(currentMonster);
-        monsterView.HideMonster();
         
         playerView.setNapakalakiModel(napakalakiModel);
         
         nextTurnButton.setEnabled(false);
         combatButton.setEnabled(false);
+        nextTurnButton.setEnabled(false);
+        
+        playerView.ChangeStealButton(false);
         
         repaint();
     }
@@ -89,6 +91,11 @@ public class NapakalakiView extends javax.swing.JFrame {
         });
 
         nextTurnButton.setText("Next Turn");
+        nextTurnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextTurnButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,6 +162,20 @@ public class NapakalakiView extends javax.swing.JFrame {
         nextTurnButton.setEnabled(true);
         combatButton.setEnabled(false);
     }//GEN-LAST:event_combatButtonActionPerformed
+
+    private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
+        if (!napakalakiModel.nextTurn())
+        {
+            infoBox("You do not satisfy the required conditions before the next turn."
+            + "\nEither you have more than 4 hidden trasures or you must carry out a bad consequence.",
+            "");
+        }
+        playerView.setPlayer(napakalakiModel.getCurrentPlayer());
+        monsterView.setMonster(napakalakiModel.getCurrentMonster());
+        meetMonsterButton.setEnabled(true);
+        nextTurnButton.setEnabled(false);
+        playerView.ChangeStealButton(false);
+    }//GEN-LAST:event_nextTurnButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
