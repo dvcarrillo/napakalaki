@@ -58,6 +58,21 @@ public class PlayerView extends javax.swing.JPanel {
         this.fillTreasurePanel(visibleTreasures,playerModel.getVisibleTreasures());
         this.fillTreasurePanel(hiddenTreasures,playerModel.getHiddenTreasures());
         
+        // Buttons
+        discardButton.setEnabled(true);
+        discardAllButton.setEnabled(true);
+        makeVisibleButton.setEnabled(true);
+        stealButton.setEnabled(false);
+        
+        if (playerModel.getHiddenTreasures().isEmpty())
+        {
+            makeVisibleButton.setEnabled(false);
+            if (playerModel.getVisibleTreasures().isEmpty()) {
+                discardButton.setEnabled(false);
+                discardAllButton.setEnabled(false);
+            }
+        }
+        
         repaint();
         revalidate();
     }
@@ -116,6 +131,27 @@ public class PlayerView extends javax.swing.JPanel {
     {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void ChangeStealButton (boolean value)
+    {
+        if (value)
+        {
+            if (playerModel.canISteal())
+                stealButton.setEnabled(true);
+        }
+        else
+            stealButton.setEnabled(false);
+    }
+    
+    public void ChangeMakeVisibleButton (boolean value)
+    {
+        if (value) {
+            if (playerModel.getHiddenTreasures().size() > 0)
+                makeVisibleButton.setEnabled(true);
+        }
+        else
+            makeVisibleButton.setEnabled(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,10 +168,10 @@ public class PlayerView extends javax.swing.JPanel {
         hiddenTreasures = new javax.swing.JPanel();
         totalCultistsText = new javax.swing.JLabel();
         numberOfCultists = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        stealButton = new javax.swing.JButton();
+        makeVisibleButton = new javax.swing.JButton();
+        discardButton = new javax.swing.JButton();
+        discardAllButton = new javax.swing.JButton();
         ableToSteal = new javax.swing.JLabel();
         playerName = new javax.swing.JLabel();
         playerCPImg = new utilities.JPanelBackground();
@@ -162,23 +198,33 @@ public class PlayerView extends javax.swing.JPanel {
 
         numberOfCultists.setText("0");
 
-        jButton1.setText("Steal Treasure");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        stealButton.setText("Steal Treasure");
+        stealButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                stealButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Make Visible");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        makeVisibleButton.setText("Make Visible");
+        makeVisibleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                makeVisibleButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Discard Treasure");
+        discardButton.setText("Discard Treasure");
+        discardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discardButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Discard All Treasures");
+        discardAllButton.setText("Discard All Treasures");
+        discardAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discardAllButtonActionPerformed(evt);
+            }
+        });
 
         ableToSteal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ableToSteal.setText("Can I steal?");
@@ -281,12 +327,12 @@ public class PlayerView extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(discardButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(stealButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(discardAllButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, Short.MAX_VALUE)
+                                        .addComponent(makeVisibleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(playerCPImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(playerName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -306,12 +352,12 @@ public class PlayerView extends javax.swing.JPanel {
                         .addComponent(playerCPImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(makeVisibleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                            .addComponent(stealButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(discardAllButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(discardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -328,13 +374,16 @@ public class PlayerView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void makeVisibleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeVisibleButtonActionPerformed
         ArrayList selHidden = getSelectedTreasures(hiddenTreasures);
         napakalakiModel.makeTreasuresVisible(selHidden);
         setPlayer(napakalakiModel.getCurrentPlayer());
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        if (playerModel.getHiddenTreasures().size() == 0)
+            makeVisibleButton.setEnabled(false);
+    }//GEN-LAST:event_makeVisibleButtonActionPerformed
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void stealButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stealButtonActionPerformed
         Treasure stolen = playerModel.stealTreasure();
         
         if (stolen == null)
@@ -344,23 +393,51 @@ public class PlayerView extends javax.swing.JPanel {
         else
         {
             setPlayer(napakalakiModel.getCurrentPlayer());
-            jButton1.setEnabled(false);
+            stealButton.setEnabled(false);
             infoBox("You have stolen: " + stolen.getName(), "");
+            makeVisibleButton.setEnabled(true);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_stealButtonActionPerformed
+
+    private void discardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardButtonActionPerformed
+        ArrayList selectedHidden = getSelectedTreasures(hiddenTreasures);
+        ArrayList selectedVisible = getSelectedTreasures(visibleTreasures);
+        
+        for (Object aTreasure : selectedHidden)
+            playerModel.discardHiddenTreasure((Treasure) aTreasure);
+        for (Object aTreasure : selectedVisible)
+            playerModel.discardVisibleTreasure((Treasure) aTreasure);
+        
+        setPlayer(napakalakiModel.getCurrentPlayer());
+        
+        if ((playerModel.getHiddenTreasures().size() == 0) &&
+                playerModel.getVisibleTreasures().size() == 0)
+        {
+            discardButton.setEnabled(false);
+            discardAllButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_discardButtonActionPerformed
+
+    private void discardAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardAllButtonActionPerformed
+        playerModel.discardAllTreasures();
+        setPlayer(napakalakiModel.getCurrentPlayer());
+        
+        discardAllButton.setEnabled(false);
+        discardButton.setEnabled(false);
+        makeVisibleButton.setEnabled(false);
+    }//GEN-LAST:event_discardAllButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ableToSteal;
     private javax.swing.JLabel combatLevel;
     private javax.swing.JLabel combatLevelLabel;
+    private javax.swing.JButton discardAllButton;
+    private javax.swing.JButton discardButton;
     private javax.swing.JPanel hiddenTreasures;
     private javax.swing.JLabel isCultist;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton makeVisibleButton;
     private javax.swing.JLabel numberOfCultists;
     private GUI.PendingBadConsequenceView pendingBadConsequence;
     private utilities.JPanelBackground playerCPImg;
@@ -368,6 +445,7 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JLabel playerLevelLabel;
     private javax.swing.JLabel playerName;
     private javax.swing.JPanel player_attributes;
+    private javax.swing.JButton stealButton;
     private javax.swing.JLabel totalCultistsText;
     private javax.swing.JPanel visibleTreasures;
     // End of variables declaration//GEN-END:variables
