@@ -1,8 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2016 davidvargascarrillo
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 package GUI;
 
 import java.awt.event.WindowAdapter;
@@ -11,8 +24,10 @@ import java.util.ArrayList;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas
+ * ETSIIT, University of Granada
  */
+
 public class PlayerNamesCapture extends javax.swing.JDialog {
     
     protected ArrayList<String> names = new ArrayList();
@@ -56,6 +71,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         napakalaki_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/napakalaki-logo-unico-80x80.png"))); // NOI18N
 

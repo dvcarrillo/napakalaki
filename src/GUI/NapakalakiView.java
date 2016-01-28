@@ -1,8 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2016 davidvargascarrillo
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 package GUI;
 
 import javax.swing.JOptionPane;
@@ -13,8 +26,10 @@ import napakalaki.Player;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas
+ * ETSIIT, University of Granada
  */
+
 public class NapakalakiView extends javax.swing.JFrame {
 
     private Napakalaki napakalakiModel;             // Manages the game
@@ -166,15 +181,18 @@ public class NapakalakiView extends javax.swing.JFrame {
     private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
         if (!napakalakiModel.nextTurn())
         {
-            infoBox("You do not satisfy the required conditions before the next turn."
+            infoBox("You do not satisfy the required conditions to pass to the next turn."
             + "\nEither you have more than 4 hidden trasures or you must carry out a bad consequence.",
             "");
         }
-        playerView.setPlayer(napakalakiModel.getCurrentPlayer());
-        monsterView.setMonster(napakalakiModel.getCurrentMonster());
-        meetMonsterButton.setEnabled(true);
-        nextTurnButton.setEnabled(false);
-        playerView.ChangeStealButton(false);
+        else
+        {
+            playerView.setPlayer(napakalakiModel.getCurrentPlayer());
+            monsterView.setMonster(napakalakiModel.getCurrentMonster());
+            meetMonsterButton.setEnabled(true);
+            nextTurnButton.setEnabled(false);
+            playerView.ChangeStealButton(false);
+        }
     }//GEN-LAST:event_nextTurnButtonActionPerformed
 
 
