@@ -45,6 +45,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
                 System.exit(0);
             }
         });
+        setLocationRelativeTo(null);
     }
 
     /**

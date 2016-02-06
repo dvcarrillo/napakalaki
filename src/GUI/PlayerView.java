@@ -141,11 +141,6 @@ public class PlayerView extends javax.swing.JPanel {
         repaint();
     }
     
-    public static void infoBox(String infoMessage, String titleBar)
-    {
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
-    }
-    
     public void ChangeStealButton (boolean value)
     {
         if (value)
@@ -400,17 +395,20 @@ public class PlayerView extends javax.swing.JPanel {
     private void stealButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stealButtonActionPerformed
         Treasure stolen = playerModel.stealTreasure();
         
+        GeneralDialog generalDialog = new GeneralDialog(null, false);
         if (stolen == null)
         {
-            infoBox("There are no treasures to steal.", "");
+            generalDialog.setGeneralDialog("There are no treasures to steal.", "Error", 'e');
         }
         else
         {
             setPlayer(napakalakiModel.getCurrentPlayer());
             stealButton.setEnabled(false);
-            infoBox("You have stolen: " + stolen.getName(), "");
+            generalDialog.setGeneralDialog("You have stolen: " + stolen.getName(), "Treasure stolen", 'i');
             makeVisibleButton.setEnabled(true);
         }
+        
+        generalDialog.setVisible(true);
     }//GEN-LAST:event_stealButtonActionPerformed
 
     private void discardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardButtonActionPerformed

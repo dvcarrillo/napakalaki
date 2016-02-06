@@ -507,6 +507,7 @@ public class CardDealer {
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
         
         tVisible = new ArrayList();
+        tHidden = new ArrayList();
         
         ////////////////////////////////////////////////////////////////////////
         // MONSTERS WITH MODIFICATIONS FOR SECTARIAN PLAYERS

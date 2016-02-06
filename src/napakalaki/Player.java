@@ -84,6 +84,7 @@ public class Player {
     /**************************************************************************/
     // GET METHODS
     
+    // NullPointerException error?
     public int getCombatLevel ()
     {
         int result = level;

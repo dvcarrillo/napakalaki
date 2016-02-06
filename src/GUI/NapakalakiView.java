@@ -42,6 +42,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     public NapakalakiView() {
         this.setTitle("Napakalaki Game");
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     /*
@@ -68,11 +69,6 @@ public class NapakalakiView extends javax.swing.JFrame {
         repaint();
     }
     
-    public static void infoBox(String infoMessage, String titleBar)
-    {
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,18 +156,18 @@ public class NapakalakiView extends javax.swing.JFrame {
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
         CombatResult combatResult = napakalakiModel.developCombat();
         
-        if (combatResult == CombatResult.WIN)
-            infoBox("You have won the combat!", "Combat won");
-        else if (combatResult == CombatResult.LOSE)
-            infoBox("You have lost the combat. Time to comply the bad Consequence.", "Combat lost");
-        else if (combatResult == CombatResult.LOSEANDCONVERT)
-            infoBox("You have lost the combat, but you have been converted to CULTIST player!", "Combat lost");
-        else
-        {
-            infoBox(currentPlayer.getName() + " is the WINNER!", "Congratulations");
-            System.exit(0);
-        }
+        GeneralDialog resultDialog = new GeneralDialog(this, false);
         
+        if (combatResult == CombatResult.WIN)
+            resultDialog.setGeneralDialog("You have won the combat!", "Combat won", 'i');
+        else if (combatResult == CombatResult.LOSE)
+            resultDialog.setGeneralDialog("You have lost the combat.\nIt is time to comply the bad consequence.", "Combat lost", 'i');
+        else if (combatResult == CombatResult.LOSEANDCONVERT)
+            resultDialog.setGeneralDialog("You have been converted to CULTIST player!", "Cultist player", 'i');
+        else if (combatResult == CombatResult.WINGAME)
+            resultDialog.setGeneralDialog(currentPlayer.getName() + " is the WINNER!", "Game over", 'w');
+        
+        resultDialog.setVisible(true);
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());
         playerView.ChangeStealButton(true);
         nextTurnButton.setEnabled(true);
@@ -181,9 +177,11 @@ public class NapakalakiView extends javax.swing.JFrame {
     private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
         if (!napakalakiModel.nextTurn())
         {
-            infoBox("You do not satisfy the required conditions to pass to the next turn."
-            + "\nEither you have more than 4 hidden trasures or you must carry out a bad consequence.",
-            "");
+            GeneralDialog resultDialog = new GeneralDialog(this, false);
+            resultDialog.setGeneralDialog("You do not satisfy the required conditions to pass to the next turn. "
+            + "Either you have more than 4 hidden trasures or you must carry out a bad consequence. ",
+            "Error", 'e');
+            resultDialog.setVisible(true);
         }
         else
         {
