@@ -1,18 +1,35 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2016 davidvargascarrillo
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 package GUI;
 
+import javax.swing.JOptionPane;
+import napakalaki.CombatResult;
 import napakalaki.Monster;
 import napakalaki.Napakalaki;
 import napakalaki.Player;
 
 /**
  *
- * @author davidvargascarrillo
+ * @author David Vargas
+ * ETSIIT, University of Granada
  */
+
 public class NapakalakiView extends javax.swing.JFrame {
 
     private Napakalaki napakalakiModel;             // Manages the game
@@ -25,6 +42,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     public NapakalakiView() {
         this.setTitle("Napakalaki Game");
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     /*
@@ -41,8 +59,16 @@ public class NapakalakiView extends javax.swing.JFrame {
         monsterView.setMonster(currentMonster);
         
         playerView.setNapakalakiModel(napakalakiModel);
+        
+        nextTurnButton.setEnabled(false);
+        combatButton.setEnabled(false);
+        nextTurnButton.setEnabled(false);
+        
+        playerView.ChangeStealButton(false);
+        
+        repaint();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,10 +88,25 @@ public class NapakalakiView extends javax.swing.JFrame {
         setResizable(false);
 
         meetMonsterButton.setText("Discover");
+        meetMonsterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meetMonsterButtonActionPerformed(evt);
+            }
+        });
 
         combatButton.setText("Fight");
+        combatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combatButtonActionPerformed(evt);
+            }
+        });
 
         nextTurnButton.setText("Next Turn");
+        nextTurnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextTurnButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,7 +123,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(combatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(nextTurnButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(monsterView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(monsterView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,7 +133,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(playerView, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(monsterView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(monsterView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(meetMonsterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,6 +145,53 @@ public class NapakalakiView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void meetMonsterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetMonsterButtonActionPerformed
+        monsterView.ShowMonster();
+        combatButton.setEnabled(true);
+        meetMonsterButton.setEnabled(false);
+        playerView.ChangeMakeVisibleButton(false);
+    }//GEN-LAST:event_meetMonsterButtonActionPerformed
+
+    private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
+        CombatResult combatResult = napakalakiModel.developCombat();
+        
+        GeneralDialog resultDialog = new GeneralDialog(this, false);
+        
+        if (combatResult == CombatResult.WIN)
+            resultDialog.setGeneralDialog("You have won the combat!", "Combat won", 'i');
+        else if (combatResult == CombatResult.LOSE)
+            resultDialog.setGeneralDialog("You have lost the combat.\nIt is time to comply the bad consequence.", "Combat lost", 'i');
+        else if (combatResult == CombatResult.LOSEANDCONVERT)
+            resultDialog.setGeneralDialog("You have been converted to CULTIST player!", "Cultist player", 'i');
+        else if (combatResult == CombatResult.WINGAME)
+            resultDialog.setGeneralDialog(currentPlayer.getName() + " is the WINNER!", "Game over", 'w');
+        
+        resultDialog.setVisible(true);
+        playerView.setPlayer(napakalakiModel.getCurrentPlayer());
+        playerView.ChangeStealButton(true);
+        nextTurnButton.setEnabled(true);
+        combatButton.setEnabled(false);
+    }//GEN-LAST:event_combatButtonActionPerformed
+
+    private void nextTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTurnButtonActionPerformed
+        if (!napakalakiModel.nextTurn())
+        {
+            GeneralDialog resultDialog = new GeneralDialog(this, false);
+            resultDialog.setGeneralDialog("You do not satisfy the required conditions to pass to the next turn. "
+            + "Either you have more than 4 hidden trasures or you must carry out a bad consequence. ",
+            "Error", 'e');
+            resultDialog.setVisible(true);
+        }
+        else
+        {
+            playerView.setPlayer(napakalakiModel.getCurrentPlayer());
+            monsterView.setMonster(napakalakiModel.getCurrentMonster());
+            meetMonsterButton.setEnabled(true);
+            nextTurnButton.setEnabled(false);
+            playerView.ChangeStealButton(false);
+        }
+    }//GEN-LAST:event_nextTurnButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
