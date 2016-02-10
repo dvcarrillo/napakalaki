@@ -33,4 +33,4 @@ functions, and we will keep updated the different branches with our daily
 progress, as the Ruby version on https://github.com/dvcarrillo/napakalaki-ruby.
 
 ##Napakalaki x Ruby
-**The version coded in Ruby is avaliable [here](https://github.com/dvcarrillo/napakalaki-ruby).**
+The version **coded in Ruby** is avaliable **[here](https://github.com/dvcarrillo/napakalaki-ruby)**.
