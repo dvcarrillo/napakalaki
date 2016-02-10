@@ -51,6 +51,8 @@ public class Dice extends javax.swing.JDialog {
         System.exit(0);
       }
     });
+    
+    this.setResizable(false);
   }
 
   public static void createInstance (java.awt.Frame parent) {

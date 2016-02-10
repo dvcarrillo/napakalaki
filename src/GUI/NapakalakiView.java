@@ -166,7 +166,7 @@ public class NapakalakiView extends javax.swing.JFrame {
             resultDialog.setGeneralDialog("You have been converted to CULTIST player!", "Cultist player", 'i');
         else if (combatResult == CombatResult.WINGAME)
         {
-            resultDialog.setGeneralDialog("CONGRATULATIONS, you have won the game!", "Game over", 'w');
+            resultDialog.setGeneralDialog("Congratulations, " + currentPlayer.getName() + ". You have won the game!", "Victory", 'w');
             resultDialog.setVisible(true);
             
             GeneralDialog creditsDialog = new GeneralDialog(this,true);
