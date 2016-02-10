@@ -145,8 +145,8 @@ public class NumericBadConsequence extends BadConsequence
     @Override
     public String toString()
     {   
-        String toRet = "Visible tr. to lose: " + nVisibleTreasures 
-                + "\nHidden tr. to lose: " + nHiddenTreasures;
+        String toRet = "Visible treasures to lose: " + nVisibleTreasures 
+                + "\nHidden treasures to lose: " + nHiddenTreasures;
         
         return toRet;
     }
