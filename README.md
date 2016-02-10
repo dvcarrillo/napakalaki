@@ -1,7 +1,10 @@
 # :mahjong: Napakalaki :mahjong:
 ## The card game everyone has played
 
-*We are currently developing this game...*
+**UPDATED 02/10/2016 - version 1.0 ready:**
+The GUI part has been finished and all the new bugs have been fixed.
+The game is fully working right now and will be released soon so that
+everyone will be able to try it without needing a compiler.
 
 **UPDATED 01/08/2016 - version 0.8-beta ready:** 
 We have included the cultist players and fixed some new bugs.
