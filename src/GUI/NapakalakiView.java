@@ -155,6 +155,7 @@ public class NapakalakiView extends javax.swing.JFrame {
 
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
         CombatResult combatResult = napakalakiModel.developCombat();
+        
         GeneralDialog resultDialog = new GeneralDialog(this, true);
         
         if (combatResult == CombatResult.WIN)
