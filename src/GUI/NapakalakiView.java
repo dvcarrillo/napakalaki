@@ -166,8 +166,19 @@ public class NapakalakiView extends javax.swing.JFrame {
             resultDialog.setGeneralDialog("You have been converted to CULTIST player!", "Cultist player", 'i');
         else if (combatResult == CombatResult.WINGAME)
         {
-            resultDialog.setGeneralDialog(currentPlayer.getName() + " is the WINNER!", "Game over", 'w');
+            resultDialog.setGeneralDialog("CONGRATULATIONS, you have won the game!", "Game over", 'w');
             resultDialog.setVisible(true);
+            
+            GeneralDialog creditsDialog = new GeneralDialog(this,true);
+            creditsDialog.setGeneralDialog(
+                    "Napakalaki Game v1.0\n\n" +
+                    "Coded with <3 by David Vargas and Alicia Vílchez.\n" +
+                    "GUI designed by David Vargas.\n" +
+                    "Part of the BSc in Computer Science at the University of Granada.\n\n" +
+                    "We hope you have enjoyed our game!\n" +
+                    "More information at http://github.com/dvcarrillo"
+                    , "Napakalaki Credits", 'i');
+            creditsDialog.setVisible(true); 
             System.exit(0);
         }
         
@@ -183,7 +194,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         {
             GeneralDialog resultDialog = new GeneralDialog(this, false);
             resultDialog.setGeneralDialog("You do not satisfy the required conditions to pass to the next turn. "
-            + "Either you have more than 4 hidden trasures or you must carry out a bad consequence. ",
+            + "Either you have more than 4 hidden treasures or you must carry out a bad consequence. ",
             "Error", 'e');
             resultDialog.setVisible(true);
         }

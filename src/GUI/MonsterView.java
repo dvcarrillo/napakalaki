@@ -74,7 +74,7 @@ public class MonsterView extends javax.swing.JPanel {
         
         if (levelChange != monsterModel.getCombatLevel())
         {
-            levelText += "/" + levelChange;
+            levelText += "|" + levelChange;
         }
         
         monsterLevel.setText(levelText);
