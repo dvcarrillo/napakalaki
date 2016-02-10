@@ -1,10 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2016 davidvargascarrillo
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 package napakalaki;
 
+import GUI.Dice;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -54,23 +68,22 @@ public class Player {
     // bad consequence
     public Player (Player p)
     {
-        if (p.validState()) {
-            this.name = p.getName();
-            this.level = p.getLevels();
-            this.dead = p.isDead();
-            this.canISteal = p.canISteal();
+        this.name = p.getName();
+        this.level = p.getLevels();
+        this.dead = p.isDead();
+        this.canISteal = p.canISteal();
 
-            this.enemy = p.enemy;
-            this.visibleTreasures = p.getVisibleTreasures();
-            this.hiddenTreasures = p.getHiddenTreasures();
-            this.setPendingBadConsequence(null);
-        }
+        this.enemy = p.enemy;
+        this.visibleTreasures = p.getVisibleTreasures();
+        this.hiddenTreasures = p.getHiddenTreasures();
+        this.setPendingBadConsequence(p.getPendingBadConsequence());
     }
     
     /**************************************************************************/
     // GET METHODS
     
-    protected int getCombatLevel ()
+    // NullPointerException error?
+    public int getCombatLevel ()
     {
         int result = level;
         
@@ -103,6 +116,20 @@ public class Player {
     public int getLevels () 
     {
         return level;
+    }
+    
+    /*
+    Needed by the GUI
+    */
+    
+    public BadConsequence getPendingBadConsequence ()
+    {
+        return pendingBadConsequence;
+    }
+    
+    public Player getEnemy ()
+    {
+        return enemy;
     }
     
     /*
@@ -473,7 +500,8 @@ public class Player {
         hiddenTreasures.add(treasure);
  
         // Depending on the number, the method will add more treasures or not
-        int number = dice.nextNumber();
+        int number = dice.nextNumber("Turn of " + name + ".", "Throw the dice" +
+                " to get some treasures.");
         
         if (number > 1)
         {
@@ -498,7 +526,8 @@ public class Player {
         boolean toRet = false;
         
         Dice dice = Dice.getInstance();
-        int randnum = dice.nextNumber();
+        int randnum = dice.nextNumber("You have lost the fight.", "If you " +
+                "get a 1, you will be converted to CULTIST player.");
         
         if (randnum == 1)
             toRet = true;
@@ -512,60 +541,6 @@ public class Player {
     @Override
     public String toString()
     {
-        String toRet = name + "\n";
-        
-        if (dead)
-        {
-            toRet += "\nThis player is dead.";
-        }
-        
-        else
-        {
-            toRet += "\nCombat level: " + getCombatLevel() + " (" + level + ")"
-                    + "\nEnemy: " + enemy.getName();
-            
-            if (canISteal)
-                toRet += "\nThis player CAN steal";
-            else
-                toRet += "\nThis player CAN NOT steal";
-        }
-        
-        if ((pendingBadConsequence != null) && 
-                !(pendingBadConsequence.isEmpty()))
-        {
-            toRet += "\n\nPending bad consequence:\n";
-            toRet += pendingBadConsequence.toString();
-//            
-//            if (pendingBadConsequence.getLevels() > 0)
-//            {
-//                toRet += "\nLevels to lose: " + pendingBadConsequence.getLevels();
-//            }
-//            
-//            if (pendingBadConsequence.getNVisibleTreasures() > 0)
-//                toRet += "\nNum. of visible treasures to lose: " + 
-//                        pendingBadConsequence.getNVisibleTreasures();
-//            
-//            if (!(pendingBadConsequence.getSpecificVisibleTreasures().isEmpty())
-//               && (pendingBadConsequence.getSpecificVisibleTreasures() != null))
-//            {   
-//                toRet += "\nSpecific visible treasures you must discard: ";
-//                for (int i = 0; i < pendingBadConsequence.getSpecificVisibleTreasures().size(); i++)
-//                    toRet += pendingBadConsequence.getSpecificVisibleTreasures().get(i) + " ";
-//            }
-//            
-//            if (pendingBadConsequence.getNHiddenTreasures() > 0)
-//                toRet += "\nNum. of hidden treasures to lose: " + 
-//                        pendingBadConsequence.getNHiddenTreasures();
-//            
-//            if (!(pendingBadConsequence.getSpecificHiddenTreasures().isEmpty())
-//               && (pendingBadConsequence.getSpecificHiddenTreasures() != null))
-//            {   
-//                toRet += "\nSpecific hidden treasures you must discard: ";
-//                for (int i = 0; i < pendingBadConsequence.getSpecificHiddenTreasures().size(); i++)
-//                    toRet += pendingBadConsequence.getSpecificHiddenTreasures().get(i) + " ";
-//            }
-        }
-        
-        return toRet;
+        return name;
     }
 }
