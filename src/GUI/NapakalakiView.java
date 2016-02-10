@@ -155,7 +155,6 @@ public class NapakalakiView extends javax.swing.JFrame {
 
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
         CombatResult combatResult = napakalakiModel.developCombat();
-        
         GeneralDialog resultDialog = new GeneralDialog(this, true);
         
         if (combatResult == CombatResult.WIN)
@@ -178,6 +177,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                     "We hope you have enjoyed our game!\n" +
                     "More information at http://github.com/dvcarrillo"
                     , "Napakalaki Credits", 'i');
+            
             creditsDialog.setVisible(true); 
             System.exit(0);
         }
