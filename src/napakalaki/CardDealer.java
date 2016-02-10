@@ -670,6 +670,7 @@ public class CardDealer {
         
         Treasure trs = unusedTreasures.get(0);
         unusedTreasures.remove(trs);
+        usedTreasures.add(trs);
         
         return trs;     
     }

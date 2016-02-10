@@ -248,12 +248,12 @@ public class PlayerView extends javax.swing.JPanel {
         playerLevelLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         playerLevelLabel.setForeground(new java.awt.Color(51, 204, 255));
         playerLevelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        playerLevelLabel.setText("Player level:");
+        playerLevelLabel.setText("Player level");
 
         combatLevelLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         combatLevelLabel.setForeground(new java.awt.Color(51, 204, 255));
         combatLevelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        combatLevelLabel.setText("Combat level:");
+        combatLevelLabel.setText("Combat level");
 
         playerLevel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         playerLevel.setForeground(new java.awt.Color(51, 204, 255));

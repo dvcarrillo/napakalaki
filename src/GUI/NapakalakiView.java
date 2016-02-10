@@ -156,7 +156,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
         CombatResult combatResult = napakalakiModel.developCombat();
         
-        GeneralDialog resultDialog = new GeneralDialog(this, false);
+        GeneralDialog resultDialog = new GeneralDialog(this, true);
         
         if (combatResult == CombatResult.WIN)
             resultDialog.setGeneralDialog("You have won the combat!", "Combat won", 'i');
@@ -165,7 +165,11 @@ public class NapakalakiView extends javax.swing.JFrame {
         else if (combatResult == CombatResult.LOSEANDCONVERT)
             resultDialog.setGeneralDialog("You have been converted to CULTIST player!", "Cultist player", 'i');
         else if (combatResult == CombatResult.WINGAME)
+        {
             resultDialog.setGeneralDialog(currentPlayer.getName() + " is the WINNER!", "Game over", 'w');
+            resultDialog.setVisible(true);
+            System.exit(0);
+        }
         
         resultDialog.setVisible(true);
         playerView.setPlayer(napakalakiModel.getCurrentPlayer());

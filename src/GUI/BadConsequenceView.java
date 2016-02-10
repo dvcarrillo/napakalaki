@@ -66,7 +66,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BAD CONSEQUENCE:");
+        jLabel1.setText("BAD CONSEQUENCE");
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setOpaque(false);

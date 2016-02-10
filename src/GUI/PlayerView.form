@@ -300,7 +300,7 @@
                   <Color blue="ff" green="cc" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Player level:"/>
+                <Property name="text" type="java.lang.String" value="Player level"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="combatLevelLabel">
@@ -312,7 +312,7 @@
                   <Color blue="ff" green="cc" red="33" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Combat level:"/>
+                <Property name="text" type="java.lang.String" value="Combat level"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="playerLevel">
