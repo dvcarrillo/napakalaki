@@ -1,6 +1,15 @@
-# :mahjong: Napakalaki :mahjong:
-## The card game everyone has played
+#![napakalaki-ruby](https://raw.github.com/dvcarrillo/napakalaki/test-dvcarrillo/doc/napakalaki-ext.png)
 
+##What is Napakalaki?
+Napakalaki is a game coded in Java and based in a popular card game, where you fight against monsters and have treasures to equip and increase your level.
+
+##Screenshots
+*soon!*
+
+##Napakalaki Basics
+*soon!*
+
+##Update log
 **UPDATED 02/10/2016 - version 1.0 ready:**
 The GUI part has been finished and all the new bugs have been fixed.
 The game is fully working right now and will be released soon so that
@@ -23,4 +32,5 @@ We will update the *master* branch once we have ready each one of these
 functions, and we will keep updated the different branches with our daily
 progress, as the Ruby version on https://github.com/dvcarrillo/napakalaki-ruby.
 
+##Napakalaki x Ruby
 **The version coded in Ruby is avaliable [here](https://github.com/dvcarrillo/napakalaki-ruby).**
