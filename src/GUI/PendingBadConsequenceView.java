@@ -77,7 +77,7 @@ public class PendingBadConsequenceView extends javax.swing.JPanel {
         text.setEditable(false);
         text.setBackground(new java.awt.Color(0, 0, 0));
         text.setColumns(20);
-        text.setForeground(new java.awt.Color(0, 255, 0));
+        text.setForeground(new java.awt.Color(51, 204, 255));
         text.setLineWrap(true);
         text.setRows(2);
         text.setText("text\n");

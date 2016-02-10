@@ -68,17 +68,15 @@ public class Player {
     // bad consequence
     public Player (Player p)
     {
-        if (p.validState()) {
-            this.name = p.getName();
-            this.level = p.getLevels();
-            this.dead = p.isDead();
-            this.canISteal = p.canISteal();
+        this.name = p.getName();
+        this.level = p.getLevels();
+        this.dead = p.isDead();
+        this.canISteal = p.canISteal();
 
-            this.enemy = p.enemy;
-            this.visibleTreasures = p.getVisibleTreasures();
-            this.hiddenTreasures = p.getHiddenTreasures();
-            this.setPendingBadConsequence(null);
-        }
+        this.enemy = p.enemy;
+        this.visibleTreasures = p.getVisibleTreasures();
+        this.hiddenTreasures = p.getHiddenTreasures();
+        this.setPendingBadConsequence(p.getPendingBadConsequence());
     }
     
     /**************************************************************************/
