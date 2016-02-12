@@ -1,10 +1,11 @@
-#![napakalaki-ruby](https://raw.github.com/dvcarrillo/napakalaki/test-dvcarrillo/doc/napakalaki-ext.png)
+#![napakalaki](https://raw.github.com/dvcarrillo/napakalaki/master/doc/napakalaki-ext.png)
 
 ##What is Napakalaki?
 Napakalaki is a game coded in Java and based in a popular card game, where you fight against monsters and have treasures to equip and increase your level.
 
 ##Screenshots
-*soon!*
+#![napakalaki](https://raw.github.com/dvcarrillo/napakalaki/master/screenshot-1.png)
+#![napakalaki](https://raw.github.com/dvcarrillo/napakalaki/master/screenshot-2.png)
 
 ##Napakalaki Basics
 *soon!*
