@@ -33,7 +33,7 @@ import java.util.ArrayList;
 * MAIN CLASS
 */
 
-public class MainNapakalaki { 
+public class NapakalakiGame { 
     
     public static void main (String [] args) {
         // Manages the course of the game

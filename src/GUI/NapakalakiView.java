@@ -18,7 +18,6 @@
 
 package GUI;
 
-import javax.swing.JOptionPane;
 import napakalaki.CombatResult;
 import napakalaki.Monster;
 import napakalaki.Napakalaki;
