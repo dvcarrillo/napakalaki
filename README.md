@@ -1,4 +1,5 @@
 # ![napakalaki](https://raw.github.com/dvcarrillo/napakalaki/master/doc/napakalaki-ext.png)
+[![Build Status](https://travis-ci.org/dvcarrillo/napakalaki.svg?branch=master)](https://travis-ci.org/dvcarrillo/napakalaki)
 
 ## What is Napakalaki?
 Napakalaki is a game coded in Java and based in a popular card game, where you fight against monsters and have treasures to equip and increase your level. The first player to reach level 10 is the winner!
