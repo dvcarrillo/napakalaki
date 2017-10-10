@@ -14,21 +14,24 @@ Napakalaki is a card game based on one of the most popular card games. This game
 More information on the [*ABOUT & RULES* document](https://raw.github.com/dvcarrillo/napakalaki/master/doc/Napakalaki - ABOUT & RULES.pdf).
 
 ## Update log
-**UPDATED 02/10/2016 - version 1.0 ready:**
+**09/10/2017:**
+Added TravisCI support
+
+**UPDATED 10/02/2016 - version 1.0 ready:**
 The GUI part has been finished and all the new bugs have been fixed.
 The game is fully working right now and will be released soon so that
 everyone will be able to try it without needing a compiler.
 
-**UPDATED 01/08/2016 - version 0.8-beta ready:** 
+**UPDATED 08/01/2016 - version 0.8-beta ready:** 
 We have included the cultist players and fixed some new bugs.
 Now, when you die, there is a chance you become a cultist player,
 much more powerful. There are new monsters and new cultist cards.
 
-**UPDATED 12/06/2015 - version 0.5-beta ready:** 
+**UPDATED 06/12/2015 - version 0.5-beta ready:** 
 The game is now fully in English and all the bugs have been fixed.
 Now includes amount of players selection and help section too.
 
-**UPDATED 12/02/2015:** 
+**UPDATED 02/12/2015:** 
 Finally, the base game is working and by now there is not any reported
 issue. There are more things to add, as the sectarian players, and, of
 course, the UI.
