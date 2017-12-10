@@ -11,7 +11,7 @@ Napakalaki is a game coded in Java and based in a popular card game, where you f
 ## Napakalaki Basics
 Napakalaki is a card game based on one of the most popular card games. This game is about gaining levels by obtaining treasures that increase them. When the game begins, every player will have 1, 2 or 3 treasures to equip (make them visible), and with the level that they gain, they will have to fight against monsters. If the monster is defeated, the player will obtain a prize consisting in more treasures and a level gaining. Otherwise, the player will suffer a 'bad consequence', which is a loss of levels and treasures. Losing a combat may convert you into a cultist player, which is a player with some *benefits* over the other ones. **The first player to reach the (player) level 10 wins.**
 
-More information on the [*ABOUT & RULES* document](https://raw.github.com/dvcarrillo/napakalaki/master/doc/Napakalaki - ABOUT & RULES.pdf).
+More information on the [*ABOUT & RULES* document](https://github.com/dvcarrillo/napakalaki/blob/master/doc/Napakalaki%20-%20ABOUT%20%26%20RULES.pdf).
 
 ## Update log
 **09/10/2017:**
